@@ -1,0 +1,10 @@
+# secrets et environnement local
+.env
+*.local
+# artefacts de build
+target/
+build/
+node_modules/
+dist/
+
+.kilo/

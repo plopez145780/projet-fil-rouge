@@ -1,0 +1,1 @@
+Le projet-fil-rouge est une petite application de gestion de demandes internes.
