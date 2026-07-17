@@ -15,6 +15,14 @@ L'équipe majoritairement de développeurs fullStack Java multi-version.
 L'équipe expérimenté en java s'aidera de l'IA pour mettre en place les pratiques de la dernière version de java.
 L'écosystème utilise Testcontainers/CI mature (M08/M09)
 
+## BDD
+
+PostgreSQL 18, deux bases logiques (referentiel_db, metier_db)
+
+### Pourquoi
+
+Contrainte du client
+
 ## Front-End
 
 - Angular 22
