@@ -21,3 +21,6 @@ Variables d'environnement (`POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`) 
 - [docs/STACK.md](docs/STACK.md) — choix et rationale de la stack
 - [docs/FEATURE.md](docs/FEATURE.md) — User Stories & modèle de données
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — architecture microservices
+
+
+Les rules : 

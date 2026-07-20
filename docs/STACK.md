@@ -6,7 +6,7 @@ Java et angular sont des technologies déjà utilisé dans l'écosystème.
 
 ## BackEnd
 
-- Java 26
+- Java 25
 - Spring Boot 4.1.0
 
 ### Pourquoi
