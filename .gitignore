@@ -1,6 +1,7 @@
 # secrets et environnement local
 .env
 *.local
+flyway.conf
 # artefacts de build
 target/
 build/

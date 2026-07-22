@@ -1,15 +1,15 @@
 services:
   db:
-    image: postgres:18                       # majeure epinglee (stable 18.x, juin 2026)
+    image: postgres:18 # majeure epinglee (stable 18.x, juin 2026)
     container_name: fil-rouge-db
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}             # valeurs injectees depuis .env
+      POSTGRES_DB: ${POSTGRES_DB} # valeurs injectees depuis .env
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql      # persistance hors du conteneur
+      - pg_data:/var/lib/postgresql # persistance hors du conteneur
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s

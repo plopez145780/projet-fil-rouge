@@ -5,6 +5,7 @@
 - Classes en PascalCase, methodes/variables en camelCase (Java/TS).
 - Entites au singulier (Demande), routes REST au pluriel (/demandes).
 - Booleens prefixes est/has (estResolue, hasAssignee).
+- Utiliser des noms en francais.
 
 ## Format
 

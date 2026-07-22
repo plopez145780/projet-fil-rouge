@@ -1,7 +1,11 @@
 package com.semishop;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class FilRougeApplication {
     public static void main(String[] args) {
-        System.out.println("Hello World from Java 25");
+        SpringApplication.run(FilRougeApplication.class, args);
     }
 }
