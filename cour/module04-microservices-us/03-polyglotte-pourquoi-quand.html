@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>03 — Polyglotte : pourquoi et quand plusieurs langages</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> Polyglotte : pourquoi et quand plusieurs langages <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">Polyglotte : pourquoi et quand plusieurs langages</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,241 +222,168 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="02-gateway-contrats-api.md">02 - Gateway et contrats d'API</a> — le contrat OpenAPI comme frontière entre services : c'est lui qui rend le polyglotte tenable.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
-<ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
-</ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<h2 id="1-larchitecture-polyglotte-ce-que-cest-a-quoi-ca-sert-un-exemple">1. L'architecture polyglotte : ce que c'est, à quoi ça sert, un exemple</h2>
+<p><strong>Ce que c'est.</strong> Une architecture polyglotte fait coexister plusieurs langages et frameworks dans une même plateforme, un service restant mono-langage. Chaque service choisit sa stack ; le contrat d'API les fait tenir ensemble.</p>
+<p><strong>À quoi ça sert.</strong> Utiliser le meilleur écosystème pour chaque besoin, et surtout laisser chaque équipe travailler dans la technologie qu'elle maîtrise — c'est le cas de votre promotion, où profils Node, Python, Java et .NET cohabitent.</p>
+<p><strong>Un exemple simple.</strong> L'overlay polyglotte de SemiShop ajoute au socle Spring Boot quatre services : le panier en <strong>NestJS</strong>, le stock en <strong>FastAPI</strong>, les clients et le paiement en <strong>.NET 8</strong>. Le front et le BFF ne voient aucune différence : ils consomment des contrats.</p>
+<pre class="mermaid">
+flowchart TB
+    t_gw["Traefik"] --&gt; t_bff["BFF&lt;br/&gt;Spring Boot"]
+    subgraph t_socle ["Socle - Java"]
+        direction TB
+        spacer_1[ ]
+        style spacer_1 width:0px,height:0px,fill:none,stroke:none
+        t_cmd["commandes&lt;br/&gt;Spring Boot"]
+        t_cat["catalogue&lt;br/&gt;Spring Boot"]
+        spacer_1 ~~~ t_cmd
+    end
+    subgraph t_over ["Overlay polyglotte"]
+        direction TB
+        spacer_2[ ]
+        style spacer_2 width:0px,height:0px,fill:none,stroke:none
+        t_cart["cart&lt;br/&gt;NestJS"]
+        t_inv["inventory&lt;br/&gt;FastAPI"]
+        t_cust["customer&lt;br/&gt;.NET 8"]
+        t_pay["payment&lt;br/&gt;.NET 8"]
+        spacer_2 ~~~ t_cart
+    end
+    t_bff --&gt; t_cmd
+    t_bff --&gt; t_cat
+    t_gw --&gt;|"routes directes demo"| t_over
+    t_cart --&gt;|"contrat OpenAPI"| t_cat
+    t_cart --&gt;|"contrat OpenAPI"| t_inv
+</pre>
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMzE3OEM2IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VHlwZVNjcmlwdDwvdGl0bGU+PHBhdGggZD0iTTEuMTI1IDBDLjUwMiAwIDAgLjUwMiAwIDEuMTI1djIxLjc1QzAgMjMuNDk4LjUwMiAyNCAxLjEyNSAyNGgyMS43NWMuNjIzIDAgMS4xMjUtLjUwMiAxLjEyNS0xLjEyNVYxLjEyNUMyNCAuNTAyIDIzLjQ5OCAwIDIyLjg3NSAwem0xNy4zNjMgOS43NWMuNjEyIDAgMS4xNTQuMDM3IDEuNjI3LjExMWE2LjM4IDYuMzggMCAwIDEgMS4zMDYuMzR2Mi40NThhMy45NSAzLjk1IDAgMCAwLS42NDMtLjM2MSA1LjA5MyA1LjA5MyAwIDAgMC0uNzE3LS4yNiA1LjQ1MyA1LjQ1MyAwIDAgMC0xLjQyNi0uMmMtLjMgMC0uNTczLjAyOC0uODE5LjA4NmEyLjEgMi4xIDAgMCAwLS42MjMuMjQyYy0uMTcuMTA0LS4zLjIyOS0uMzkzLjM3NGEuODg4Ljg4OCAwIDAgMC0uMTQuNDljMCAuMTk2LjA1My4zNzMuMTU2LjUyOS4xMDQuMTU2LjI1Mi4zMDQuNDQzLjQ0NHMuNDIzLjI3Ni42OTYuNDFjLjI3My4xMzUuNTgyLjI3NC45MjYuNDE2LjQ3LjE5Ny44OTIuNDA3IDEuMjY2LjYyOC4zNzQuMjIyLjY5NS40NzMuOTYzLjc1My4yNjguMjc5LjQ3Mi41OTguNjE0Ljk1Ny4xNDIuMzU5LjIxNC43NzYuMjE0IDEuMjUzIDAgLjY1Ny0uMTI1IDEuMjEtLjM3MyAxLjY1NmEzLjAzMyAzLjAzMyAwIDAgMS0xLjAxMiAxLjA4NSA0LjM4IDQuMzggMCAwIDEtMS40ODcuNTk2Yy0uNTY2LjEyLTEuMTYzLjE4LTEuNzkuMThhOS45MTYgOS45MTYgMCAwIDEtMS44NC0uMTY0IDUuNTQ0IDUuNTQ0IDAgMCAxLTEuNTEyLS40OTN2LTIuNjNhNS4wMzMgNS4wMzMgMCAwIDAgMy4yMzcgMS4yYy4zMzMgMCAuNjI0LS4wMy44NzItLjA5LjI0OS0uMDYuNDU2LS4xNDQuNjIzLS4yNS4xNjYtLjEwOC4yOS0uMjM0LjM3My0uMzhhMS4wMjMgMS4wMjMgMCAwIDAtLjA3NC0xLjA4OSAyLjEyIDIuMTIgMCAwIDAtLjUzNy0uNSA1LjU5NyA1LjU5NyAwIDAgMC0uODA3LS40NDQgMjcuNzIgMjcuNzIgMCAwIDAtMS4wMDctLjQzNmMtLjkxOC0uMzgzLTEuNjAyLS44NTItMi4wNTMtMS40MDUtLjQ1LS41NTMtLjY3Ni0xLjIyMi0uNjc2LTIuMDA1IDAtLjYxNC4xMjMtMS4xNDEuMzY5LTEuNTgyLjI0Ni0uNDQxLjU4LS44MDQgMS4wMDQtMS4wODlhNC40OTQgNC40OTQgMCAwIDEgMS40Ny0uNjI5IDcuNTM2IDcuNTM2IDAgMCAxIDEuNzctLjIwMXptLTE1LjExMy4xODhoOS41NjN2Mi4xNjZIOS41MDZ2OS42NDZINi43ODl2LTkuNjQ2SDMuMzc1eiIvPjwvc3ZnPg==" alt="Logo TypeScript, langage du service cart NestJS" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNkRCMzNGIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+U3ByaW5nPC90aXRsZT48cGF0aCBkPSJNMjEuODUzNyAxLjQxNThhMTAuNDUwNCAxMC40NTA0IDAgMCAxLTEuMjg0IDIuMjQ3MUExMS45NjY2IDExLjk2NjYgMCAxIDAgMy44NTE4IDIwLjc3NTdsLjQ0NDUuMzk1MWExMS45NTQzIDExLjk1NDMgMCAwIDAgMTkuNjMxNi04LjI5NzFjLjM0NTctMy4wMTI2LS41NjgtNi44NjQ5LTIuMDc0My0xMS40NTh6TTUuNTgwNSAyMC44NzQ1YTEuMDE3NCAxLjAxNzQgMCAxIDEtLjE0ODItMS40MzIzIDEuMDM5NiAxLjAzOTYgMCAwIDEgLjE0ODIgMS40MzIzem0xNi4xOTkxLTMuNTgwNmMtMi45Mzg1IDMuOTI2My05LjI2MDEgMi41OTI4LTEzLjI4NTIgMi43OTA0IDAgMC0uNzE2MS4wNDk0LTEuNDMyMy4xNDgxIDAgMCAuMjcxNy0uMTIzNC42MTc0LS4yNDY5IDIuODM5OC0uOTg3NyA0LjE3MzItMS4xODUzIDUuOTAxOC0yLjA3NDMgMy4yMzQ5LTEuNjU0NSA2LjQ2OTgtNS4yODQ0IDcuMTExOC05LjAzNzktMS4yMzQ3IDMuNjA1My00Ljk4ODEgNi43MTY3LTguMzk1OSA3Ljk3NjEtMi4zNDU5Ljg2NDMtNi41Njg1IDEuNzAzOS02LjU2ODUgMS43MDM5bC0uMTcyOS0uMDk4OGMtMi44NjQ1LTEuNDA3Ni0yLjk2MzItNy42MzA0IDIuMjcxOC05LjYzMDYgMi4yOTY2LS44ODkgNC40Njk2LS4zOTUgNi45NjM3LS45ODc3IDIuNjQyMi0uNjE3NCA1LjcwNDMtMi41OTI5IDYuOTM5LTUuMTg1NyAxLjM4MjggNC4xNzMyIDMuMDYyIDEwLjY0My4wNDkzIDE0LjY0MzR6Ii8+PC9zdmc+" alt="Logo Spring, socle Java de SemiShop" width="65"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNTEyQkQ0IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Lk5FVDwvdGl0bGU+PHBhdGggZD0iTTI0IDguNzdoLTIuNDY4djcuNTY1aC0xLjQyNVY4Ljc3aC0yLjQ2MlY3LjUzSDI0em0tNi44NTIgNy41NjVoLTQuODIxVjcuNTNoNC42M3YxLjI0aC0zLjIwNXYyLjQ5NGgyLjk1M3YxLjIzNGgtMi45NTN2Mi42MDRoMy4zOTZ6bS02LjcwOCAwSDguODgyTDQuNzggOS44NjNhMi44OTYgMi44OTYgMCAwIDEtLjI1OC0uNTFoLS4wMzZjLjAzMi4xODkuMDQ4LjU5Mi4wNDggMS4yMXY1Ljc3MkgzLjE1N1Y3LjUzaDEuNjU5bDMuOTY1IDYuMzJjLjE2Ny4yNjEuMjc1LjQ0Mi4zMjMuNTRoLjAyNGMtLjA0LS4yMzMtLjA2LS42MjktLjA2LTEuMTg1VjcuNTI5aDEuMzcyem0tOC43MDMtLjY5M2EuODY4LjgyOSAwIDAgMS0uODY5LjgyOS44NjguODI5IDAgMCAxLS44NjgtLjgzLjg2OC44MjkgMCAwIDEgLjg2OC0uODI4Ljg2OC44MjkgMCAwIDEgLjg2OS44MjlaIi8+PC9zdmc+" alt="Logo dotnet, services customer et payment" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRTAyMzRFIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TmVzdEpTPC90aXRsZT48cGF0aCBkPSJNMTQuMTMxLjA0N2MtLjE3MyAwLS4zMzQuMDM3LS40ODMuMDg3LjMxNi4yMS40OS40OS41NzYuODA2LjAwNy4wNDMuMDE5LjA3NC4wMjUuMTE3YS42ODEuNjgxIDAgMCAxIC4wMTMuMTEyYy4wMjQuNTQ1LS4xNDMuNjE0LS4yNi45MzYtLjE4LjQxNS0uMTMuODYxLjA4NiAxLjIyYS43NC43NCAwIDAgMCAuMDc0LjEzN2MtLjIzNS0xLjU2OCAxLjA3My0xLjgwMyAxLjMxNC0yLjI5My4wMTktLjQyOC0uMzM0LS43MTMtLjYxMy0uOTExYTEuMzcgMS4zNyAwIDAgMC0uNzMyLS4yMXpNMTYuMTAyLjRjLS4wMjQuMTQzLS4wMDYuMTA2LS4wMTIuMTgtLjAwNi4wNS0uMDA2LjExMi0uMDEyLjE2MS0uMDEzLjA1LS4wMjUuMS0uMDQ0LjE0OS0uMDEyLjA1LS4wMy4xLS4wNS4xNDlsLS4wNjcuMTQyYy0uMDIuMDI1LS4wMzEuMDUtLjA1LjA3NWwtLjAzNy4wNTVhMi4xNTIgMi4xNTIgMCAwIDEtLjA5My4xMjRjLS4wMzcuMDM4LS4wNjguMDgxLS4xMTIuMTEydi4wMDZjLS4wMzcuMDMxLS4wNzQuMDY4LS4xMTguMS0uMTMuMDk5LS4yNzguMTczLS40MTUuMjY2LS4wNDMuMDMtLjA4Ny4wNTYtLjEyNC4wOTNhLjkwNi45MDYgMCAwIDAtLjExOC4wOTljLS4wNDMuMDM3LS4wNzQuMDc0LS4xMTEuMTE4LS4wMzEuMDM3LS4wNjguMDgtLjA5My4xMjRhMS41ODIgMS41ODIgMCAwIDAtLjA4Ny4xM2MtLjAyNS4wNS0uMDQzLjA5My0uMDY4LjE0Mi0uMDE5LjA1LS4wMzcuMDkzLS4wNS4xNDNhMi4wMDcgMi4wMDcgMCAwIDAtLjA0My4xNTVjLS4wMDYuMDI1LS4wMDYuMDU2LS4wMTIuMDgtLjAwNy4wMjUtLjAwNy4wNS0uMDEzLjA3NSAwIC4wNS0uMDA2LjEwNS0uMDA2LjE1NSAwIC4wMzcgMCAuMDc0LjAwNi4xMTEgMCAuMDUuMDA2LjEuMDE5LjE1NS4wMDYuMDUuMDE4LjEuMDMuMTUuMDIuMDQ5LjAzMi4wOTguMDUuMTQ4LjAxMy4wMy4wMzEuMDYyLjA0NC4wODdsLTEuNDI2LS41NTJjLS4yNDEtLjA2OC0uNDc3LS4xMy0uNzE5LS4xODZsLS4zOS0uMDkzYy0uMzcyLS4wNzQtLjc1LS4xMy0xLjEyOC0uMTY3LS4wMTMgMC0uMDE5LS4wMDYtLjAzMS0uMDA2QTExLjA4MiAxMS4wODIgMCAwIDAgOC45IDIuODU1Yy0uMzc4LjAyNS0uNzU2LjA3NC0xLjEzNC4xMzZhMTIuNDUgMTIuNDUgMCAwIDAtLjgzNy4xNzRsLS4yNzkuMDc0Yy0uMDkyLjAzNy0uMTguMDgtLjI2Ni4xMThsLS4yMDUuMDkzYy0uMDEyLjAwNi0uMDI0LjAwNi0uMDMuMDEyLS4wNjMuMDMxLS4xMTguMDU2LS4xNzQuMDg3YTIuNzM4IDIuNzM4IDAgMCAwLS4yMzYuMTE4Yy0uMDQzLjAxOC0uMDg2LjA0My0uMTI0LjA2MmEuNTU5LjU1OSAwIDAgMS0uMDU1LjAzYy0uMDU2LjAzMi0uMTEyLjA2My0uMTYyLjA5NGExLjU2IDEuNTYgMCAwIDAtLjE0OC4wOTNjLS4wNDQuMDMtLjA4Ny4wNTUtLjEyNC4wODYtLjAwNi4wMDctLjAxMy4wMDctLjAxOS4wMTMtLjAzNy4wMjUtLjA4LjA1Ni0uMTE4LjA4N2wtLjAxMi4wMTItLjA5My4wNzRjLS4wMTIuMDA3LS4wMjUuMDE5LS4wMzcuMDI1LS4wMzEuMDI1LS4wNjIuMDU2LS4wOTMuMDgtLjAwNi4wMTMtLjAxOS4wMi0uMDI1LjAyNS0uMDM3LjAzOC0uMDc0LjA2OS0uMTExLjEwNi0uMDA3IDAtLjAwNy4wMDYtLjAxMy4wMTJhMS43NDIgMS43NDIgMCAwIDAtLjExMS4xMDZjLS4wMDcuMDA2LS4wMDcuMDEyLS4wMTMuMDEyYTEuNDU0IDEuNDU0IDAgMCAwLS4wOTMuMWMtLjAxMi4wMTItLjAzLjAyNC0uMDQzLjAzNmExLjM3NCAxLjM3NCAwIDAgMS0uMTA2LjExMmMtLjAwNi4wMTItLjAxOC4wMTktLjAyNC4wMy0uMDUuMDUtLjA5My4xLS4xNDMuMTVsLS4wMTguMDE4Yy0uMS4xMDYtLjIwNS4yMTEtLjMxNy4zMDQtLjExMS4xLS4yMjkuMTkyLS4zNDcuMjczYTMuNzc3IDMuNzc3IDAgMCAxLS43NjIuNDIxYy0uMTMuMDU2LS4yNjcuMTA2LS40MDMuMTQ5LS4yNi4wNTYtLjUyNy4xNjEtLjc1Ni4xOC0uMDUgMC0uMTA1LjAxMi0uMTU1LjAxOGwtLjE1NS4wMzctLjE0OS4wNTZjLS4wNS4wMTktLjA5OS4wNDQtLjE0OC4wNjgtLjA0NC4wMzEtLjA5My4wNTYtLjEzNy4wODdhMS4wMTEgMS4wMTEgMCAwIDAtLjEyNC4xMDZjLS4wNDMuMDMtLjA4Ny4wNzQtLjEyNC4xMTEtLjAzNy4wNDMtLjA3NC4wOC0uMTA1LjEyNC0uMDMxLjA1LS4wNjguMDkzLS4wOTMuMTQzYTEuMDkyIDEuMDkyIDAgMCAwLS4wODcuMTQyYy0uMDI1LjA1Ni0uMDUuMTA2LS4wNjguMTYxLS4wMTkuMDUtLjAzNy4xMDYtLjA1Ni4xNjEtLjAxMi4wNS0uMDI1LjEtLjAzLjE1IDAgLjAwNS0uMDA3LjAxMi0uMDA3LjAxOC0uMDEyLjA1Ni0uMDEyLjEzLS4wMTkuMTY3Qy4wMDYgNy45NSAwIDcuOTg2IDAgOC4wM2EuNjU3LjY1NyAwIDAgMCAuMDc0LjMxdi4wMDZjLjAxOS4wMzcuMDQ0LjA3NS4wNjkuMTEyLjAyNC4wMzcuMDUuMDc0LjA4LjExMS4wMzEuMDMxLjA2OC4wNjkuMTA2LjFhLjkwNi45MDYgMCAwIDAgLjExNy4wOTljLjE0OS4xMy4xODYuMTczLjM3OC4yNzIuMDMxLjAxOS4wNjIuMDMxLjEuMDUuMDA2IDAgLjAxMi4wMDYuMDE4LjAwNiAwIC4wMTMgMCAuMDE5LjAwNi4wMzFhMS4yNzIgMS4yNzIgMCAwIDAgLjA4LjI5OGMuMDIuMDM3LjAzMi4wNzQuMDUuMTExLjAwNy4wMTMuMDEzLjAyNS4wMi4wMzEuMDI0LjA1LjA0OS4wOTMuMDczLjEzN2wuMDkzLjEzYy4wMzEuMDM3LjA2OS4wOC4xMDYuMTE4LjAzNy4wMzcuMDc0LjA2OC4xMTguMTA1IDAgMCAuMDA2LjAwNi4wMTIuMDA2LjAzNy4wMzEuMDc0LjA2Mi4xMTIuMDg3YS45ODYuOTg2IDAgMCAwIC4xMzYuMDhjLjA0My4wMjUuMDkzLjA1LjE0Mi4wNjlhLjczLjczIDAgMCAwIC4xMjQuMDQzYy4wMDcuMDA2LjAxMy4wMDYuMDI1LjAxMi4wMjUuMDA3LjA1Ni4wMTMuMDguMDE5LS4wMTguMzM1LS4wMjQuNjUuMDI2Ljc2Mi4wNTUuMTI0LjMyOC0uMjU0LjYtLjY4OC0uMDM2LjQyOC0uMDYxLjkzIDAgMS4wNzkuMDY5LjE1NS40NC0uMzI5Ljc2My0uODYyIDQuMzk1LTEuMDE2IDguNDA1IDIuMDIgOC44MjYgNi4zMS0uMDgtLjY3LS45MDUtMS4wNDEtMS4yODMtLjk0OC0uMTg2LjQ1OC0uNTAyIDEuMDQ3LTEuMDEgMS40MTMuMDQzLS40MS4wMjUtLjgzLS4wNjItMS4yNGE0LjAwOSA0LjAwOSAwIDAgMS0uNzY5IDEuNTYyYy0uNTg4LjA0My0xLjE3Ny0uMjQyLTEuNDg3LS42Ny0uMDI1LS4wMTgtLjAzMS0uMDU1LS4wNS0uMDgtLjAxOC0uMDQzLS4wMzctLjA4Ny0uMDUtLjEzYS41MTUuNTE1IDAgMCAxLS4wMzctLjEzYy0uMDA2LS4wNDQtLjAwNi0uMDg3LS4wMDYtLjEzN3YtLjA5M2EuOTkyLjk5MiAwIDAgMSAuMDMxLS4xM2MuMDEzLS4wNDMuMDI1LS4wODYuMDQ0LS4xMy4wMjQtLjA0My4wNDMtLjA4Ny4wNzQtLjEzLjEwNS0uMjk4LjEwNS0uNTQtLjA4Ny0uNjgyYS43MDYuNzA2IDAgMCAwLS4xMTgtLjA2MmMtLjAyNC0uMDA2LS4wNTUtLjAxOC0uMDgtLjAyNWwtLjA1LS4wMThhLjg0Ny44NDcgMCAwIDAtLjEzLS4wMzEuNDcyLjQ3MiAwIDAgMC0uMTMtLjAxOSAxLjAxIDEuMDEgMCAwIDAtLjEzNi0uMDEyYy0uMDMxIDAtLjA2Mi4wMDYtLjA5My4wMDZhLjQ4NC40ODQgMCAwIDAtLjEzNy4wMTljLS4wNDMuMDA2LS4wODYuMDEyLS4xMy4wMjRhMS4wNjggMS4wNjggMCAwIDAtLjEzLjA0NGMtLjA0My4wMTgtLjA4LjAzNy0uMTI0LjA1Ni0uMDM3LjAxOC0uMDc0LjA0My0uMTE4LjA2Mi0xLjQ0NC45NDItLjU4MiAzLjE0OC40MDMgMy43ODctLjM3Mi4wNjgtLjc1LjE0OC0uODU1LjIyOWwtLjAxMy4wMTJjLjI2Ny4xNjEuNTQ2LjI5OC44MzcuNDE2LjM5Ny4xMy44MTguMjQ3IDEuMDA0LjI5N3YuMDA2YTUuOTk2IDUuOTk2IDAgMCAwIDEuNTYyLjExMmMyLjc0Ni0uMTkyIDQuOTk2LTIuMjgxIDUuNDA1LTUuMDMzbC4wMzcuMTYxYy4wMTkuMTEyLjA0My4yMy4wNTYuMzQ3di4wMDZjLjAxMi4wNTYuMDE4LjExMi4wMjUuMTYydi4wMjRjLjAwNi4wNTYuMDEyLjExMi4wMTIuMTYyLjAwNi4wNjguMDEyLjEzNi4wMTIuMjA0di4xYzAgLjAzLjAwNy4wNjcuMDA3LjA5OCAwIC4wMzgtLjAwNy4wNzUtLjAwNy4xMTJ2LjA4N2MwIC4wNDMtLjAwNi4wOC0uMDA2LjEyNCAwIC4wMjUgMCAuMDUtLjAwNi4wOCAwIC4wNDQtLjAwNi4wODctLjAwNi4xMzctLjAwNi4wMTgtLjAwNi4wMzctLjAwNi4wNTVsLS4wMi4xNDNjMCAuMDE5IDAgLjAzNy0uMDA1LjA1Ni0uMDA3LjA2Mi0uMDE5LjExOC0uMDI1LjE4di4wMTJsLS4wMzcuMTc0di4wMThsLS4wMzcuMTY3YzAgLjAwNy0uMDA3LjAyLS4wMDcuMDI1YTEuNjYzIDEuNjYzIDAgMCAxLS4wNDMuMTY4di4wMThjLS4wMTkuMDYyLS4wMzcuMTE4LS4wNS4xNzQtLjAwNi4wMDYtLjAwNi4wMTItLjAwNi4wMTJsLS4wNTYuMTg2Yy0uMDI0LjA2Mi0uMDQzLjExOC0uMDY4LjE4LS4wMjUuMDYyLS4wNDMuMTI0LS4wNjguMTgtLjAyNS4wNjItLjA1LjExNy0uMDc0LjE4aC0uMDA3Yy0uMDI0LjA1NS0uMDUuMTE3LS4wOC4xNzNhLjMwMi4zMDIgMCAwIDEtLjAxOS4wNDNjLS4wMDYuMDA2LS4wMDYuMDEzLS4wMTIuMDE5YTUuODY3IDUuODY3IDAgMCAxLTEuNzQyIDIuMDgyYy0uMDUuMDMxLS4wOTkuMDY5LS4xNDkuMTA2LS4wMTIuMDEyLS4wMy4wMTgtLjA0My4wM2EyLjYwMyAyLjYwMyAwIDAgMS0uMTM2LjA5NGwuMDE4LjAzN2guMDA3bC4yNi0uMDM3aC4wMDZjLjE2MS0uMDI1LjMyMi0uMDU2LjQ4My0uMDg3LjA0NC0uMDA2LjA5My0uMDE5LjEzNy0uMDMxbC4wODctLjAxOWMuMDQzLS4wMDYuMDg2LS4wMTguMTMtLjAyNC4wMzctLjAxMy4wNzQtLjAyLjExMS0uMDMxLjYyLS4xNSAxLjIyMS0uMzU0IDEuNzk4LS41OTVhOS45MjYgOS45MjYgMCAwIDEtMy44NSAzLjE0MmMuNzE0LS4wNSAxLjQyNi0uMTY3IDIuMTE0LS4zNjZhOS45MDMgOS45MDMgMCAwIDAgNS44NTctNC42OCA5Ljg5MyA5Ljg5MyAwIDAgMS0xLjY2NyAzLjk4NiA5Ljc1OCA5Ljc1OCAwIDAgMCAxLjY1NS0xLjM3NiA5LjgyNCA5LjgyNCAwIDAgMCAyLjYxLTUuMjY4Yy4yMS45OC4yNzIgMS45OS4xOCAyLjk4NyA0LjQ3NC02LjI0MS4zNzEtMTIuNzEyLTEuMzQ2LTE0LjQxNi0uMDA2LS4wMTMtLjAxMi0uMDE5LS4wMTItLjAzMS0uMDA2LjAwNi0uMDA2LjAwNi0uMDA2LjAxMiAwLS4wMDYgMC0uMDA2LS4wMDctLjAxMiAwIC4wNzQtLjAwNi4xNDgtLjAxMi4yMjNhOC4zNCA4LjM0IDAgMCAxLS4wNjIuNDE1Yy0uMDMuMTM2LS4wNjguMjczLS4xMDUuNDEtLjA0NC4xMy0uMDkzLjI2Ni0uMTUuMzk2YTUuMzIyIDUuMzIyIDAgMCAxLS4xODUuMzc4IDQuNzM1IDQuNzM1IDAgMCAxLS40NzcuNjg4Yy0uMDkzLjExMS0uMTkyLjIxLS4yOTIuMzFhMy45OTQgMy45OTQgMCAwIDEtLjE4LjE1NWwtLjE0Mi4xMjRhMy40NTkgMy40NTkgMCAwIDEtLjM0Ny4yNDEgNC4yOTUgNC4yOTUgMCAwIDEtLjM2Ni4yMTFjLS4xMy4wNjItLjI2LjExOC0uMzkuMTc0YTQuMzY0IDQuMzY0IDAgMCAxLS44MTguMjIzYy0uMTQzLjAyNS0uMjg1LjAzNy0uNDIyLjA1YTQuOTE0IDQuOTE0IDAgMCAxLS4yOTcuMDEyIDQuNjYgNC42NiAwIDAgMS0uNDIyLS4wMjUgMy4xMzcgMy4xMzcgMCAwIDEtLjQyMS0uMDYyIDMuMTM2IDMuMTM2IDAgMCAxLS40MTUtLjEwNWgtLjAwN2MuMTM3LS4wMTMuMjczLS4wMjUuNDEtLjA1YTQuNDkzIDQuNDkzIDAgMCAwIC44MTgtLjIyM2MuMTM2LS4wNS4yNjYtLjExMi4zOS0uMTc0LjEzLS4wNjIuMjQ4LS4xMy4zNzItLjIwNC4xMTgtLjA4LjIzNS0uMTYxLjM0Ny0uMjQ4LjExMi0uMDg3LjIxNy0uMTguMzE2LS4yNzkuMTA1LS4wOTMuMTk4LS4xOTguMjkxLS4zMDQuMDkzLS4xMTEuMTgtLjIyMy4yNi0uMzM0LjAxMy0uMDE5LjAyNi0uMDQ0LjAzOC0uMDYyLjA2Mi0uMS4xMjQtLjE5OS4xOC0uMjk4YTQuMjcyIDQuMjcyIDAgMCAwIC4zMzQtLjc3NWMuMDQ0LS4xMy4wNzUtLjI2Ni4xMDYtLjQwMy4wMjUtLjE0Mi4wNS0uMjc4LjA2Mi0uNDE1LjAxMi0uMTQyLjAyNS0uMjg1LjAyNS0uNDIxIDAtLjEtLjAwNy0uMTk5LS4wMTMtLjI5OGE2LjcyNiA2LjcyNiAwIDAgMC0uMDUtLjQxNSA0LjQ5MyA0LjQ5MyAwIDAgMC0uMDkyLS40MTVjLS4wNDQtLjEzLS4wODctLjI2Ny0uMTM3LS4zOTctLjA1LS4xMy0uMTExLS4yNi0uMTczLS4zODQtLjA2OS0uMTI0LS4xMzctLjI0OC0uMjExLS4zNjZhNi44NDMgNi44NDMgMCAwIDAtLjI0OC0uMzRjLS4wOTMtLjEwNi0uMTg2LS4yMTItLjI4NS0uMzE3YTMuODc4IDMuODc4IDAgMCAwLS4xNjEtLjE1NWMtLjI4LS4yMTctLjU3LS40MjEtLjg2Mi0uNjA3YTEuMTU0IDEuMTU0IDAgMCAwLS4xMjQtLjA2MiAyLjQxNSAyLjQxNSAwIDAgMC0uNTg5LS4yNloiLz48L3N2Zz4=" alt="Logo NestJS, framework du service cart" width="50"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDA5Njg4IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+RmFzdEFQSTwvdGl0bGU+PHBhdGggZD0iTTEyIC4wMzg3QzUuMzcyOS4wMzg0LjAwMDMgNS4zOTMxIDAgMTEuOTk4OGMtLjAwMSA2LjYwNjYgNS4zNzIgMTEuOTYyOCAxMiAxMS45NjI1IDYuNjI4LjAwMDMgMTIuMDAxLTUuMzU1OSAxMi0xMS45NjI1LS4wMDAzLTYuNjA1Ny01LjM3MjktMTEuOTYwNC0xMi0xMS45Nm0tLjgyOSA1LjQxNTNoNy41NWwtNy41ODA1IDUuMzI4NGg1LjE4MjhMNS4yNzkgMTguNTQzNnEyLjk0NjYtNi41NDQ0IDUuODkyLTEzLjA4OTYiLz48L3N2Zz4=" alt="Logo FastAPI, framework du service inventory" width="50"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMzc3NkFCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UHl0aG9uPC90aXRsZT48cGF0aCBkPSJNMTQuMjUuMThsLjkuMi43My4yNi41OS4zLjQ1LjMyLjM0LjM0LjI1LjM0LjE2LjMzLjEuMy4wNC4yNi4wMi4yLS4wMS4xM1Y4LjVsLS4wNS42My0uMTMuNTUtLjIxLjQ2LS4yNi4zOC0uMy4zMS0uMzMuMjUtLjM1LjE5LS4zNS4xNC0uMzMuMS0uMy4wNy0uMjYuMDQtLjIxLjAySDguNzdsLS42OS4wNS0uNTkuMTQtLjUuMjItLjQxLjI3LS4zMy4zMi0uMjcuMzUtLjIuMzYtLjE1LjM3LS4xLjM1LS4wNy4zMi0uMDQuMjctLjAyLjIxdjMuMDZIMy4xN2wtLjIxLS4wMy0uMjgtLjA3LS4zMi0uMTItLjM1LS4xOC0uMzYtLjI2LS4zNi0uMzYtLjM1LS40Ni0uMzItLjU5LS4yOC0uNzMtLjIxLS44OC0uMTQtMS4wNS0uMDUtMS4yMy4wNi0xLjIyLjE2LTEuMDQuMjQtLjg3LjMyLS43MS4zNi0uNTcuNC0uNDQuNDItLjMzLjQyLS4yNC40LS4xNi4zNi0uMS4zMi0uMDUuMjQtLjAxaC4xNmwuMDYuMDFoOC4xNnYtLjgzSDYuMThsLS4wMS0yLjc1LS4wMi0uMzcuMDUtLjM0LjExLS4zMS4xNy0uMjguMjUtLjI2LjMxLS4yMy4zOC0uMi40NC0uMTguNTEtLjE1LjU4LS4xMi42NC0uMS43MS0uMDYuNzctLjA0Ljg0LS4wMiAxLjI3LjA1em0tNi4zIDEuOThsLS4yMy4zMy0uMDguNDEuMDguNDEuMjMuMzQuMzMuMjIuNDEuMDkuNDEtLjA5LjMzLS4yMi4yMy0uMzQuMDgtLjQxLS4wOC0uNDEtLjIzLS4zMy0uMzMtLjIyLS40MS0uMDktLjQxLjA5em0xMy4wOSAzLjk1bC4yOC4wNi4zMi4xMi4zNS4xOC4zNi4yNy4zNi4zNS4zNS40Ny4zMi41OS4yOC43My4yMS44OC4xNCAxLjA0LjA1IDEuMjMtLjA2IDEuMjMtLjE2IDEuMDQtLjI0Ljg2LS4zMi43MS0uMzYuNTctLjQuNDUtLjQyLjMzLS40Mi4yNC0uNC4xNi0uMzYuMDktLjMyLjA1LS4yNC4wMi0uMTYtLjAxaC04LjIydi44Mmg1Ljg0bC4wMSAyLjc2LjAyLjM2LS4wNS4zNC0uMTEuMzEtLjE3LjI5LS4yNS4yNS0uMzEuMjQtLjM4LjItLjQ0LjE3LS41MS4xNS0uNTguMTMtLjY0LjA5LS43MS4wNy0uNzcuMDQtLjg0LjAxLTEuMjctLjA0LTEuMDctLjE0LS45LS4yLS43My0uMjUtLjU5LS4zLS40NS0uMzMtLjM0LS4zNC0uMjUtLjM0LS4xNi0uMzMtLjEtLjMtLjA0LS4yNS0uMDItLjIuMDEtLjEzdi01LjM0bC4wNS0uNjQuMTMtLjU0LjIxLS40Ni4yNi0uMzguMy0uMzIuMzMtLjI0LjM1LS4yLjM1LS4xNC4zMy0uMS4zLS4wNi4yNi0uMDQuMjEtLjAyLjEzLS4wMWg1Ljg0bC42OS0uMDUuNTktLjE0LjUtLjIxLjQxLS4yOC4zMy0uMzIuMjctLjM1LjItLjM2LjE1LS4zNi4xLS4zNS4wNy0uMzIuMDQtLjI4LjAyLS4yMVY2LjA3aDIuMDlsLjE0LjAxem0tNi40NyAxNC4yNWwtLjIzLjMzLS4wOC40MS4wOC40MS4yMy4zMy4zMy4yMy40MS4wOC40MS0uMDguMzMtLjIzLjIzLS4zMy4wOC0uNDEtLjA4LS40MS0uMjMtLjMzLS4zMy0uMjMtLjQxLS4wOC0uNDEuMDh6Ii8+PC9zdmc+" alt="Logo Python, langage du service inventory" width="50"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNDY5NUVCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UXVhcmt1czwvdGl0bGU+PHBhdGggZD0iTTMuOTgxIDBBMy45OTMgMy45OTMgMCAwIDAgMCAzLjk4MVYyMC4wMkEzLjk5MyAzLjk5MyAwIDAgMCAzLjk4MSAyNGgxMC45ODNMMTIgMTYuOGwtMi4xNSA0LjU0NkgzLjk4Yy0uNzIgMC0xLjMyNy0uNjA4LTEuMzI3LTEuMzI3VjMuOThjMC0uNzIuNjA4LTEuMzI3IDEuMzI3LTEuMzI3aDE2LjA0Yy43MiAwIDEuMzI3LjYwOCAxLjMyNyAxLjMyN3YxNi4wNGMwIC43Mi0uNjA4IDEuMzI3LTEuMzI3IDEuMzI3aC0zLjQ4TDE3LjYzIDI0aDIuMzg4QTMuOTkzIDMuOTkzIDAgMCAwIDI0IDIwLjAxOVYzLjk4QTMuOTkzIDMuOTkzIDAgMCAwIDIwLjAxOSAwem00LjMyNCA0LjIxN3YzLjg1OGwzLjM0MS0xLjkzem03LjM5IDBsLTMuMzQxIDEuOTI5IDMuMzQgMS45Mjl6TTEyIDYuMzVMOC4zMDUgOC40ODMgMTIgMTAuNjE3bDMuNjk1LTIuMTM0ek04LjEwNCA4LjgzMnY0LjI2NmwzLjY5NSAyLjEzM3YtNC4yNjZ6bTcuNzkyIDBMMTIuMiAxMC45NjV2NC4yNjZsMy42OTUtMi4xMzN6bS04LjE0Ni4yMDRsLTMuMzQgMS45MyAzLjM0IDEuOTI4em04LjUgMHYzLjg1OGwzLjM0LTEuOTI5em0tOC4xNDYgNC40N3YzLjg1OWwzLjM0MS0xLjkzem03Ljc5MiAwbC0zLjM0MSAxLjkzIDMuMzQgMS45Mjl6Ii8+PC9zdmc+" alt="Logo Quarkus, variante Java acceptee" width="50"/></p>
+<h2 id="2-forces-et-couts-de-chaque-stack">2. Forces et coûts de chaque stack</h2>
+<p>Aucune de ces quatre stacks n'est « la meilleure ». Chacune a un terrain où elle excelle et un prix d'entrée :</p>
 <table>
 <thead>
 <tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
+<th>Stack</th>
+<th>Forces</th>
+<th>Coûts / limites</th>
+<th>Terrain naturel sur SemiShop</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
+<td><strong>Node.js / NestJS</strong></td>
+<td>TypeScript bout en bout avec le front, architecture modulaire (DI, décorateurs), écosystème npm</td>
+<td>Typage à discipline (runtime JS), CPU-bound médiocre, qualité npm inégale</td>
+<td>Panier : I/O intensif, proche du front</td>
 </tr>
 <tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
+<td><strong>Python / FastAPI</strong></td>
+<td>Concision, validation Pydantic, OpenAPI natif, passerelle vers l'écosystème data/ML</td>
+<td>Performances brutes moyennes, packaging/déploiement moins normé</td>
+<td>Stock : logique simple ; futur scoring d'état du matériel</td>
 </tr>
 <tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
+<td><strong>Java / Spring Boot</strong> (ou Quarkus)</td>
+<td>Robustesse transactionnelle, outillage mûr, typage fort, viviers de développeurs</td>
+<td>Verbosité, empreinte mémoire, démarrage (que Quarkus réduit nettement)</td>
+<td>Socle : commandes, catalogue, BFF — le cœur transactionnel</td>
+</tr>
+<tr>
+<td><strong>.NET 8 / ASP.NET Core</strong></td>
+<td>Performances excellentes, typage fort, framework cohérent (EF Core, DI intégrée)</td>
+<td>Écosystème plus centralisé, moins répandu dans certaines DSI</td>
+<td>Clients, paiement : domaines cadrés, forte cohérence</td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p><strong>Pour les profils techniques</strong> : le lab épingle Spring Boot 3.4.1 et .NET 8 ; Quarkus est une variante acceptée côté Java pour votre propre service — même contrat, démarrage plus rapide, expérience dev orientée conteneurs. Ce qui compte dans ce module n'est pas le classement des frameworks mais la capacité à <strong>justifier</strong> le vôtre.</p>
 </blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
-<blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
-</blockquote>
-<hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
+<h2 id="3-quand-le-polyglotte-est-justifie-et-ce-quil-coute">3. Quand le polyglotte est justifié — et ce qu'il coûte</h2>
+<p>Les mêmes réflexes que pour le découpage : un langage de plus est une frontière de plus, avec ses signaux et ses coûts.</p>
+<p>Trois signaux le justifient. <strong>L'équipe</strong> : les compétences existantes pèsent plus lourd que les benchmarks — une équipe .NET productive bat une équipe qui découvre Go. <strong>L'écosystème</strong> : certains besoins ont un habitat naturel (du scoring ou du RAG se prototypent en Python, difficile de faire mieux ailleurs). <strong>Le composant critique</strong> : un besoin de performance ou de plateforme qu'une stack couvre nettement mieux.</p>
+<p>En face, les coûts sont structurels et souvent sous-estimés :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li><strong>CI/CD multiplié</strong> : quatre toolchains, quatre familles d'images Docker, quatre stratégies de cache — vous le vivrez au module 09.</li>
+<li><strong>Standards à répliquer</strong> : conventions de logs, format d'erreurs, healthchecks, traces — tout ce qui est transverse doit exister quatre fois, à l'identique.</li>
+<li><strong>Revue croisée affaiblie</strong> : qui relit le service FastAPI si un seul membre connaît Python ? Le bus factor tombe à un.</li>
+<li><strong>Dérive des pratiques</strong> : chaque écosystème a ses idiomes ; sans conventions écrites, quatre services deviennent quatre projets étrangers.</li>
 </ul>
-<p>🟨 Pièges à retenir :</p>
+<blockquote>
+<p>🟨 <strong>Warning — le polyglotte de CV.</strong> Ajouter un langage « pour apprendre » ou « parce que le benchmark dit que c'est plus rapide » est le pendant linguistique du microservice artificiel. En formation, le polyglotte de SemiShop est <strong>assumé et encadré</strong> : chaque stagiaire implémente dans sa techno de prédilection — c'est le signal « équipe » à l'échelle de la promotion. En entreprise, la même décision exigerait un signal équivalent.</p>
+</blockquote>
+<h2 id="4-la-coherence-par-les-contrats-et-par-lia-outillee">4. La cohérence par les contrats — et par l'IA outillée</h2>
+<p>Ce qui empêche quatre stacks de diverger, ce n'est pas la bonne volonté, ce sont deux disciplines.</p>
+<p><strong>Les contrats OpenAPI d'abord.</strong> Chaque service publie son contrat ; les consommateurs ne dépendent que de lui. Un développeur NestJS intègre le catalogue Java sans lire une ligne de Java. Les conventions transverses se fixent au niveau du contrat : format d'erreur commun, pagination, nommage des champs (le lab a tranché : <code>snake_case</code> dans les payloads), codes HTTP.</p>
+<p><strong>Les rules de votre ia-toolbox ensuite.</strong> Vos rules du module 02 prennent ici tout leur sens : une rule d'architecture (« un service n'accède jamais à la base d'un autre »), une rule de style par langage, une rule de contrat (« tout endpoint nouveau est décrit dans le contrat avant d'être codé »). L'IA appliquée avec ces rules produit du NestJS idiomatique <strong>et</strong> conforme aux conventions SemiShop — sans elles, elle produit du code plausible dans le style dominant de son corpus d'entraînement.</p>
+<blockquote>
+<p>🔹 <strong>Bonne pratique production</strong> : l'IA est un excellent traducteur d'idiomes entre stacks. Montrez-lui le service catalogue Java et demandez « implémente le même endpoint healthcheck, même sémantique, dans les conventions NestJS » : c'est le moyen le plus sûr de répliquer un standard transverse dans quatre langages. La comparaison des quatre implémentations en revue est un exercice de la journée 8.</p>
+</blockquote>
+<h2 id="ce-quil-faut-retenir">Ce qu'il faut retenir</h2>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>🔷 Polyglotte = un langage <strong>par service</strong>, jamais dans un service ; le contrat OpenAPI est la seule dépendance entre eux.</li>
+<li>🔷 Trois signaux justifient un langage de plus : compétences de l'équipe, écosystème nettement supérieur pour le besoin, composant critique. Le reste est du polyglotte de CV.</li>
+<li>🔷 Les coûts sont structurels : CI multipliée, standards à répliquer, revue croisée affaiblie. Ils se paient chaque semaine, pas une fois.</li>
+<li>🔷 La cohérence vient des contrats + des rules versionnées, pas de la mémoire des développeurs.</li>
 </ul>
-<p>🔷 Points clés à retenir :</p>
+<h2 id="pieges-courants">Pièges courants</h2>
+<blockquote>
+<p>🟨 <strong>Choisir la stack sur benchmark.</strong> Les écarts de débit brut entre ces quatre frameworks sont sans effet sur une boutique dont PostgreSQL est le facteur limitant. Le signal « équipe » domine presque toujours.</p>
+<p>🟨 <strong>Laisser chaque service définir son format d'erreur.</strong> Quatre formats d'erreurs = un BFF rempli de <code>if</code> d'adaptation. Le format se fige dans les contrats dès maintenant, pas au module 08.</p>
+<p>🟨 <strong>Faire confiance à l'IA pour les idiomes transverses.</strong> Sans rule explicite, l'agent générera un healthcheck différent par stack (chemin, format, codes). Tout standard transverse doit être écrit quelque part que l'IA lit.</p>
+</blockquote>
+<h2 id="validation-des-acquis">Validation des acquis</h2>
+<p><strong>Q1.</strong> Quel élément rend une architecture polyglotte tenable au quotidien ?</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>A. Un lead développeur qui connaît les quatre langages</li>
+<li>B. Des contrats OpenAPI committés et des conventions transverses écrites</li>
+<li>C. L'utilisation exclusive de frameworks récents</li>
+<li>D. Un monorepo</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Les services ne partagent que leurs contrats ; les conventions écrites (erreurs, logs, healthchecks) empêchent la dérive. Aucune mémoire individuelle ne tient à quatre stacks.</p>
+</details>
+<p><strong>Q2.</strong> Quel signal justifie le plus solidement d'écrire le futur scoring d'état du matériel en Python ?</p>
+<ul>
+<li>A. Python est plus lisible</li>
+<li>B. L'écosystème data/ML de Python est nettement supérieur pour ce besoin</li>
+<li>C. FastAPI génère OpenAPI nativement</li>
+<li>D. Le service sera plus rapide</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> C'est le signal « écosystème » : le besoin a un habitat naturel. La lisibilité ou la génération OpenAPI sont des conforts, pas des justifications de frontière.</p>
+</details>
+<p><strong>Q3.</strong> Quel coût du polyglotte se manifeste dans la CI/CD ?</p>
+<ul>
+<li>A. Aucun, Docker uniformise tout</li>
+<li>B. Une toolchain de build, de test et d'image par langage à maintenir</li>
+<li>C. L'impossibilité d'utiliser GitHub Actions</li>
+<li>D. Des conteneurs plus lents</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Docker uniformise l'exécution, pas la construction : caches npm/pip/Maven/NuGet, versions de SDK, linters et scanners restent quadruplés. C'est l'objet du module 09.</p>
+</details>
+<p><strong>Q4.</strong> Sans rule explicite, que produira un agent IA à qui l'on demande un healthcheck dans chaque stack ?</p>
+<ul>
+<li>A. Quatre implémentations identiques</li>
+<li>B. Quatre variantes plausibles mais divergentes (chemin, format, codes)</li>
+<li>C. Une erreur</li>
+<li>D. Un healthcheck uniquement en Java</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> L'IA suit les idiomes dominants de chaque écosystème. La convergence transverse doit être spécifiée (rule, contrat, exemple de référence) — elle ne s'improvise pas.</p>
+</details>
+<hr />
+<p>🔹 <strong>Prochaine étape</strong> : le back est polyglotte — le front doit-il l'être aussi ? Le chapitre <a href="04-microfrontends.md">04 — Microfrontends</a> présente Module Federation et le choix, différent, fait par le lab.</p>
     </article>
 
     

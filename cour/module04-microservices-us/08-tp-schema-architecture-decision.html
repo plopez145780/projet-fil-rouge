@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>08 — TP 4.2 : Schéma d'architecture, décision microfrontend et premiers contrats</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> TP 4.2 - Schéma d&#x27;architecture, décision microfrontend et premiers contrats <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">TP 4.2 - Schéma d&#x27;architecture, décision microfrontend et premiers contrats</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,127 +222,72 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="06-td-microservice-justifie.md">06 - TD 4.1 Microservice justifié</a> — vos décisions de topologie (<code>docs/decisions.md</code>) : le schéma doit les refléter, pas les réinventer.<br />
+- <a href="07-tp-backlog-user-stories.md">07 - TP 4.1 Backlog</a> — le backlog dont l'architecture doit servir les User Stories.<br />
+- <a href="02-gateway-contrats-api.md">02 - Gateway et contrats d'API</a> — priorités Traefik, pattern BFF, esquisse OpenAPI.<br />
+- <a href="04-microfrontends.md">04 - Microfrontends</a> — les deux options front à trancher ici.</p>
 </blockquote>
 <h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li><strong>Modules requis</strong> : les quatre chapitres/TD/TP ci-dessus.</li>
+<li><strong>Ressources sous la main</strong> : <code>docs/decisions.md</code>, <code>docs/backlog.md</code>, un assistant IA capable de générer Mermaid et OpenAPI, un rendu Mermaid (aperçu VS Code ou équivalent).</li>
+<li><strong>Format</strong> : par équipe fil rouge. <strong>Nature</strong> : hands-on documentaire — livrable <code>docs/architecture.md</code> versionné.</li>
 </ul>
 <h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<p><strong>Objectif.</strong> Produire <code>docs/architecture.md</code>, la référence d'architecture de <strong>votre</strong> équipe : le schéma Mermaid de votre topologie (services retenus au TD 4.1, technos et porteurs, gateway, bases), la <strong>décision microfrontend tranchée et justifiée</strong>, et les <strong>premiers contrats d'API</strong> — deux endpoints inter-services esquissés en OpenAPI.</p>
+<p><strong>Contexte.</strong> Chaque équipe sort du TD 4.1 avec une topologie différente : certaines restent proches du socle à 3 services, d'autres ont extrait un ou plusieurs services dans les technos de leurs membres. Ce TP matérialise <strong>votre</strong> décision — pas celle du voisin, pas celle du dépôt de référence. Ce document servira de contexte à l'IA pour tout le reste de la formation (rules du M02, RAG du M05, tests du M08) : sa fidélité à vos décisions vaut plus que son esthétique.</p>
+<p>Le résultat visé, en trois blocs :</p>
+<pre class="mermaid">
+flowchart LR
+    t_dec["docs/decisions.md&lt;br/&gt;TD 4.1"] --&gt;|"materialise"| t_arch["docs/architecture.md"]
+    t_bl["docs/backlog.md&lt;br/&gt;TP 4.1"] --&gt;|"justifie les endpoints"| t_arch
+    subgraph t_contenu ["Contenu du livrable"]
+        direction TB
+        spacer_1[ ]
+        style spacer_1 width:0px,height:0px,fill:none,stroke:none
+        t_s1["1. Schema Mermaid&lt;br/&gt;services + gateway + bases"]
+        t_s2["2. Decision microfrontend&lt;br/&gt;tranchee + justifiee"]
+        t_s3["3. Contrats d API&lt;br/&gt;2 endpoints inter-services OpenAPI"]
+        spacer_1 ~~~ t_s1
+    end
+    t_arch --- t_contenu
+</pre>
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p>🟨 <strong>Warning</strong> : ne demandez pas à l'IA « dessine-moi une belle archi microservices ». Elle produira service discovery, message broker, cache Redis et circuit breakers que personne n'a décidés. Donnez-lui <code>docs/decisions.md</code> en contexte et exigez un schéma qui <strong>s'y conforme</strong> — puis vérifiez la syntaxe (R-MERMAID : guillemets, <code>--&gt;|"..."|</code> sans espace autour des pipes, identifiants préfixés <code>t_</code>, ASCII pur dans les labels).</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
+<h2 id="etape-1-le-schema-de-votre-topologie-hands-on">Étape 1 : le schéma de votre topologie <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Un <code>flowchart</code> Mermaid qui montre : le gateway Traefik, votre BFF (et ce qui passe par lui), chaque service retenu avec sa techno et son porteur, chaque base logique, et les appels inter-services issus de vos fiches du TD 4.1.</p>
+<p><strong>Explication.</strong> Le schéma raconte vos décisions. Trois exigences le rendent honnête :</p>
+<ol>
+<li><strong>Chaque service affiche sa techno et son porteur</strong> (« cart — NestJS — Luigi ») : c'est votre signal « équipes autonomes » rendu visible.</li>
+<li><strong>Le chemin d'accès est explicite</strong> : quelles routes passent par le BFF, lesquelles (le cas échéant) sont exposées en direct par le gateway — et si vous reprenez des routes directes façon lab, le schéma doit assumer la mention « démo, sans auth ».</li>
+<li><strong>Une base logique par service</strong>, nommée. Un service qui pointe vers la base d'un autre est une erreur de schéma... ou une vraie erreur de décision.</li>
+</ol>
+<p><strong>Exemple traité</strong> — une équipe fictive qui a extrait un seul service (le panier, portée par son profil Node) :</p>
+<pre class="mermaid">
+flowchart TB
+    t_nav["Navigateur"] --&gt; t_gw["Traefik v3"]
+    t_gw --&gt;|"/ prio 1"| t_front["Front React SPA"]
+    t_gw --&gt;|"/api prio 100"| t_bff["BFF Spring Boot - Romain"]
+    t_bff --&gt; t_cmd["commandes Spring Boot - Romain"]
+    t_bff --&gt; t_cat["catalogue Spring Boot - Gabriel"]
+    t_bff --&gt; t_cart["cart NestJS - Luigi"]
+    t_cart --&gt;|"REST contrat catalogue"| t_cat
+    t_cmd --&gt;|"REST consultation"| t_cat
+    t_cmd --&gt; t_dbm[("metier_db")]
+    t_cat --&gt; t_dbr[("referentiel_db")]
+    t_cart --&gt; t_dbc[("cart_db")]
+</pre>
+
+<p>Notez le choix de cette équipe : <code>cart</code> est extrait mais reste <strong>derrière le BFF</strong> (pas de route directe prio 200) — décision d'équipe, différente du montage de démonstration du lab, et c'est très bien ainsi.</p>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p>Générez, avec l'aide de l'IA nourrie de <code>docs/decisions.md</code>, le schéma de <strong>votre</strong> topologie dans <code>docs/architecture.md</code>. Puis validez-le trois fois :<br />
+1. <strong>Rendu</strong> : le Mermaid s'affiche sans <code>Syntax Error</code> dans votre aperçu.<br />
+2. <strong>Fidélité</strong> : chaque nœud et chaque flèche correspond à une décision D-0xx ou à une fiche du TD 4.1 — rien en plus, rien en moins.<br />
+3. <strong>Honnêteté</strong> : le chemin d'auth est lisible ; toute route qui contourne le BFF est annotée.</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -357,45 +302,49 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
+<td>Broker, cache, discovery apparus</td>
+<td>Prompt « belle archi »</td>
+<td>Composants sans décision D-0xx</td>
+<td>Régénérer en fournissant les décisions</td>
 </tr>
 <tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
+<td><code>Syntax Error</code> au rendu</td>
+<td>R-MERMAID non respecté</td>
+<td>Espaces autour des pipes, accents dans les labels</td>
+<td>Guillemets partout, <code>--&gt;|"..."|</code> collé, ASCII</td>
 </tr>
 <tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
+<td>Deux services sur la même base</td>
+<td>Décision d'extraction incomplète</td>
+<td>Deux flèches vers la même base logique</td>
+<td>Créer la base dédiée ou re-fusionner les services</td>
+</tr>
+<tr>
+<td>Schéma identique au dépôt de référence</td>
+<td>Copie au lieu de décision</td>
+<td>Topologie ≠ vos D-0xx</td>
+<td>Repartir de VOS décisions</td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
+<h2 id="etape-2-trancher-et-justifier-la-decision-microfrontend-hands-on">Étape 2 : trancher et justifier la décision microfrontend <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Écrire noir sur blanc votre choix front : SPA unique à zones, ou shell + remotes Module Federation — avec raisons et condition de réévaluation.</p>
+<p><strong>Explication.</strong> Les deux options sont recevables (chapitre <a href="04-microfrontends.md">04</a>) ; une décision non argumentée ne l'est pas. La justification doit se rattacher à <strong>votre contexte</strong> : combien de personnes toucheront au front d'ici la J10 ? Vos domaines UX (boutique / back-office) sont-ils portés par des personnes différentes ? Un exercice utile avant de trancher : demandez à l'IA le meilleur argumentaire <strong>pour</strong> chaque option dans votre contexte précis, et confrontez-les.</p>
+<p><strong>Exemple traité</strong> (l'équipe fictive de l'étape 1) :</p>
+<div class="highlight"><pre><span></span><code>Decision front : SPA React unique, deux zones de routes (boutique, admin).
+Raisons : un seul membre a l aise sur React ; domaines UX lies (le back-office
+edite ce que la boutique affiche) ; le cout Module Federation (design system
+partage, singleton React, build federe) ne serait amorti par aucune autonomie
+de livraison reelle.
+Structure preparatoire : zones par domaine + imports paresseux par route,
+pour rester convertible en remotes.
+Condition de reevaluation : une deuxieme personne dediee au front, ou un
+back-office repris par une autre equipe.
 </code></pre></div>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
+<p>Rédigez dans <code>docs/architecture.md</code> la section « Décision microfrontend » : le choix, au moins deux raisons rattachées à votre équipe, et une condition de réévaluation datée-vérifiable. Si vous choisissez Module Federation, ajoutez qui porte le shell, qui porte chaque remote, et ce que contient votre contrat shell-remotes (versions partagées, auth, navigation).</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -410,53 +359,158 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
+<td>« MF parce que le back est découpé »</td>
+<td>Symétrie esthétique</td>
+<td>Aucun signal d'équipe front cité</td>
+<td>Revenir aux signaux : qui livre le front ?</td>
 </tr>
 <tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
+<td>Décision sans condition de réévaluation</td>
+<td>ADR incomplet</td>
+<td>La décision semble éternelle</td>
+<td>Ajouter ce qui la ferait changer</td>
 </tr>
 <tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
+<td>MF choisi sans contrat shell-remotes</td>
+<td>Coût sous-estimé</td>
+<td>Rien sur versions/auth/navigation</td>
+<td>Écrire le contrat ou revoir le choix</td>
 </tr>
 </tbody>
 </table>
+<h2 id="etape-3-esquisser-deux-contrats-dapi-inter-services-hands-on">Étape 3 : esquisser deux contrats d'API inter-services <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Choisir les <strong>deux appels inter-services les plus critiques</strong> de votre topologie et les esquisser en OpenAPI — chemins, paramètres, réponse nominale, au moins une erreur.</p>
+<p><strong>Explication.</strong> Un schéma sans contrat reste une intention. Repérez sur votre schéma de l'étape 1 les flèches entre services : chacune est un contrat à écrire. Choisissez les deux qui portent le plus de risque métier — typiquement une consultation (un service lit le référentiel d'un autre) et une opération à effet (réservation, décrément, validation) dont le cas d'erreur vient directement de vos critères du TP 4.1. L'esquisse tient en 20-30 lignes de YAML par endpoint : <code>paths</code>, paramètres, schéma de réponse 200, et le code d'erreur qui compte (404 ? 409 ?). Le contrat complet viendra du code (springdoc, <code>@nestjs/swagger</code>, FastAPI, Swashbuckle) ; aujourd'hui on fige la <strong>sémantique</strong>.</p>
+<p><strong>Exemple traité</strong> — squelette à adapter (consultation du catalogue par un autre service) :</p>
+<div class="highlight"><pre><span></span><code><span class="nt">openapi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.1.0&quot;</span>
+<span class="nt">info</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SemiShop</span><span class="nv"> </span><span class="s">Catalogue</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">vue</span><span class="nv"> </span><span class="s">consommateur&quot;</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
+<span class="nt">paths</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">/produits/{id}</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">get</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fiche</span><span class="nv"> </span><span class="s">produit</span><span class="nv"> </span><span class="s">pour</span><span class="nv"> </span><span class="s">un</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">consommateur&quot;</span>
+<span class="w">      </span><span class="nt">parameters</span><span class="p">:</span>
+
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+<span class="w">          </span><span class="nt">in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span>
+<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">schema</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">integer</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="s">&quot;200&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Produit</span><span class="nv"> </span><span class="s">trouve&quot;</span>
+<span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">libelle</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">grade</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">prix_ht</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">disponible</span><span class="p p-Indicator">]</span>
+<span class="w">                </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">integer</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">libelle</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">grade</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="nt"> enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">A</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">B</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">prix_ht</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">disponible</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">boolean</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="s">&quot;404&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Produit</span><span class="nv"> </span><span class="s">inconnu&quot;</span>
+</code></pre></div>
+<p>La ligne <code>required</code> est le cœur du contrat : c'est elle que les tests contractuels du module 08 vérifieront.</p>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Dans <code>docs/architecture.md</code>, ajoutez la section « Contrats d'API » avec <strong>deux esquisses OpenAPI</strong> :<br />
+1. une <strong>consultation</strong> inter-services de votre topologie ;<br />
+2. une <strong>opération à effet</strong> (réservation, décrément, validation...) — son code d'erreur doit correspondre à un critère d'erreur de votre backlog (TP 4.1). Nommez lequel.</p>
+<p>Pour chaque contrat, précisez en une ligne : qui expose, qui consomme, et ce qui se passe côté consommateur si l'appel échoue (votre « point dur » du TD 4.1).</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contrat sans code d'erreur</td>
+<td>Cas nominal uniquement</td>
+<td>Une seule réponse 200</td>
+<td>Ajouter l'erreur qui vient du backlog</td>
+</tr>
+<tr>
+<td>Endpoints sans consommateur</td>
+<td>Contrat inventé</td>
+<td>Aucune flèche du schéma ne correspond</td>
+<td>Partir des flèches, pas de l'imagination</td>
+</tr>
+<tr>
+<td>Schéma de réponse sans <code>required</code></td>
+<td>Contrat mou</td>
+<td>Tout est optionnel</td>
+<td>Figer le minimum garanti</td>
+</tr>
+<tr>
+<td>YAML généré non relu</td>
+<td>Confiance aveugle</td>
+<td>Champs hallucinés (<code>rating</code>, <code>discount</code>)</td>
+<td>Relire champ par champ contre le backlog</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-4-coherence-finale-et-commit-hands-on">Étape 4 : cohérence finale et commit <em>(hands-on)</em></h2>
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Assemblez <code>docs/architecture.md</code> (structure ci-dessous), puis faites la <strong>triple lecture croisée</strong> : chaque flèche du schéma a sa décision (TD 4.1), chaque endpoint a son US (TP 4.1), chaque décision a sa trace. Committez.</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Architecture SemiShop - &lt;equipe&gt;</span>
+Date : 2026-07-19 | Sources : docs/decisions.md, docs/backlog.md
+
+<span class="gu">## 1. Schema de la topologie</span>
+(flowchart Mermaid valide R-MERMAID)
+
+<span class="gu">## 2. Decisions de decoupage (renvoi TD 4.1)</span>
+| Service | Statut | Techno | Porteur | Decision |
+|---------|--------|--------|---------|----------|
+
+<span class="gu">## 3. Decision microfrontend</span>
+Choix + raisons + condition de reevaluation
+
+<span class="gu">## 4. Contrats d API (2 endpoints inter-services)</span>
+(2 esquisses OpenAPI + qui expose / qui consomme / comportement en echec)
+
+<span class="gu">## 5. Persistance</span>
+Une base logique par service (les nommer)
+</code></pre></div>
+<p>🔷 <strong>Résultat attendu</strong> : <code>docs/architecture.md</code> complet et cohérent avec <code>docs/decisions.md</code> et <code>docs/backlog.md</code> — c'est le triptyque de sortie de la journée 4, et l'entrée du module 05.</p>
+</blockquote>
 <hr />
 <p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
+🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-08-tp-schema-architecture-decision.md</code>).</p>
 <hr />
 <blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
+<p>🔹 <strong>En production, ce que ça change</strong> : un <code>docs/architecture.md</code> d'une page, fidèle aux décisions et relié au backlog, devient la meilleure pièce de contexte que vous puissiez donner à un agent IA — et à un nouvel arrivant. Dès le module 05, c'est l'un des premiers documents que votre RAG indexera : sa qualité conditionne les réponses que l'IA fera sur votre propre projet.</p>
 </blockquote>
 <hr />
 <h2 id="recap">Récap</h2>
 <p>🟢 Ce que vous savez maintenant faire :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>Matérialiser une topologie décidée en schéma Mermaid valide et honnête (auth visible, bases nommées, porteurs affichés).</li>
+<li>Trancher l'option microfrontend avec des raisons contextuelles et une condition de réévaluation.</li>
+<li>Esquisser un contrat OpenAPI inter-services dont les erreurs viennent du backlog.</li>
 </ul>
 <p>🟨 Pièges à retenir :</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>Un schéma qui contredit les décisions n'est pas une architecture, c'est un dessin.</li>
+<li>Un contrat sans code d'erreur ni <code>required</code> ne protège personne.</li>
 </ul>
 <p>🔷 Points clés à retenir :</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>Le triptyque <code>decisions.md</code> / <code>backlog.md</code> / <code>architecture.md</code> est le produit cadré de la journée.</li>
+<li>Ce document est du <strong>contexte pour l'IA</strong> autant que pour l'équipe : sa fidélité prime sur son ambition.</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<p>🔹 <strong>Prochaine étape</strong> : vérifiez vos acquis avec le <a href="09-quiz-module04.md">Quiz — Module 04</a>, avant d'outiller l'IA sur votre codebase au module 05.</p>
     </article>
 
     

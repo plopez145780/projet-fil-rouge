@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>07 — TP 4.1 : Backlog et User Stories assistées par IA</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> TP 4.1 - Backlog et User Stories assistées par IA <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">TP 4.1 - Backlog et User Stories assistées par IA</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,127 +222,53 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="05-ia-jira-user-stories.md">05 - IA et Jira : de l'idée aux User Stories</a> — la chaîne idée → epic → US → critères → tests, et la règle « l'IA n'invente pas d'exigence ».<br />
+- <a href="06-td-microservice-justifie.md">06 - TD 4.1 Microservice justifié</a> — la posture proposition / gate / décision et le journal <code>docs/decisions.md</code>.</p>
 </blockquote>
 <h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li><strong>Modules requis</strong> : <a href="05-ia-jira-user-stories.md">chapitre 05</a>, <a href="06-td-microservice-justifie.md">TD 4.1</a>.</li>
+<li><strong>Ressources sous la main</strong> : votre <code>docs/fil-rouge.md</code>, un assistant IA, un accès Jira si disponible (sinon le backlog Markdown suffit).</li>
+<li><strong>Format</strong> : par équipe fil rouge (celle du TD 4.1). <strong>Nature</strong> : hands-on documentaire — livrable <code>docs/backlog.md</code> versionné.</li>
 </ul>
 <h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
-
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
+<p><strong>Objectif.</strong> Produire le <strong>backlog SemiShop</strong> de votre équipe (<code>docs/backlog.md</code>) : l'epic « <strong>parcours d'achat reconditionné</strong> », des User Stories au format « En tant que / je veux / afin de », chacune avec critères d'acceptation <code>Given/When/Then</code> (nominal <strong>et</strong> erreur) et test associé, plus une <strong>définition de fini</strong> partagée. L'IA rédige vite ; vous garantissez qu'aucune exigence n'est inventée.</p>
+<p><strong>Contexte : l'idée métier, brute.</strong> Voici tout ce que le métier vous a transmis — c'est votre unique source ce matin :</p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p>La société SEMIFIR lance <strong>SemiShop</strong>, une boutique en ligne de matériel informatique <strong>reconditionné</strong> : portables, smartphones, écrans, périphériques. Chaque produit est inspecté et reçoit un <strong>grade d'état</strong> — A (comme neuf), B (bon état), C (état correct) — et part avec une <strong>garantie</strong>. Les clients doivent pouvoir acheter en ligne et suivre leurs commandes ; une petite équipe interne tient le catalogue à jour et traite les commandes. Le paiement réel n'est pas dans le périmètre de la démonstration : il sera <strong>simulé</strong>.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
+<p>C'est volontairement incomplet : pas de liste d'écrans, pas de règles chiffrées, pas d'acteurs formalisés. Transformer ce paragraphe en backlog exécutable, sans le trahir ni le gonfler, est exactement l'exercice.</p>
+<pre class="mermaid">
+flowchart LR
+    t_source["Idee metier SEMIFIR&lt;br/&gt;paragraphe brut"] --&gt;|"borne le perimetre"| t_epic["Epic&lt;br/&gt;parcours d achat reconditionne"]
+    t_epic --&gt;|"decoupe"| t_us["User Stories&lt;br/&gt;En tant que / je veux / afin de"]
+    t_us --&gt;|"chaque US"| t_crit["Criteres Given/When/Then&lt;br/&gt;nominal + erreur"]
+    t_crit --&gt;|"chaque critere"| t_test["Test associe"]
+    t_us --&gt;|"transverse"| t_dod["Definition de fini"]
+</pre>
+
+<blockquote>
+<p>🟨 <strong>Warning central du TP</strong> : demandez à un LLM « génère un backlog e-commerce » et il produira avis clients, codes promo, programme de fidélité, reprise d'ancien matériel, notifications, chat support. <strong>Rien de tout cela n'est dans le paragraphe SEMIFIR.</strong> Votre rôle : ne garder que ce qui se rattache à une phrase de la source. Le reste part en « suggestions à valider » — visible, mais hors scope.</p>
+</blockquote>
+<h2 id="etape-1-extraire-les-acteurs-et-border-lepic-hands-on">Étape 1 : extraire les acteurs et border l'epic <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Identifier qui utilise SemiShop, et écrire un epic borné à la source — pour couper l'invention à la racine.</p>
+<p><strong>Contexte.</strong> Le paragraphe SEMIFIR nomme implicitement plusieurs rôles. Un epic sans acteurs identifiés produit des US au rôle flou (« en tant qu'utilisateur... ») que personne ne peut valider.</p>
+<p><strong>Explication.</strong> Relisez la source ligne à ligne et posez pour chaque groupe nominal : est-ce un acteur ? Que fait-il ? Ensuite seulement, formulez l'epic avec un <strong>prompt à périmètre fermé</strong> : coller la source, exiger la reformulation, interdire l'ajout — les idées supplémentaires vont dans une section séparée.</p>
+<p><strong>Exemple traité</strong> (structure du prompt — à adapter, pas à recopier) :</p>
+<div class="highlight"><pre><span></span><code>Prompt : &quot;Voici l integralite du besoin exprime : &lt;paragraphe SEMIFIR colle&gt;.
+1. Liste les acteurs presents ou impliques par ce texte, avec leur perimetre.
+2. Reformule le besoin en UN epic centre sur le parcours d achat.
+N ajoute AUCUNE fonctionnalite absente du texte. Si tu identifies un manque,
+liste-le separement sous &#39;suggestions a valider&#39;, sans le formater en US.&quot;
 </code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p>Dans <code>docs/backlog.md</code>, posez :<br />
+1. Le <strong>tableau des acteurs</strong> (rôle, périmètre, interface probable) — donnez-leur des personas nommés, réutilisables dans toutes vos US (emails en <code>prenom.nom@smf.com</code>).<br />
+2. L'<strong>epic</strong> « parcours d'achat reconditionné », en une phrase, borné à la source.<br />
+3. La section « <strong>Suggestions à valider</strong> » avec ce que l'IA a proposé en plus — sans l'intégrer.</p>
+<p>Question de contrôle : le paiement simulé fait-il partie de l'epic ? Justifiez en citant la phrase de la source qui tranche.</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -357,45 +283,40 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
+<td>Acteur « administrateur système » apparu</td>
+<td>L'IA a complété le casting</td>
+<td>Aucune phrase source ne le mentionne</td>
+<td>Le retirer ou le tracer à une vraie phrase</td>
 </tr>
 <tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
+<td>Epic fleuve (« ... et fidéliser et analyser... »)</td>
+<td>Périmètre non fermé</td>
+<td>L'epic dépasse le parcours d'achat</td>
+<td>Un epic = un objectif ; le reste en suggestions</td>
 </tr>
 <tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
+<td>Suggestions mélangées au scope</td>
+<td>Zone de quarantaine absente</td>
+<td>Pas de section séparée</td>
+<td>Créer la section, y déplacer tout le non-tracé</td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
+<h2 id="etape-2-decouper-lepic-en-user-stories-tracees-hands-on">Étape 2 : découper l'epic en User Stories tracées <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Obtenir 6 à 8 US couvrant le parcours d'achat, chacune reliée à un acteur et à une phrase de la source.</p>
+<p><strong>Contexte.</strong> Le parcours d'achat va de la découverte du catalogue au suivi de commande. Le back-office (tenir le catalogue, traiter les commandes) est nommé par la source : il a droit à ses US aussi — c'est ce qui rendra le produit démontrable de bout en bout.</p>
+<p><strong>Explication.</strong> Le format « En tant que <em>rôle</em>, je veux <em>action</em>, afin de <em>bénéfice</em> » force à nommer qui et pourquoi. Exigez de l'IA le champ supplémentaire qui change tout : <strong>« Rattachée à : »</strong> suivi de la phrase source. Une US sans rattachement est un signal d'invention. Pensez au grade et à la garantie : la source en fait un élément central de la confiance — vos US de consultation doivent les faire apparaître.</p>
+<p><strong>Exemple traité</strong> (US hors parcours d'achat, pour ne pas déflorer les vôtres) :</p>
+<div class="highlight"><pre><span></span><code>US-BO-1 : En tant que gestionnaire du catalogue,
+          je veux mettre a jour le stock d un produit reconditionne,
+          afin que les clients ne commandent pas un materiel indisponible.
+          Rattachee a : &quot;une petite equipe interne tient le catalogue a jour&quot;
 </code></pre></div>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
+<p>Produisez <strong>6 à 8 User Stories</strong> : au moins 4 sur le parcours d'achat client (découvrir → choisir → commander → payer → suivre) et au moins 2 côté gestion interne. Chaque US : format canonique + persona + champ « Rattachée à : » citant la source. Supprimez (ou mettez en quarantaine) toute US générée qui ne se rattache à rien.</p>
+<p>Relisez ensuite chaque « afin de » : s'il répète le « je veux », le bénéfice est vide — reformulez en nommant ce que l'acteur y gagne vraiment.</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -410,53 +331,160 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
+<td>US « avis clients », « code promo »</td>
+<td>Scope halluciné</td>
+<td>Pas de rattachement possible</td>
+<td>Quarantaine ou suppression</td>
 </tr>
 <tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
+<td>Rôle générique « utilisateur »</td>
+<td>Acteurs de l'étape 1 non réutilisés</td>
+<td>Aucune US ne cite un persona</td>
+<td>Réécrire avec les personas nommés</td>
 </tr>
 <tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
+<td>Grade/garantie absents des US</td>
+<td>Spécificité reconditionné perdue</td>
+<td>Le backlog vaudrait pour n'importe quel e-commerce</td>
+<td>Réancrer : le grade est l'argument de confiance</td>
+</tr>
+<tr>
+<td>15 US micro-découpées</td>
+<td>L'IA a atomisé</td>
+<td>Des US de 1 champ de formulaire</td>
+<td>Regrouper par unité de valeur livrable</td>
 </tr>
 </tbody>
 </table>
+<h2 id="etape-3-criteres-givenwhenthen-et-test-associe-hands-on">Étape 3 : critères <code>Given/When/Then</code> et test associé <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Rendre chaque US testable : au moins un critère nominal, un critère d'erreur, et le test qui en découle.</p>
+<p><strong>Contexte.</strong> C'est ici que le backlog devient un contrat avec le module 08 (tests) : chaque <code>Then</code> doit être observable par un test automatisé.</p>
+<p><strong>Explication.</strong> Un critère décrit contexte, action, résultat — sans détail d'implémentation. L'IA excelle sur les cas nominaux et néglige les cas d'erreur : produit devenu indisponible entre l'ajout au panier et la validation, quantité invalide, accès à la commande d'un autre client. Ces cas-limites sont votre valeur ajoutée. Formulez le test associé en une ligne : verbe + endpoint (ou action UI) + résultat attendu.</p>
+<p><strong>Exemple traité</strong> (pour l'US back-office de l'étape 2) :</p>
+<div class="highlight"><pre><span></span><code>Critere nominal :
+  Given un produit existant avec un stock de 5
+  When le gestionnaire met le stock a 0
+  Then le produit est marque indisponible au front-office
+   And il reste visible dans le catalogue
+
+Critere d erreur :
+  Given un produit existant
+  When le gestionnaire saisit un stock negatif
+  Then la mise a jour est refusee avec une erreur de validation
+
+Tests associes :
+
+  - PUT stock=0 -&gt; 200 ; GET catalogue -&gt; produit marque indisponible
+  - PUT stock=-3 -&gt; 400
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Pour <strong>chaque US</strong> : un critère nominal + un critère d'erreur en <code>Given/When/Then</code>, puis le test associé en une ligne. Deux contraintes de qualité :<br />
+- au moins un critère du backlog doit porter sur le <strong>cloisonnement</strong> (un client ne voit que ses propres données) ;<br />
+- au moins un critère doit traiter la <strong>cohérence prix/stock</strong> entre le moment du choix et le moment de la commande (que doit-il se passer si le prix ou le stock a changé entre les deux ? C'est une décision métier : prenez-la et écrivez-la).</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Que des critères nominaux</td>
+<td>Biais IA du cas passant</td>
+<td>Aucun <code>Then</code> de refus</td>
+<td>Ajouter les cas d'erreur à la main</td>
+</tr>
+<tr>
+<td><code>Then</code> invérifiable (« l'expérience est fluide »)</td>
+<td>Critère marketing</td>
+<td>Aucun test ne peut l'observer</td>
+<td>Reformuler en résultat observable</td>
+</tr>
+<tr>
+<td>Critères qui décrivent l'implémentation</td>
+<td>Confusion quoi/comment</td>
+<td>« Then la ligne est insérée en base »</td>
+<td>Rester au comportement visible du contrat</td>
+</tr>
+<tr>
+<td>Décision prix/stock esquivée</td>
+<td>Question métier laissée à l'IA</td>
+<td>Le critère reste vague</td>
+<td>Trancher, écrire la règle, la dater</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-4-definition-de-fini-priorisation-mvp-commit-hands-on">Étape 4 : définition de fini, priorisation MVP, commit <em>(hands-on)</em></h2>
+<p><strong>Objectif.</strong> Poser la checklist transverse, séparer MVP et « plus tard », et livrer le fichier.</p>
+<p><strong>Explication.</strong> La <strong>définition de fini</strong> est la checklist que toute story doit cocher : code committé + revue, critères couverts par un test vert, doc à jour, aucune exigence non tracée introduite. Ensuite, marquez chaque US <strong>(MVP)</strong> ou <strong>(plus tard)</strong> : le MVP est ce qui rend le parcours d'achat démontrable de bout en bout à la journée 10 — pas une ligne de plus.</p>
+<p><strong>Forme du livrable attendu</strong> — structure de <code>docs/backlog.md</code> :</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Backlog SemiShop - &lt;equipe&gt;</span>
+Date : 2026-07-19 | Source : idee metier SEMIFIR (module 04)
+
+<span class="gu">## Acteurs</span>
+| Role | Persona | Perimetre |
+|------|---------|-----------|
+
+<span class="gu">## Epic</span>
+Parcours d achat reconditionne : &lt;votre formulation&gt;
+
+<span class="gu">## Definition de fini (transverse)</span>
+<span class="k">- [ ]</span> Code committe + revue
+<span class="k">- [ ]</span> Criteres Given/When/Then couverts par un test vert
+<span class="k">- [ ]</span> Doc / backlog a jour
+<span class="k">- [ ]</span> Aucune exigence non tracee introduite
+
+<span class="gu">## User Stories</span>
+<span class="gu">### US-01 (MVP) - &lt;titre&gt;</span>
+En tant que &lt;persona&gt;, je veux &lt;action&gt;, afin de &lt;benefice&gt;.
+Rattachee a : &quot;&lt;phrase source&gt;&quot;
+Criteres : &lt;nominal&gt; / &lt;erreur&gt;
+Test : &lt;une ligne&gt;
+
+<span class="gu">## Suggestions a valider (hors scope - non integrees)</span>
+<span class="k">-</span><span class="w"> </span>&lt;propositions IA sans source, en attente de decision&gt;
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Finalisez <code>docs/backlog.md</code>, committez, et vérifiez en binôme croisé (une autre équipe relit la vôtre) : chaque US a-t-elle sa source, son critère d'erreur, son test ? La section suggestions est-elle vraiment hors scope ?</p>
+<p>🔷 <strong>Résultat attendu</strong> : <code>docs/backlog.md</code> avec acteurs nommés, 1 epic borné, 6-8 US complètes (source + critères nominal/erreur + test), une définition de fini, et les suggestions IA isolées. Si votre organisation utilise Jira, l'import peut se faire plus tard — le Markdown versionné reste la source de vérité.</p>
+</blockquote>
 <hr />
 <p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
+🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-07-tp-backlog-user-stories.md</code>).</p>
 <hr />
 <blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
+<p>🔹 <strong>En production, ce que ça change</strong> : un backlog où chaque US porte sa source et ses critères testables se convertit presque directement en tests automatisés (module 08) et en contexte fiable pour le RAG (module 05). L'IA rédige vite ; c'est la traçabilité US → source → test qui distingue un backlog utile d'un vœu pieux généré.</p>
 </blockquote>
 <hr />
 <h2 id="recap">Récap</h2>
 <p>🟢 Ce que vous savez maintenant faire :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>Extraire acteurs et epic d'une idée métier brute, avec un prompt à périmètre fermé.</li>
+<li>Découper en User Stories tracées phrase à phrase à leur source.</li>
+<li>Attacher critères nominal + erreur et test associé à chaque US.</li>
+<li>Poser une définition de fini et isoler les suggestions IA hors scope.</li>
 </ul>
 <p>🟨 Pièges à retenir :</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>L'IA gonfle le scope avec des exigences plausibles : sans source, quarantaine.</li>
+<li>Les cas d'erreur (indisponibilité, cloisonnement, cohérence prix/stock) sont votre travail, pas le sien.</li>
 </ul>
 <p>🔷 Points clés à retenir :</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>La traçabilité US → source → test est le squelette du backlog.</li>
+<li>Les questions métier (que faire si le prix change ?) se tranchent et s'écrivent — l'IA ne décide pas.</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<p>🔹 <strong>Prochaine étape</strong> : le besoin est cadré, l'équipe a sa topologie (TD 4.1) — reste à les réunir dans un schéma et des contrats. Direction le <a href="08-tp-schema-architecture-decision.md">TP 4.2 — Schéma d'architecture et décision</a>.</p>
     </article>
 
     

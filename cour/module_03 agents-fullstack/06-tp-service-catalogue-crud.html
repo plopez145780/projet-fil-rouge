@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>06 — TP 3.1 : Implémenter le service catalogue de SemiShop, piloté par agent</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">03</span> TP 3.1 - Implementer le service catalogue de SemiShop pilote par agent <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -208,7 +208,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 
   <div class="smf-mid">
     <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
+    <h1 class="smf-title">TP 3.1 - Implementer le service catalogue de SemiShop pilote par agent</h1>
     <p class="smf-lede">Dev Full Stack assiste par IA</p>
   </div>
 
@@ -222,127 +222,133 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — la boucle qu'on pilote ici, incrément par incrément.<br />
+- <a href="03-garde-fous.md">03 — Garde-fous</a> — périmètre, secrets, rollback Git, appliqués en continu.<br />
+- <a href="05-td-anatomie-boucle-agent.md">05 — TD 3.1 : Anatomie d'une boucle agent</a> — la checklist <code>validation-diff-agent.md</code>, utilisée pour valider chaque diff.</p>
 </blockquote>
 <h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li><strong>Modules requis</strong> : chapitres <a href="02-boucle-plan-act-verify.md">02</a>, <a href="03-garde-fous.md">03</a> et <a href="05-td-anatomie-boucle-agent.md">05</a> ; le dépôt SemiShop et le compose v0 du <a href="../module01-cadrage-lab/07-tp-init-depot-compose.md">module 01</a>.</li>
+<li><strong>Environnement</strong> :</li>
+<li>Votre dépôt <code>semishop/</code> avec le <strong>compose v0</strong> démarré : Traefik v3.2 (port 80), PostgreSQL 16 (bases <code>referentiel_db</code> et <code>metier_db</code>, utilisateur <code>semishop</code>), Qdrant.</li>
+<li>Un IDE avec un <strong>assistant en mode agent</strong> (Cline, Copilot agent mode, Claude Code, Junie, ou Continue.dev branché sur NéoGen) — voir le <a href="04-comparatif-agents-polyglotte.md">comparatif</a>.</li>
+<li><strong>Langage au choix</strong> — la toolchain de VOTRE stack : JDK 21 + Gradle (variante de référence Spring Boot) <strong>ou</strong> Node.js 20+ (NestJS) <strong>ou</strong> Python 3.12+ (FastAPI) <strong>ou</strong> SDK .NET 8 <strong>ou</strong> JDK 21 + Quarkus. Node.js 20+ dans tous les cas pour le front.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">          </span><span class="c1"># traefik, postgres, qdrant demarres, postgres &quot;healthy&quot;</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>semishop<span class="w"> </span>-d<span class="w"> </span>referentiel_db<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT 1;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong>Format</strong> : individuel (ou binôme par stack), <strong>en autonomie</strong>. <strong>Nature</strong> : hands-on technique. <strong>Livrables</strong> : le service <strong>catalogue</strong> opérationnel derrière Traefik, une page front qui liste les produits, un <strong>historique Git lisible (au moins 4 commits jalonnés)</strong> et une doc courte <code>docs/catalogue.md</code>.</li>
 </ul>
 <h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
-
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
+<p><strong>Objectif.</strong> Faire construire par un agent, en <strong>petites étapes validées</strong>, le premier service de SemiShop : le <strong>catalogue</strong> (référentiel produits). Vous ne tapez presque pas de code — vous planifiez, pilotez, et validez chaque diff avec votre checklist. À la fin : un flux prouvé <strong>front → Traefik → catalogue → PostgreSQL</strong>.</p>
+<p><strong>Contexte fil rouge.</strong> SEMIFIR vend du matériel reconditionné : chaque produit porte un <strong>grade</strong> (A : excellent état, B : bon état, C : état correct), un prix HT, un stock. Le catalogue est le socle de toute l'application — les services commandes, panier et le BFF construits dans les modules suivants s'appuieront dessus. Jusqu'ici votre dépôt contient l'infrastructure (compose v0) et la boîte à outils IA ; aujourd'hui, le premier code métier.</p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p>🔷 <strong>Langage au choix.</strong> La variante de référence est <strong>Spring Boot 3.4.1 / Java 21</strong> (celle du lab de correction). Les variantes <strong>NestJS</strong>, <strong>FastAPI</strong>, <strong>.NET 8</strong> et <strong>Quarkus</strong> sont acceptées : les critères de validation sont identiques quel que soit le langage. Le contrat d'API et le modèle de données ci-dessous sont votre cahier des charges, pas le code d'une stack.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
+<h3 id="cible-le-flux-a-construire">Cible : le flux à construire</h3>
+<pre class="mermaid">
+flowchart LR
+    t_front["Front React - CatalogPage"] --&gt;|"GET /api/produits"| t_traefik["Traefik :80"]
+    t_traefik --&gt;|"stripprefix /api"| t_cat["Service catalogue :8081"]
+    t_cat --&gt;|"SQL"| t_db["PostgreSQL referentiel_db"]
+</pre>
+
+<p><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNkRCMzNGIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+U3ByaW5nPC90aXRsZT48cGF0aCBkPSJNMjEuODUzNyAxLjQxNThhMTAuNDUwNCAxMC40NTA0IDAgMCAxLTEuMjg0IDIuMjQ3MUExMS45NjY2IDExLjk2NjYgMCAxIDAgMy44NTE4IDIwLjc3NTdsLjQ0NDUuMzk1MWExMS45NTQzIDExLjk1NDMgMCAwIDAgMTkuNjMxNi04LjI5NzFjLjM0NTctMy4wMTI2LS41NjgtNi44NjQ5LTIuMDc0My0xMS40NTh6TTUuNTgwNSAyMC44NzQ1YTEuMDE3NCAxLjAxNzQgMCAxIDEtLjE0ODItMS40MzIzIDEuMDM5NiAxLjAzOTYgMCAwIDEgLjE0ODIgMS40MzIzem0xNi4xOTkxLTMuNTgwNmMtMi45Mzg1IDMuOTI2My05LjI2MDEgMi41OTI4LTEzLjI4NTIgMi43OTA0IDAgMC0uNzE2MS4wNDk0LTEuNDMyMy4xNDgxIDAgMCAuMjcxNy0uMTIzNC42MTc0LS4yNDY5IDIuODM5OC0uOTg3NyA0LjE3MzItMS4xODUzIDUuOTAxOC0yLjA3NDMgMy4yMzQ5LTEuNjU0NSA2LjQ2OTgtNS4yODQ0IDcuMTExOC05LjAzNzktMS4yMzQ3IDMuNjA1My00Ljk4ODEgNi43MTY3LTguMzk1OSA3Ljk3NjEtMi4zNDU5Ljg2NDMtNi41Njg1IDEuNzAzOS02LjU2ODUgMS43MDM5bC0uMTcyOS0uMDk4OGMtMi44NjQ1LTEuNDA3Ni0yLjk2MzItNy42MzA0IDIuMjcxOC05LjYzMDYgMi4yOTY2LS44ODkgNC40Njk2LS4zOTUgNi45NjM3LS45ODc3IDIuNjQyMi0uNjE3NCA1LjcwNDMtMi41OTI5IDYuOTM5LTUuMTg1NyAxLjM4MjggNC4xNzMyIDMuMDYyIDEwLjY0My4wNDkzIDE0LjY0MzR6Ii8+PC9zdmc+" alt="Logo Spring, variante back de reference du service catalogue" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNjFEQUZCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UmVhY3Q8L3RpdGxlPjxwYXRoIGQ9Ik0xNC4yMyAxMi4wMDRhMi4yMzYgMi4yMzYgMCAwIDEtMi4yMzUgMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEtMi4yMzYtMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEgMi4yMzUtMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEgMi4yMzYgMi4yMzZ6bTIuNjQ4LTEwLjY5Yy0xLjM0NiAwLTMuMTA3Ljk2LTQuODg4IDIuNjIyLTEuNzgtMS42NTMtMy41NDItMi42MDItNC44ODctMi42MDItLjQxIDAtLjc4My4wOTMtMS4xMDYuMjc4LTEuMzc1Ljc5My0xLjY4MyAzLjI2NC0uOTczIDYuMzY1QzEuOTggOC45MTcgMCAxMC40MiAwIDEyLjAwNGMwIDEuNTkgMS45OSAzLjA5NyA1LjA0MyA0LjAzLS43MDQgMy4xMTMtLjM5IDUuNTg4Ljk4OCA2LjM4LjMyLjE4Ny42OS4yNzUgMS4xMDIuMjc1IDEuMzQ1IDAgMy4xMDctLjk2IDQuODg4LTIuNjI0IDEuNzggMS42NTQgMy41NDIgMi42MDMgNC44ODcgMi42MDMuNDEgMCAuNzgzLS4wOSAxLjEwNi0uMjc1IDEuMzc0LS43OTIgMS42ODMtMy4yNjMuOTczLTYuMzY1QzIyLjAyIDE1LjA5NiAyNCAxMy41OSAyNCAxMi4wMDRjMC0xLjU5LTEuOTktMy4wOTctNS4wNDMtNC4wMzIuNzA0LTMuMTEuMzktNS41ODctLjk4OC02LjM4LS4zMTgtLjE4NC0uNjg4LS4yNzctMS4wOTItLjI3OHptLS4wMDUgMS4wOXYuMDA2Yy4yMjUgMCAuNDA2LjA0NC41NTguMTI3LjY2Ni4zODIuOTU1IDEuODM1LjczIDMuNzA0LS4wNTQuNDYtLjE0Mi45NDUtLjI1IDEuNDQtLjk2LS4yMzYtMi4wMDYtLjQxNy0zLjEwNy0uNTM0LS42Ni0uOTA1LTEuMzQ1LTEuNzI3LTIuMDM1LTIuNDQ3IDEuNTkyLTEuNDggMy4wODctMi4yOTIgNC4xMDUtMi4yOTV6bS05Ljc3LjAyYzEuMDEyIDAgMi41MTQuODA4IDQuMTEgMi4yOC0uNjg2LjcyLTEuMzcgMS41MzctMi4wMiAyLjQ0Mi0xLjEwNy4xMTctMi4xNTQuMjk4LTMuMTEzLjUzOC0uMTEyLS40OS0uMTk1LS45NjQtLjI1NC0xLjQyLS4yMy0xLjg2OC4wNTQtMy4zMi43MTQtMy43MDcuMTktLjA5LjQtLjEyNy41NjMtLjEzMnptNC44ODIgMy4wNWMuNDU1LjQ2OC45MS45OTIgMS4zNiAxLjU2NC0uNDQtLjAyLS44OS0uMDM0LTEuMzQ1LS4wMzQtLjQ2IDAtLjkxNS4wMS0xLjM2LjAzNC40NC0uNTcyLjg5NS0xLjA5NiAxLjM0NS0xLjU2NXpNMTIgOC4xYy43NCAwIDEuNDc3LjAzNCAyLjIwMi4wOTMuNDA2LjU4Mi44MDIgMS4yMDMgMS4xODMgMS44Ni4zNzIuNjQuNzEgMS4yOSAxLjAxOCAxLjk0Ni0uMzA4LjY1NS0uNjQ2IDEuMzEtMS4wMTMgMS45NS0uMzguNjYtLjc3MyAxLjI4OC0xLjE4IDEuODctLjcyOC4wNjMtMS40NjYuMDk4LTIuMjEuMDk4LS43NCAwLTEuNDc3LS4wMzUtMi4yMDItLjA5My0uNDA2LS41ODItLjgwMi0xLjIwNC0xLjE4My0xLjg2LS4zNzItLjY0LS43MS0xLjI5LTEuMDE4LTEuOTQ2LjMwMy0uNjU3LjY0Ni0xLjMxMyAxLjAxMy0xLjk1NC4zOC0uNjYuNzczLTEuMjg2IDEuMTgtMS44NjguNzI4LS4wNjQgMS40NjYtLjA5OCAyLjIxLS4wOTh6bS0zLjYzNS4yNTRjLS4yNC4zNzctLjQ4Ljc2My0uNzA0IDEuMTYtLjIyNS4zOS0uNDM1Ljc4Mi0uNjM1IDEuMTc0LS4yNjUtLjY1Ni0uNDktMS4zMS0uNjc2LTEuOTQ3LjY0LS4xNSAxLjMxNS0uMjgzIDIuMDE1LS4zODZ6bTcuMjYgMGMuNjk1LjEwMyAxLjM2NS4yMyAyLjAwNi4zODctLjE4LjYzMi0uNDA1IDEuMjgyLS42NiAxLjkzMy0uMi0uMzktLjQxLS43ODMtLjY0LTEuMTc0LS4yMjUtLjM5Mi0uNDY1LS43NzQtLjcwNS0xLjE0NnptMy4wNjMuNjc1Yy40ODQuMTUuOTQ0LjMxNyAxLjM3NS40OTggMS43MzIuNzQgMi44NTIgMS43MDggMi44NTIgMi40NzYtLjAwNS43NjgtMS4xMjUgMS43NC0yLjg1NyAyLjQ3NS0uNDIuMTgtLjg4LjM0Mi0xLjM1NS40OTMtLjI4LS45NTgtLjY0Ni0xLjk1Ni0xLjEtMi45OC40NS0xLjAxNy44MS0yLjAxIDEuMDg1LTIuOTY0em0tMTMuMzk1LjAwNGMuMjc4Ljk2LjY0NSAxLjk1NyAxLjEgMi45OC0uNDUgMS4wMTctLjgxMiAyLjAxLTEuMDg2IDIuOTY0LS40ODQtLjE1LS45NDQtLjMxOC0xLjM3LS41LTEuNzMyLS43MzctMi44NTItMS43MDYtMi44NTItMi40NzQgMC0uNzY4IDEuMTItMS43NDIgMi44NTItMi40NzYuNDItLjE4Ljg4LS4zNDIgMS4zNTYtLjQ5NHptMTEuNjc4IDQuMjhjLjI2NS42NTcuNDkgMS4zMTIuNjc2IDEuOTQ4LS42NC4xNTctMS4zMTYuMjktMi4wMTYuMzkuMjQtLjM3NS40OC0uNzYyLjcwNS0xLjE1OC4yMjUtLjM5LjQzNS0uNzg4LjYzNi0xLjE4em0tOS45NDUuMDJjLjIuMzkyLjQxLjc4My42NCAxLjE3NS4yMy4zOS40NjUuNzcyLjcwNSAxLjE0My0uNjk1LS4xMDItMS4zNjUtLjIzLTIuMDA2LS4zODYuMTgtLjYzLjQwNi0xLjI4Mi42Ni0xLjkzM3pNMTcuOTIgMTYuMzJjLjExMi40OTMuMi45NjguMjU0IDEuNDIzLjIzIDEuODY4LS4wNTQgMy4zMi0uNzE0IDMuNzA4LS4xNDcuMDktLjMzOC4xMjgtLjU2My4xMjgtMS4wMTIgMC0yLjUxNC0uODA3LTQuMTEtMi4yOC42ODYtLjcyIDEuMzctMS41MzYgMi4wMi0yLjQ0IDEuMTA3LS4xMTggMi4xNTQtLjMgMy4xMTMtLjU0em0tMTEuODMuMDFjLjk2LjIzNCAyLjAwNi40MTUgMy4xMDcuNTMyLjY2LjkwNSAxLjM0NSAxLjcyNyAyLjAzNSAyLjQ0Ni0xLjU5NSAxLjQ4My0zLjA5MiAyLjI5NS00LjExIDIuMjk1LS4yMi0uMDA1LS40MDYtLjA1LS41NTMtLjEzMi0uNjY2LS4zOC0uOTU1LTEuODM0LS43My0zLjcwMy4wNTQtLjQ2LjE0Mi0uOTQ0LjI1LTEuNDM4em00LjU2LjY0Yy40NC4wMi44OS4wMzQgMS4zNDUuMDM0LjQ2IDAgLjkxNS0uMDEgMS4zNi0uMDM0LS40NC41NzItLjg5NSAxLjA5NS0xLjM0NSAxLjU2NS0uNDU1LS40Ny0uOTEtLjk5My0xLjM2LTEuNTY1eiIvPjwvc3ZnPg==" alt="Logo React, front du fil rouge SemiShop" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNDE2OUUxIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UG9zdGdyZVNRTDwvdGl0bGU+PHBhdGggZD0iTTIzLjU1OTQgMTQuNzIyOGEuNTI2OS41MjY5IDAgMCAwLS4wNTYzLS4xMTkxYy0uMTM5LS4yNjMyLS40NzY4LS4zNDE4LTEuMDA3NC0uMjMyMS0xLjY1MzMuMzQxMS0yLjI5MzUuMTMxMi0yLjUyNTYtLjAxOTEgMS4zNDItMi4wNDgyIDIuNDQ1LTQuNTIyIDMuMDQxMS02LjgyOTcuMjcxNC0xLjA1MDcuNzk4Mi0zLjUyMzcuMTIyMi00LjczMTZhMS41NjQxIDEuNTY0MSAwIDAgMC0uMTUwOS0uMjM1QzIxLjY5MzEuOTA4NiAxOS44MDA3LjAyNDggMTcuNTA5OS4wMDA1Yy0xLjQ5NDctLjAxNTgtMi43NzA1LjM0NjEtMy4xMTYxLjQ3OTRhOS40NDkgOS40NDkgMCAwIDAtLjUxNTktLjA4MTYgOC4wNDQgOC4wNDQgMCAwIDAtMS4zMTE0LS4xMjc4Yy0xLjE4MjItLjAxODQtMi4yMDM4LjI2NDItMy4wNDk4Ljg0MDYtLjg1NzMtLjMyMTEtNC43ODg4LTEuNjQ1LTcuMjIxOS4wNzg4Qy45MzU5IDIuMTUyNi4zMDg2IDMuODczMy40MzAyIDYuMzA0M2MuMDQwOS44MTguNTA2OSAzLjMzNCAxLjI0MjMgNS43NDM2LjQ1OTggMS41MDY1LjkzODcgMi43MDE5IDEuNDMzNCAzLjU4Mi41NTMuOTk0MiAxLjEyNTkgMS41OTMzIDEuNzE0MyAxLjc4OTUuNDQ3NC4xNDkxIDEuMTMyNy4xNDQxIDEuODU4MS0uNzI3OS44MDEyLS45NjM1IDEuNTkwMy0xLjgyNTggMS45NDQ2LTIuMjA2OS40MzUxLjIzNTUuOTA2NC4zNjI1IDEuMzkuMzc3MmEuMDU2OS4wNTY5IDAgMCAwIC4wMDA0LjAwNDEgMTEuMDMxMiAxMS4wMzEyIDAgMCAwLS4yNDcyLjMwNTRjLS4zMzg5LjQzMDItLjQwOTQuNTE5Ny0xLjUwMDIuNzQ0My0uMzEwMi4wNjQtMS4xMzQ0LjIzMzktMS4xNDY0LjgxMTUtLjAwMjUuMTIyNC4wMzI5LjIzMDkuMDkxOS4zMjY4LjIyNjkuNDIzMS45MjE2LjYwOTcgMS4wMTUuNjMzMSAxLjMzNDUuMzMzNSAyLjUwNDQuMDkyIDMuMzcxNC0uNjc4Ny0uMDE3IDIuMjMxLjA3NzUgNC40MTc0LjM0NTQgNS4wODc0LjIyMTIuNTUyOS43NjE4IDEuOTA0NSAyLjQ2OTIgMS45MDQzLjI1MDUgMCAuNTI2My0uMDI5MS44Mjk2LS4wOTQxIDEuNzgxOS0uMzgyMSAyLjU1NTctMS4xNjk2IDIuODU1LTIuOTA1OS4xNTAzLS44NzA3LjQwMTYtMi44NzUzLjUzODgtNC4xMDEyLjAxNjktLjA3MDMuMDM1Ny0uMTIwNy4wNTctLjEzNjIuMDAwNy0uMDAwNS4wNjk3LS4wNDcxLjQyNzIuMDMwN2EuMzY3My4zNjczIDAgMCAwIC4wNDQzLjAwNjhsLjI1MzkuMDIyMy4wMTQ5LjAwMWMuODQ2OC4wMzg0IDEuOTExNC0uMTQyNiAyLjUzMTItLjQzMDguNjQzOC0uMjk4OCAxLjgwNTctMS4wMzIzIDEuNTk1MS0xLjY2OTh6TTIuMzcxIDExLjg3NjVjLS43NDM1LTIuNDM1OC0xLjE3NzktNC44ODUxLTEuMjEyMy01LjU3MTktLjEwODYtMi4xNzE0LjQxNzEtMy42ODI5IDEuNTYyMy00LjQ5MjcgMS44MzY3LTEuMjk4NiA0LjgzOTgtLjU0MDggNi4xMDgtLjEzLS4wMDMyLjAwMzItLjAwNjYuMDA2MS0uMDA5OC4wMDk0LTIuMDIzOCAyLjA0NC0xLjk3NTggNS41MzYtMS45NzA4IDUuNzQ5NS0uMDAwMi4wODIzLjAwNjYuMTk4OS4wMTYyLjM1OTMuMDM0OC41ODczLjA5OTYgMS42ODA0LS4wNzM1IDIuOTE4NC0uMTYwOSAxLjE1MDQuMTkzNyAyLjI3NjQuOTcyOCAzLjA4OTIuMDgwNi4wODQxLjE2NDguMTYzMS4yNTE4LjIzNzQtLjM0NjguMzcxNC0xLjEwMDQgMS4xOTI2LTEuOTAyNSAyLjE1NzYtLjU2NzcuNjgyNS0uOTU5Ny41NTE3LTEuMDg4Ni41MDg3LS4zOTE5LS4xMzA3LS44MTMtLjU4NzEtMS4yMzgxLTEuMzIyMy0uNDc5Ni0uODM5LS45NjM1LTIuMDMxNy0xLjQxNTUtMy41MTI2em02LjAwNzIgNS4wODcxYy0uMTcxMS0uMDQyOC0uMzI3MS0uMTEzMi0uNDMyMi0uMTc3Mi4wODg5LS4wMzk0LjIzNzQtLjA5MDIuNDgzMy0uMTQwOSAxLjI4MzMtLjI2NDEgMS40ODE1LS40NTA2IDEuOTE0My0xLjAwMDIuMDk5Mi0uMTI2LjIxMTYtLjI2ODcuMzY3My0uNDQyNmEuMzU0OS4zNTQ5IDAgMCAwIC4wNzM3LS4xMjk4Yy4xNzA4LS4xNTEzLjI3MjQtLjEwOTkuNDM2OS0uMDQxNy4xNTYuMDY0Ni4zMDc4LjI2LjM2OTUuNDc1Mi4wMjkxLjEwMTYuMDYxOS4yOTQ1LS4wNDUyLjQ0NDQtLjkwNDMgMS4yNjU4LTIuMjIxNiAxLjI0OTQtMy4xNjc2IDEuMDEyOHptMi4wOTQtMy45ODgtLjA1MjUuMTQxYy0uMTMzLjM1NjYtLjI1NjcuNjg4MS0uMzMzNCAxLjAwMy0uNjY3NC0uMDAyMS0xLjMxNjgtLjI4NzItMS44MTA1LS44MDI0LS42Mjc5LS42NTUxLS45MTMxLTEuNTY2NC0uNzgyNS0yLjUwMDQuMTgyOC0xLjMwNzkuMTE1My0yLjQ0NjguMDc5LTMuMDU4Ni0uMDA1LS4wODU3LS4wMDk1LS4xNjA3LS4wMTIyLS4yMTk5LjI5NTctLjI2MjEgMS42NjU5LS45OTYyIDIuNjQyOS0uNzcyNC40NDU5LjEwMjIuNzE3Ni40MDU3LjgzMDUuOTI4LjU4NDYgMi43MDM4LjA3NzQgMy44MzA3LS4zMzAyIDQuNzM2My0uMDg0LjE4NjYtLjE2MzMuMzYyOS0uMjMxMS41NDU0em03LjM2MzcgNC41NzI1Yy0uMDE2OS4xNzY4LS4wMzU4LjM3Ni0uMDYxOC41OTU5bC0uMTQ2LjQzODNhLjM1NDcuMzU0NyAwIDAgMC0uMDE4Mi4xMDc3Yy0uMDA1OS40NzQ3LS4wNTQuNjQ4OS0uMTE1Ljg2OTMtLjA2MzQuMjI5Mi0uMTM1My40ODkxLS4xNzk0IDEuMDU3NS0uMTEgMS40MTQzLS44NzgyIDIuMjI2Ny0yLjQxNzIgMi41NTY1LTEuNTE1NS4zMjUxLTEuNzg0My0uNDk2OC0yLjAyMTItMS4yMjE3YTYuNTgyNCA2LjU4MjQgMCAwIDAtLjA3NjktLjIyNjZjLS4yMTU0LS41ODU4LS4xOTExLTEuNDExOS0uMTU3NC0yLjU1NTEuMDE2NS0uNTYxMi0uMDI0OS0xLjkwMTMtLjMzMDItMi42NDYyLjAwNDQtLjI5MzIuMDEwNi0uNTkwOS4wMTktLjg5MThhLjM1MjkuMzUyOSAwIDAgMC0uMDE1My0uMTEyNiAxLjQ5MjcgMS40OTI3IDAgMCAwLS4wNDM5LS4yMDhjLS4xMjI2LS40MjgzLS40MjEzLS43ODY2LS43Nzk3LS45MzUxLS4xNDI0LS4wNTktLjQwMzgtLjE2NzItLjcxNzgtLjA4NjkuMDY3LS4yNzYuMTgzMS0uNTg3NS4zMDktLjkyNDlsLjA1MjktLjE0MmMuMDU5NS0uMTYuMTM0LS4zMjU3LjIxMy0uNTAxMi40MjY1LS45NDc2IDEuMDEwNi0yLjI0NTMuMzc2Ni01LjE3NzItLjIzNzQtMS4wOTgxLTEuMDMwNC0xLjYzNDMtMi4yMzI0LTEuNTA5OC0uNzIwNy4wNzQ2LTEuMzc5OS4zNjU0LTEuNzA4OC41MzIxYTUuNjcxNiA1LjY3MTYgMCAwIDAtLjE5NTguMTA0MWMuMDkxOC0xLjEwNjQuNDM4Ni0zLjE3NDEgMS43MzU3LTQuNDgyM2E0LjAzMDYgNC4wMzA2IDAgMCAxIC4zMDMzLS4yNzYuMzUzMi4zNTMyIDAgMCAwIC4xNDQ3LS4wNjQ0Yy43NTI0LS41NzA2IDEuNjk0NS0uODUwNiAyLjgwMi0uODMyNS40MDkxLjAwNjcuODAxNy4wMzM5IDEuMTc0Mi4wODEgMS45MzkuMzU0NCAzLjI0MzkgMS40NDY4IDQuMDM1OSAyLjM4MjcuODE0My45NjIzIDEuMjU1MiAxLjkzMTUgMS40MzEyIDIuNDU0My0xLjMyMzItLjEzNDYtMi4yMjM0LjEyNjgtMi42Nzk3Ljc3OS0uOTkyNiAxLjQxODkuNTQzIDQuMTcyOSAxLjI4MTEgNS40OTY0LjEzNTMuMjQyNi4yNTIyLjQ1MjIuMjg4OS41NDEzLjI0MDMuNTgyNS41NTE1Ljk3MTMuNzc4NyAxLjI1NTIuMDY5Ni4wODcuMTM3Mi4xNzE0LjE4ODUuMjQ1LS40MDA4LjExNTUtMS4xMjA4LjM4MjUtMS4wNTUyIDEuNzE3LS4wMTIzLjE1NjMtLjA0MjMuNDQ2OS0uMDgzNC44MTQ4LS4wNDYxLjIwNzctLjA3MDIuNDYwMy0uMDk5NC43NjYyem0uODkwNS0xLjYyMTFjLS4wNDA1LS44MzE2LjI2OTEtLjkxODUuNTk2Ny0xLjAxMDVhMi44NTY2IDIuODU2NiAwIDAgMCAuMTM1LS4wNDA2IDEuMjAyIDEuMjAyIDAgMCAwIC4xMzQyLjEwM2MuNTcwMy4zNzY1IDEuNTgyMy40MjEzIDMuMDA2OC4xMzQ0LS4yMDE2LjE3NjktLjUxODkuMzk5NC0uOTUzMy42MDExLS40MDk4LjE5MDMtMS4wOTU3LjMzMy0xLjc0NzMuMzYzNi0uNzE5Ny4wMzM2LTEuMDg1OS0uMDgwNy0xLjE3MjEtLjE1MXptLjU2OTUtOS4yNzEyYy0uMDA1OS4zNTA4LS4wNTQyLjY2OTItLjEwNTQgMS4wMDE3LS4wNTUuMzU3Ni0uMTEyLjcyNzQtLjEyNjQgMS4xNzYyLS4wMTQyLjQzNjguMDQwNC44OTA5LjA5MzIgMS4zMzAxLjEwNjYuODg3LjIxNiAxLjgwMDMtLjIwNzUgMi43MDE0YTMuNTI3MiAzLjUyNzIgMCAwIDEtLjE4NzYtLjM4NTZjLS4wNTI3LS4xMjc2LS4xNjY5LS4zMzI2LS4zMjUxLS42MTYyLS42MTU2LTEuMTA0MS0yLjA1NzQtMy42ODk2LTEuMzE5My00Ljc0NDYuMzc5NS0uNTQyNyAxLjM0MDgtLjU2NjEgMi4xNzgxLS40NjN6bS4yMjg0IDcuMDEzN2ExMi4zNzYyIDEyLjM3NjIgMCAwIDAtLjA4NTMtLjEwNzRsLS4wMzU1LS4wNDQ0Yy43MjYyLTEuMTk5NS41ODQyLTIuMzg2Mi40NTc4LTMuNDM4NS0uMDUxOS0uNDMxOC0uMTAwOS0uODM5Ni0uMDg4NS0xLjIyMjYuMDEyOS0uNDA2MS4wNjY2LS43NTQzLjExODUtMS4wOTExLjA2MzktLjQxNS4xMjg4LS44NDQzLjExMDktMS4zNTA1LjAxMzQtLjA1MzEuMDE4OC0uMTE1OC4wMTE4LS4xOTAyLS4wNDU3LS40ODU1LS41OTk5LTEuOTM4LTEuNzI5NC0zLjI1My0uNjA3Ni0uNzA3My0xLjQ4OTYtMS40OTcyLTIuNjg4OS0yLjAzOTUuNTI1MS0uMTA2NiAxLjIzMjgtLjIwMzUgMi4wMjQ0LS4xODU5IDIuMDUxNS4wNDU2IDMuNjc0Ni44MTM1IDQuODI0MiAyLjI4MjRhLjkwOC45MDggMCAwIDEgLjA2NjcuMTAwMmMuNzIzMSAxLjM1NTYtLjI3NjIgNi4yNzUxLTIuOTg2NyAxMC41NDA1em0tOC44MTY2LTYuMTE2MmMtLjAyNS4xNzk0LS4zMDg5LjQyMjUtLjYyMTEuNDIyNWEuNTgyMS41ODIxIDAgMCAxLS4wODA5LS4wMDU2Yy0uMTg3My0uMDI2LS4zNzY1LS4xNDQtLjUwNTktLjMxNTYtLjA0NTgtLjA2MDUtLjEyMDMtLjE3OC0uMTA1NS0uMjg0NC4wMDU1LS4wNDAxLjAyNjEtLjA5ODUuMDkyNS0uMTQ4OC4xMTgyLS4wODk0LjM1MTgtLjEyMjYuNjA5Ni0uMDg2Ny4zMTYzLjA0NDEuNjQyNi4xOTM4LjYxMTMuNDE4NnptNy45MzA1LS40MTE0Yy4wMTExLjA3OTItLjA0OS4yMDEtLjE1MzEuMzEwMi0uMDY4My4wNzE3LS4yMTIuMTk2MS0uNDA3OS4yMjMyYS41NDU2LjU0NTYgMCAwIDEtLjA3NS4wMDUyYy0uMjkzNSAwLS41NDE0LS4yMzQ0LS41NjA3LS4zNzE3LS4wMjQtLjE3NjUuMjY0MS0uMzEwNi41NjExLS4zNTIuMjk3LS4wNDE0LjYxMTEuMDA4OC42MzU2LjE4NTF6Ii8+PC9zdmc+" alt="Logo PostgreSQL, base referentiel_db" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNTEyQkQ0IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Lk5FVDwvdGl0bGU+PHBhdGggZD0iTTI0IDguNzdoLTIuNDY4djcuNTY1aC0xLjQyNVY4Ljc3aC0yLjQ2MlY3LjUzSDI0em0tNi44NTIgNy41NjVoLTQuODIxVjcuNTNoNC42M3YxLjI0aC0zLjIwNXYyLjQ5NGgyLjk1M3YxLjIzNGgtMi45NTN2Mi42MDRoMy4zOTZ6bS02LjcwOCAwSDguODgyTDQuNzggOS44NjNhMi44OTYgMi44OTYgMCAwIDEtLjI1OC0uNTFoLS4wMzZjLjAzMi4xODkuMDQ4LjU5Mi4wNDggMS4yMXY1Ljc3MkgzLjE1N1Y3LjUzaDEuNjU5bDMuOTY1IDYuMzJjLjE2Ny4yNjEuMjc1LjQ0Mi4zMjMuNTRoLjAyNGMtLjA0LS4yMzMtLjA2LS42MjktLjA2LTEuMTg1VjcuNTI5aDEuMzcyem0tOC43MDMtLjY5M2EuODY4LjgyOSAwIDAgMS0uODY5LjgyOS44NjguODI5IDAgMCAxLS44NjgtLjgzLjg2OC44MjkgMCAwIDEgLjg2OC0uODI4Ljg2OC44MjkgMCAwIDEgLjg2OS44MjlaIi8+PC9zdmc+" alt="Logo .NET, variante back acceptee" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMjRBMUMxIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VHJhZWZpayBQcm94eTwvdGl0bGU+PHBhdGggZD0iTTEyIDEuMTljMS4wODggMCAyLjA1Ni43NjggMi4wNTYgMS43MTQgMCAuOTQ3LS45MjEgMS43MTUtMi4wNTYgMS43MTUtLjEzIDAtLjMtLjAyMi0uNTA5LS4wNjRhLjY4NS42ODUgMCAwIDAtLjQ3NS4wNzZsLTcuMzcgNC4xOTVhLjM0NC4zNDQgMCAwIDAgLjAwMS41OTdsNy45OSA0LjQ5Yy4yMDguMTE2LjQ2MS4xMTYuNjY5IDBsOC4wMzQtNC40NjhhLjM0My4zNDMgMCAwIDAgLjAwMy0uNTk4bC0yLjUwNy0xLjQyNGEuNjgzLjY4MyAwIDAgMC0uNjctLjAwM2wtMi42NDcgMS40NjhhLjIzNC4yMzQgMCAwIDAtLjExOS4xOGwtLjAwMS4wMjVjMCAuOTQ2LS45MjEgMS43MTQtMi4wNTYgMS43MTRzLTIuMDU2LS43NjgtMi4wNTYtMS43MTRjMC0uOTQ3LjkyMS0xLjcxNSAyLjA1Ni0xLjcxNS4wNDIgMCAuMDkuMDAyLjE0NS4wMDdsLjA4Ny4wMDguMDk2LjAxM2EuNjg1LjY4NSAwIDAgMCAuNDI1LS4wOGwzLjkxMy0yLjE3M2MuMy0uMTY2LjY2Mi0uMTcxLjk2NS0uMDE3bC4wNC4wMjMgNS40NjUgMy4xMDRjLjY4Ni4zOS42OTMgMS4zNjguMDMgMS43NzNsLS4wMzcuMDIxLTMuNjU2IDIuMDMzYS4zNDMuMzQzIDAgMCAwIC4wMDcuNjA0bDMuNjIgMS45MDZjLjcyLjM3OC43MzYgMS40MDIuMDMgMS44MDRsLTEwLjk5NSA2LjI3MmExLjAzIDEuMDMgMCAwIDEtMS4wMTkgMEwuNTI2IDE2LjQzYTEuMDMgMS4wMyAwIDAgMSAuMDM0LTEuODA2bDMuNjYtMS45MTFhLjM0My4zNDMgMCAwIDAgLjAxLS42MDNMLjUyNCAxMC4wMjlhMS4wMyAxLjAzIDAgMCAxLS4wNDEtMS43N2wuMDM2LS4wMjFMOS42MTggMy4wNmEuNjg4LjY4OCAwIDAgMCAuMzA4LS4zNjlsLjAxMS0uMDM2Yy4zMi0uOTUyIDEuMDQ2LTEuNDY2IDIuMDYzLTEuNDY2Wm01LjA3NiAxMi42My00LjQ5MiAyLjU4Ni0uMDQxLjAyMmMtLjMwNi4xNTgtLjY3MS4xNTItLjk3My0uMDE4bC00LjQ3OC0yLjUyN2EuNjgyLjY4MiAwIDAgMC0uNjUtLjAxTDMuODYgMTUuMjI0YS4zNDMuMzQzIDAgMCAwLS4wMTIuNjAybDcuODg3IDQuNTE1Yy4yMS4xMi40NjcuMTIxLjY3NyAwbDcuOTU2LTQuNTQ3YS4zNDMuMzQzIDAgMCAwLS4wMS0uNjAybC0yLjYyMy0xLjM4NGEuNjgzLjY4MyAwIDAgMC0uNjU5LjAxMnoiLz48L3N2Zz4=" alt="Logo Traefik, entree unique du fil rouge" width="55"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRTAyMzRFIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TmVzdEpTPC90aXRsZT48cGF0aCBkPSJNMTQuMTMxLjA0N2MtLjE3MyAwLS4zMzQuMDM3LS40ODMuMDg3LjMxNi4yMS40OS40OS41NzYuODA2LjAwNy4wNDMuMDE5LjA3NC4wMjUuMTE3YS42ODEuNjgxIDAgMCAxIC4wMTMuMTEyYy4wMjQuNTQ1LS4xNDMuNjE0LS4yNi45MzYtLjE4LjQxNS0uMTMuODYxLjA4NiAxLjIyYS43NC43NCAwIDAgMCAuMDc0LjEzN2MtLjIzNS0xLjU2OCAxLjA3My0xLjgwMyAxLjMxNC0yLjI5My4wMTktLjQyOC0uMzM0LS43MTMtLjYxMy0uOTExYTEuMzcgMS4zNyAwIDAgMC0uNzMyLS4yMXpNMTYuMTAyLjRjLS4wMjQuMTQzLS4wMDYuMTA2LS4wMTIuMTgtLjAwNi4wNS0uMDA2LjExMi0uMDEyLjE2MS0uMDEzLjA1LS4wMjUuMS0uMDQ0LjE0OS0uMDEyLjA1LS4wMy4xLS4wNS4xNDlsLS4wNjcuMTQyYy0uMDIuMDI1LS4wMzEuMDUtLjA1LjA3NWwtLjAzNy4wNTVhMi4xNTIgMi4xNTIgMCAwIDEtLjA5My4xMjRjLS4wMzcuMDM4LS4wNjguMDgxLS4xMTIuMTEydi4wMDZjLS4wMzcuMDMxLS4wNzQuMDY4LS4xMTguMS0uMTMuMDk5LS4yNzguMTczLS40MTUuMjY2LS4wNDMuMDMtLjA4Ny4wNTYtLjEyNC4wOTNhLjkwNi45MDYgMCAwIDAtLjExOC4wOTljLS4wNDMuMDM3LS4wNzQuMDc0LS4xMTEuMTE4LS4wMzEuMDM3LS4wNjguMDgtLjA5My4xMjRhMS41ODIgMS41ODIgMCAwIDAtLjA4Ny4xM2MtLjAyNS4wNS0uMDQzLjA5My0uMDY4LjE0Mi0uMDE5LjA1LS4wMzcuMDkzLS4wNS4xNDNhMi4wMDcgMi4wMDcgMCAwIDAtLjA0My4xNTVjLS4wMDYuMDI1LS4wMDYuMDU2LS4wMTIuMDgtLjAwNy4wMjUtLjAwNy4wNS0uMDEzLjA3NSAwIC4wNS0uMDA2LjEwNS0uMDA2LjE1NSAwIC4wMzcgMCAuMDc0LjAwNi4xMTEgMCAuMDUuMDA2LjEuMDE5LjE1NS4wMDYuMDUuMDE4LjEuMDMuMTUuMDIuMDQ5LjAzMi4wOTguMDUuMTQ4LjAxMy4wMy4wMzEuMDYyLjA0NC4wODdsLTEuNDI2LS41NTJjLS4yNDEtLjA2OC0uNDc3LS4xMy0uNzE5LS4xODZsLS4zOS0uMDkzYy0uMzcyLS4wNzQtLjc1LS4xMy0xLjEyOC0uMTY3LS4wMTMgMC0uMDE5LS4wMDYtLjAzMS0uMDA2QTExLjA4MiAxMS4wODIgMCAwIDAgOC45IDIuODU1Yy0uMzc4LjAyNS0uNzU2LjA3NC0xLjEzNC4xMzZhMTIuNDUgMTIuNDUgMCAwIDAtLjgzNy4xNzRsLS4yNzkuMDc0Yy0uMDkyLjAzNy0uMTguMDgtLjI2Ni4xMThsLS4yMDUuMDkzYy0uMDEyLjAwNi0uMDI0LjAwNi0uMDMuMDEyLS4wNjMuMDMxLS4xMTguMDU2LS4xNzQuMDg3YTIuNzM4IDIuNzM4IDAgMCAwLS4yMzYuMTE4Yy0uMDQzLjAxOC0uMDg2LjA0My0uMTI0LjA2MmEuNTU5LjU1OSAwIDAgMS0uMDU1LjAzYy0uMDU2LjAzMi0uMTEyLjA2My0uMTYyLjA5NGExLjU2IDEuNTYgMCAwIDAtLjE0OC4wOTNjLS4wNDQuMDMtLjA4Ny4wNTUtLjEyNC4wODYtLjAwNi4wMDctLjAxMy4wMDctLjAxOS4wMTMtLjAzNy4wMjUtLjA4LjA1Ni0uMTE4LjA4N2wtLjAxMi4wMTItLjA5My4wNzRjLS4wMTIuMDA3LS4wMjUuMDE5LS4wMzcuMDI1LS4wMzEuMDI1LS4wNjIuMDU2LS4wOTMuMDgtLjAwNi4wMTMtLjAxOS4wMi0uMDI1LjAyNS0uMDM3LjAzOC0uMDc0LjA2OS0uMTExLjEwNi0uMDA3IDAtLjAwNy4wMDYtLjAxMy4wMTJhMS43NDIgMS43NDIgMCAwIDAtLjExMS4xMDZjLS4wMDcuMDA2LS4wMDcuMDEyLS4wMTMuMDEyYTEuNDU0IDEuNDU0IDAgMCAwLS4wOTMuMWMtLjAxMi4wMTItLjAzLjAyNC0uMDQzLjAzNmExLjM3NCAxLjM3NCAwIDAgMS0uMTA2LjExMmMtLjAwNi4wMTItLjAxOC4wMTktLjAyNC4wMy0uMDUuMDUtLjA5My4xLS4xNDMuMTVsLS4wMTguMDE4Yy0uMS4xMDYtLjIwNS4yMTEtLjMxNy4zMDQtLjExMS4xLS4yMjkuMTkyLS4zNDcuMjczYTMuNzc3IDMuNzc3IDAgMCAxLS43NjIuNDIxYy0uMTMuMDU2LS4yNjcuMTA2LS40MDMuMTQ5LS4yNi4wNTYtLjUyNy4xNjEtLjc1Ni4xOC0uMDUgMC0uMTA1LjAxMi0uMTU1LjAxOGwtLjE1NS4wMzctLjE0OS4wNTZjLS4wNS4wMTktLjA5OS4wNDQtLjE0OC4wNjgtLjA0NC4wMzEtLjA5My4wNTYtLjEzNy4wODdhMS4wMTEgMS4wMTEgMCAwIDAtLjEyNC4xMDZjLS4wNDMuMDMtLjA4Ny4wNzQtLjEyNC4xMTEtLjAzNy4wNDMtLjA3NC4wOC0uMTA1LjEyNC0uMDMxLjA1LS4wNjguMDkzLS4wOTMuMTQzYTEuMDkyIDEuMDkyIDAgMCAwLS4wODcuMTQyYy0uMDI1LjA1Ni0uMDUuMTA2LS4wNjguMTYxLS4wMTkuMDUtLjAzNy4xMDYtLjA1Ni4xNjEtLjAxMi4wNS0uMDI1LjEtLjAzLjE1IDAgLjAwNS0uMDA3LjAxMi0uMDA3LjAxOC0uMDEyLjA1Ni0uMDEyLjEzLS4wMTkuMTY3Qy4wMDYgNy45NSAwIDcuOTg2IDAgOC4wM2EuNjU3LjY1NyAwIDAgMCAuMDc0LjMxdi4wMDZjLjAxOS4wMzcuMDQ0LjA3NS4wNjkuMTEyLjAyNC4wMzcuMDUuMDc0LjA4LjExMS4wMzEuMDMxLjA2OC4wNjkuMTA2LjFhLjkwNi45MDYgMCAwIDAgLjExNy4wOTljLjE0OS4xMy4xODYuMTczLjM3OC4yNzIuMDMxLjAxOS4wNjIuMDMxLjEuMDUuMDA2IDAgLjAxMi4wMDYuMDE4LjAwNiAwIC4wMTMgMCAuMDE5LjAwNi4wMzFhMS4yNzIgMS4yNzIgMCAwIDAgLjA4LjI5OGMuMDIuMDM3LjAzMi4wNzQuMDUuMTExLjAwNy4wMTMuMDEzLjAyNS4wMi4wMzEuMDI0LjA1LjA0OS4wOTMuMDczLjEzN2wuMDkzLjEzYy4wMzEuMDM3LjA2OS4wOC4xMDYuMTE4LjAzNy4wMzcuMDc0LjA2OC4xMTguMTA1IDAgMCAuMDA2LjAwNi4wMTIuMDA2LjAzNy4wMzEuMDc0LjA2Mi4xMTIuMDg3YS45ODYuOTg2IDAgMCAwIC4xMzYuMDhjLjA0My4wMjUuMDkzLjA1LjE0Mi4wNjlhLjczLjczIDAgMCAwIC4xMjQuMDQzYy4wMDcuMDA2LjAxMy4wMDYuMDI1LjAxMi4wMjUuMDA3LjA1Ni4wMTMuMDguMDE5LS4wMTguMzM1LS4wMjQuNjUuMDI2Ljc2Mi4wNTUuMTI0LjMyOC0uMjU0LjYtLjY4OC0uMDM2LjQyOC0uMDYxLjkzIDAgMS4wNzkuMDY5LjE1NS40NC0uMzI5Ljc2My0uODYyIDQuMzk1LTEuMDE2IDguNDA1IDIuMDIgOC44MjYgNi4zMS0uMDgtLjY3LS45MDUtMS4wNDEtMS4yODMtLjk0OC0uMTg2LjQ1OC0uNTAyIDEuMDQ3LTEuMDEgMS40MTMuMDQzLS40MS4wMjUtLjgzLS4wNjItMS4yNGE0LjAwOSA0LjAwOSAwIDAgMS0uNzY5IDEuNTYyYy0uNTg4LjA0My0xLjE3Ny0uMjQyLTEuNDg3LS42Ny0uMDI1LS4wMTgtLjAzMS0uMDU1LS4wNS0uMDgtLjAxOC0uMDQzLS4wMzctLjA4Ny0uMDUtLjEzYS41MTUuNTE1IDAgMCAxLS4wMzctLjEzYy0uMDA2LS4wNDQtLjAwNi0uMDg3LS4wMDYtLjEzN3YtLjA5M2EuOTkyLjk5MiAwIDAgMSAuMDMxLS4xM2MuMDEzLS4wNDMuMDI1LS4wODYuMDQ0LS4xMy4wMjQtLjA0My4wNDMtLjA4Ny4wNzQtLjEzLjEwNS0uMjk4LjEwNS0uNTQtLjA4Ny0uNjgyYS43MDYuNzA2IDAgMCAwLS4xMTgtLjA2MmMtLjAyNC0uMDA2LS4wNTUtLjAxOC0uMDgtLjAyNWwtLjA1LS4wMThhLjg0Ny44NDcgMCAwIDAtLjEzLS4wMzEuNDcyLjQ3MiAwIDAgMC0uMTMtLjAxOSAxLjAxIDEuMDEgMCAwIDAtLjEzNi0uMDEyYy0uMDMxIDAtLjA2Mi4wMDYtLjA5My4wMDZhLjQ4NC40ODQgMCAwIDAtLjEzNy4wMTljLS4wNDMuMDA2LS4wODYuMDEyLS4xMy4wMjRhMS4wNjggMS4wNjggMCAwIDAtLjEzLjA0NGMtLjA0My4wMTgtLjA4LjAzNy0uMTI0LjA1Ni0uMDM3LjAxOC0uMDc0LjA0My0uMTE4LjA2Mi0xLjQ0NC45NDItLjU4MiAzLjE0OC40MDMgMy43ODctLjM3Mi4wNjgtLjc1LjE0OC0uODU1LjIyOWwtLjAxMy4wMTJjLjI2Ny4xNjEuNTQ2LjI5OC44MzcuNDE2LjM5Ny4xMy44MTguMjQ3IDEuMDA0LjI5N3YuMDA2YTUuOTk2IDUuOTk2IDAgMCAwIDEuNTYyLjExMmMyLjc0Ni0uMTkyIDQuOTk2LTIuMjgxIDUuNDA1LTUuMDMzbC4wMzcuMTYxYy4wMTkuMTEyLjA0My4yMy4wNTYuMzQ3di4wMDZjLjAxMi4wNTYuMDE4LjExMi4wMjUuMTYydi4wMjRjLjAwNi4wNTYuMDEyLjExMi4wMTIuMTYyLjAwNi4wNjguMDEyLjEzNi4wMTIuMjA0di4xYzAgLjAzLjAwNy4wNjcuMDA3LjA5OCAwIC4wMzgtLjAwNy4wNzUtLjAwNy4xMTJ2LjA4N2MwIC4wNDMtLjAwNi4wOC0uMDA2LjEyNCAwIC4wMjUgMCAuMDUtLjAwNi4wOCAwIC4wNDQtLjAwNi4wODctLjAwNi4xMzctLjAwNi4wMTgtLjAwNi4wMzctLjAwNi4wNTVsLS4wMi4xNDNjMCAuMDE5IDAgLjAzNy0uMDA1LjA1Ni0uMDA3LjA2Mi0uMDE5LjExOC0uMDI1LjE4di4wMTJsLS4wMzcuMTc0di4wMThsLS4wMzcuMTY3YzAgLjAwNy0uMDA3LjAyLS4wMDcuMDI1YTEuNjYzIDEuNjYzIDAgMCAxLS4wNDMuMTY4di4wMThjLS4wMTkuMDYyLS4wMzcuMTE4LS4wNS4xNzQtLjAwNi4wMDYtLjAwNi4wMTItLjAwNi4wMTJsLS4wNTYuMTg2Yy0uMDI0LjA2Mi0uMDQzLjExOC0uMDY4LjE4LS4wMjUuMDYyLS4wNDMuMTI0LS4wNjguMTgtLjAyNS4wNjItLjA1LjExNy0uMDc0LjE4aC0uMDA3Yy0uMDI0LjA1NS0uMDUuMTE3LS4wOC4xNzNhLjMwMi4zMDIgMCAwIDEtLjAxOS4wNDNjLS4wMDYuMDA2LS4wMDYuMDEzLS4wMTIuMDE5YTUuODY3IDUuODY3IDAgMCAxLTEuNzQyIDIuMDgyYy0uMDUuMDMxLS4wOTkuMDY5LS4xNDkuMTA2LS4wMTIuMDEyLS4wMy4wMTgtLjA0My4wM2EyLjYwMyAyLjYwMyAwIDAgMS0uMTM2LjA5NGwuMDE4LjAzN2guMDA3bC4yNi0uMDM3aC4wMDZjLjE2MS0uMDI1LjMyMi0uMDU2LjQ4My0uMDg3LjA0NC0uMDA2LjA5My0uMDE5LjEzNy0uMDMxbC4wODctLjAxOWMuMDQzLS4wMDYuMDg2LS4wMTguMTMtLjAyNC4wMzctLjAxMy4wNzQtLjAyLjExMS0uMDMxLjYyLS4xNSAxLjIyMS0uMzU0IDEuNzk4LS41OTVhOS45MjYgOS45MjYgMCAwIDEtMy44NSAzLjE0MmMuNzE0LS4wNSAxLjQyNi0uMTY3IDIuMTE0LS4zNjZhOS45MDMgOS45MDMgMCAwIDAgNS44NTctNC42OCA5Ljg5MyA5Ljg5MyAwIDAgMS0xLjY2NyAzLjk4NiA5Ljc1OCA5Ljc1OCAwIDAgMCAxLjY1NS0xLjM3NiA5LjgyNCA5LjgyNCAwIDAgMCAyLjYxLTUuMjY4Yy4yMS45OC4yNzIgMS45OS4xOCAyLjk4NyA0LjQ3NC02LjI0MS4zNzEtMTIuNzEyLTEuMzQ2LTE0LjQxNi0uMDA2LS4wMTMtLjAxMi0uMDE5LS4wMTItLjAzMS0uMDA2LjAwNi0uMDA2LjAwNi0uMDA2LjAxMiAwLS4wMDYgMC0uMDA2LS4wMDctLjAxMiAwIC4wNzQtLjAwNi4xNDgtLjAxMi4yMjNhOC4zNCA4LjM0IDAgMCAxLS4wNjIuNDE1Yy0uMDMuMTM2LS4wNjguMjczLS4xMDUuNDEtLjA0NC4xMy0uMDkzLjI2Ni0uMTUuMzk2YTUuMzIyIDUuMzIyIDAgMCAxLS4xODUuMzc4IDQuNzM1IDQuNzM1IDAgMCAxLS40NzcuNjg4Yy0uMDkzLjExMS0uMTkyLjIxLS4yOTIuMzFhMy45OTQgMy45OTQgMCAwIDEtLjE4LjE1NWwtLjE0Mi4xMjRhMy40NTkgMy40NTkgMCAwIDEtLjM0Ny4yNDEgNC4yOTUgNC4yOTUgMCAwIDEtLjM2Ni4yMTFjLS4xMy4wNjItLjI2LjExOC0uMzkuMTc0YTQuMzY0IDQuMzY0IDAgMCAxLS44MTguMjIzYy0uMTQzLjAyNS0uMjg1LjAzNy0uNDIyLjA1YTQuOTE0IDQuOTE0IDAgMCAxLS4yOTcuMDEyIDQuNjYgNC42NiAwIDAgMS0uNDIyLS4wMjUgMy4xMzcgMy4xMzcgMCAwIDEtLjQyMS0uMDYyIDMuMTM2IDMuMTM2IDAgMCAxLS40MTUtLjEwNWgtLjAwN2MuMTM3LS4wMTMuMjczLS4wMjUuNDEtLjA1YTQuNDkzIDQuNDkzIDAgMCAwIC44MTgtLjIyM2MuMTM2LS4wNS4yNjYtLjExMi4zOS0uMTc0LjEzLS4wNjIuMjQ4LS4xMy4zNzItLjIwNC4xMTgtLjA4LjIzNS0uMTYxLjM0Ny0uMjQ4LjExMi0uMDg3LjIxNy0uMTguMzE2LS4yNzkuMTA1LS4wOTMuMTk4LS4xOTguMjkxLS4zMDQuMDkzLS4xMTEuMTgtLjIyMy4yNi0uMzM0LjAxMy0uMDE5LjAyNi0uMDQ0LjAzOC0uMDYyLjA2Mi0uMS4xMjQtLjE5OS4xOC0uMjk4YTQuMjcyIDQuMjcyIDAgMCAwIC4zMzQtLjc3NWMuMDQ0LS4xMy4wNzUtLjI2Ni4xMDYtLjQwMy4wMjUtLjE0Mi4wNS0uMjc4LjA2Mi0uNDE1LjAxMi0uMTQyLjAyNS0uMjg1LjAyNS0uNDIxIDAtLjEtLjAwNy0uMTk5LS4wMTMtLjI5OGE2LjcyNiA2LjcyNiAwIDAgMC0uMDUtLjQxNSA0LjQ5MyA0LjQ5MyAwIDAgMC0uMDkyLS40MTVjLS4wNDQtLjEzLS4wODctLjI2Ny0uMTM3LS4zOTctLjA1LS4xMy0uMTExLS4yNi0uMTczLS4zODQtLjA2OS0uMTI0LS4xMzctLjI0OC0uMjExLS4zNjZhNi44NDMgNi44NDMgMCAwIDAtLjI0OC0uMzRjLS4wOTMtLjEwNi0uMTg2LS4yMTItLjI4NS0uMzE3YTMuODc4IDMuODc4IDAgMCAwLS4xNjEtLjE1NWMtLjI4LS4yMTctLjU3LS40MjEtLjg2Mi0uNjA3YTEuMTU0IDEuMTU0IDAgMCAwLS4xMjQtLjA2MiAyLjQxNSAyLjQxNSAwIDAgMC0uNTg5LS4yNloiLz48L3N2Zz4=" alt="Logo NestJS, variante back acceptee" width="50"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDA5Njg4IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+RmFzdEFQSTwvdGl0bGU+PHBhdGggZD0iTTEyIC4wMzg3QzUuMzcyOS4wMzg0LjAwMDMgNS4zOTMxIDAgMTEuOTk4OGMtLjAwMSA2LjYwNjYgNS4zNzIgMTEuOTYyOCAxMiAxMS45NjI1IDYuNjI4LjAwMDMgMTIuMDAxLTUuMzU1OSAxMi0xMS45NjI1LS4wMDAzLTYuNjA1Ny01LjM3MjktMTEuOTYwNC0xMi0xMS45Nm0tLjgyOSA1LjQxNTNoNy41NWwtNy41ODA1IDUuMzI4NGg1LjE4MjhMNS4yNzkgMTguNTQzNnEyLjk0NjYtNi41NDQ0IDUuODkyLTEzLjA4OTYiLz48L3N2Zz4=" alt="Logo FastAPI, variante back acceptee" width="50"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNDY5NUVCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UXVhcmt1czwvdGl0bGU+PHBhdGggZD0iTTMuOTgxIDBBMy45OTMgMy45OTMgMCAwIDAgMCAzLjk4MVYyMC4wMkEzLjk5MyAzLjk5MyAwIDAgMCAzLjk4MSAyNGgxMC45ODNMMTIgMTYuOGwtMi4xNSA0LjU0NkgzLjk4Yy0uNzIgMC0xLjMyNy0uNjA4LTEuMzI3LTEuMzI3VjMuOThjMC0uNzIuNjA4LTEuMzI3IDEuMzI3LTEuMzI3aDE2LjA0Yy43MiAwIDEuMzI3LjYwOCAxLjMyNyAxLjMyN3YxNi4wNGMwIC43Mi0uNjA4IDEuMzI3LTEuMzI3IDEuMzI3aC0zLjQ4TDE3LjYzIDI0aDIuMzg4QTMuOTkzIDMuOTkzIDAgMCAwIDI0IDIwLjAxOVYzLjk4QTMuOTkzIDMuOTkzIDAgMCAwIDIwLjAxOSAwem00LjMyNCA0LjIxN3YzLjg1OGwzLjM0MS0xLjkzem03LjM5IDBsLTMuMzQxIDEuOTI5IDMuMzQgMS45Mjl6TTEyIDYuMzVMOC4zMDUgOC40ODMgMTIgMTAuNjE3bDMuNjk1LTIuMTM0ek04LjEwNCA4LjgzMnY0LjI2NmwzLjY5NSAyLjEzM3YtNC4yNjZ6bTcuNzkyIDBMMTIuMiAxMC45NjV2NC4yNjZsMy42OTUtMi4xMzN6bS04LjE0Ni4yMDRsLTMuMzQgMS45MyAzLjM0IDEuOTI4em04LjUgMHYzLjg1OGwzLjM0LTEuOTI5em0tOC4xNDYgNC40N3YzLjg1OWwzLjM0MS0xLjkzem03Ljc5MiAwbC0zLjM0MSAxLjkzIDMuMzQgMS45Mjl6Ii8+PC9zdmc+" alt="Logo Quarkus, variante back acceptee" width="50"/></p>
+<h3 id="le-cahier-des-charges-identique-pour-toutes-les-stacks">Le cahier des charges (identique pour toutes les stacks)</h3>
+<p><strong>Modèle de données</strong> (base <code>referentiel_db</code>) :</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Colonnes</th>
+<th>Contraintes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>categorie</code></td>
+<td><code>id</code>, <code>libelle</code>, <code>slug</code>, <code>parent_id</code></td>
+<td><code>slug</code> unique ; <code>parent_id</code> référence <code>categorie(id)</code>, nullable</td>
+</tr>
+<tr>
+<td><code>produit</code></td>
+<td><code>id</code>, <code>sku</code>, <code>libelle</code>, <code>description</code>, <code>categorie_id</code>, <code>grade</code>, <code>prix_ht</code>, <code>taux_tva</code>, <code>stock</code>, <code>actif</code>, <code>garantie_mois</code>, <code>date_ajout</code></td>
+<td><code>sku</code> unique ; <code>grade</code> dans (<code>A</code>,<code>B</code>,<code>C</code>) ; <code>prix_ht &gt;= 0</code> ; <code>stock &gt;= 0</code>, défaut 0 ; <code>taux_tva</code> défaut 0.200 ; <code>actif</code> défaut vrai ; <code>garantie_mois</code> défaut 12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Contrat d'API</strong> (le service écoute sur le port 8081, sans préfixe <code>/api</code> — c'est Traefik qui le retire) :</p>
+<table>
+<thead>
+<tr>
+<th>Verbe et route</th>
+<th>Comportement</th>
+<th>Réponse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /produits</code></td>
+<td>Liste <strong>paginée</strong> (<code>page</code>, <code>taille</code>) et <strong>filtrée</strong> (<code>categorie</code> = slug, <code>q</code> = texte sur libellé/description, <code>grade</code>)</td>
+<td><code>200</code> — <code>{ "content": [...], "page": 0, "taille": 20, "totalElements": 12 }</code></td>
+</tr>
+<tr>
+<td><code>GET /produits/{id}</code></td>
+<td>Détail d'un produit</td>
+<td><code>200</code>, <code>404</code> si inconnu</td>
+</tr>
+<tr>
+<td><code>POST /produits</code></td>
+<td>Crée un produit (refus si <code>sku</code> déjà pris)</td>
+<td><code>201</code>, <code>409</code> si conflit</td>
+</tr>
+<tr>
+<td><code>PUT /produits/{id}</code></td>
+<td>Met à jour</td>
+<td><code>200</code>, <code>404</code></td>
+</tr>
+<tr>
+<td><code>DELETE /produits/{id}</code></td>
+<td>Supprime</td>
+<td><code>204</code>, <code>404</code></td>
+</tr>
+<tr>
+<td><code>GET /categories</code></td>
+<td>Liste des catégories</td>
+<td><code>200</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exigences transverses</strong> : schéma créé par <strong>migrations versionnées</strong> (Flyway, Alembic, EF Core migrations... selon la stack — jamais un <code>ddl-auto</code>/<code>synchronize</code> automatique) ; <strong>seed minimal</strong> (au moins 2 catégories, 4 produits avec des grades variés) ; taille de page <strong>bornée</strong> côté serveur ; aucun secret en dur (identifiants de base lus depuis l'environnement).</p>
+<h2 id="etape-1-cadrer-et-faire-produire-le-plan">Étape 1 : cadrer et faire produire le plan</h2>
+<p><strong>Objectif.</strong> Écrire l'intention et obtenir de l'agent un plan en incréments vérifiables — avant toute ligne de code.</p>
+<p><strong>Contexte.</strong> C'est le tour de boucle le plus rentable. Un plan clair rend chaque diff suivant petit et relisible. Le périmètre du TP est volontairement découpé en 4 incréments : schéma + entités, API CRUD, exposition Traefik, front.</p>
+<p><strong>Explication.</strong> On donne à l'agent le cahier des charges ci-dessus, la stack choisie, les rules (<code>ia-toolbox/rules/</code>) et les contraintes d'environnement (base <code>referentiel_db</code> existante, service sur 8081). On lui demande <strong>un plan d'abord</strong>, pas du code.</p>
+<p><strong>Exemple traité</strong> — un prompt de cadrage (variante Spring Boot, à adapter à votre stack) :</p>
+<div class="highlight"><pre><span></span><code>Contexte : depot semishop, compose v0 demarre (Traefik :80, PostgreSQL 16 avec la base
+referentiel_db, user semishop). Stack : Java 21 / Spring Boot 3.4.1 / Gradle.
+Objectif : service catalogue dans services/catalogue/ — referentiel produits
+reconditionnes. Tables categorie et produit (grade A/B/C, prix_ht, stock, sku unique).
+API REST sur :8081 : GET /produits pagine et filtre (categorie, q, grade, page, taille),
+GET /produits/{id}, POST, PUT, DELETE, GET /categories.
+Contraintes : migrations Flyway (pas de ddl-auto create), seed minimal (2 categories,
+4 produits), taille de page bornee cote serveur, identifiants de base lus depuis
+l&#39;environnement, respecter ia-toolbox/rules/, aucune dependance non justifiee.
+Ne code rien encore : propose d&#39;abord un PLAN en 4 increments verifiables
+(1 schema+entites, 2 API CRUD, 3 conteneur+Traefik, 4 front), un commit par increment.
 </code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p>Rédigez <strong>votre</strong> prompt de cadrage (adapté à votre stack) et faites produire le plan. <strong>Validez-le avant de continuer</strong> : chaque incrément doit être testable seul (une commande de vérification par incrément) et dans le bon ordre. Corrigez le plan si un incrément est trop gros — c'est une phrase maintenant, une heure plus tard.</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -357,45 +363,54 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
+<td>L'agent code directement</td>
+<td>Prompt sans « ne code rien encore »</td>
+<td>Un diff arrive au lieu d'un plan</td>
+<td>Reformuler : exiger le plan seul</td>
 </tr>
 <tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
+<td>Plan en un seul bloc « faire le service »</td>
+<td>Périmètre pas décomposé</td>
+<td>Aucune étape intermédiaire vérifiable</td>
+<td>Imposer les 4 incréments</td>
 </tr>
 <tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
+<td>Plan qui invente des colonnes ou des routes</td>
+<td>Contexte incomplet</td>
+<td>Des champs hors cahier des charges apparaissent</td>
+<td>Recadrer sur les tableaux ci-dessus</td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
+<h2 id="etape-2-increment-1-schema-migrations-entites">Étape 2 : incrément 1 — schéma, migrations, entités</h2>
+<p><strong>Objectif.</strong> Faire produire les migrations versionnées (schéma + seed), les entités et la connexion à <code>referentiel_db</code>, puis valider le diff et prouver que les tables existent.</p>
+<p><strong>Explication.</strong> La migration est le contrat avec la base : elle se relit comme du code. Deux fichiers : <code>V1</code> crée <code>categorie</code> et <code>produit</code> avec leurs contraintes (<code>CHECK</code> sur le grade, <code>UNIQUE</code> sur le sku), <code>V2</code> insère le seed. L'application, elle, ne fait que <strong>valider</strong> le mapping au démarrage — le schéma appartient aux migrations.</p>
+<p><strong>Exemple traité</strong> — l'amorce de la première migration (variante Spring Boot / Flyway ; l'agent complète la table <code>produit</code> d'après le cahier des charges) :</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- services/catalogue/src/main/resources/db/migration/V1__schema.sql</span>
+<span class="c1">-- AMORCE : table categorie complete ; table produit a faire produire par l&#39;agent.</span>
 
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categorie</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w">        </span><span class="n">BIGSERIAL</span><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">libelle</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">slug</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">140</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">parent_id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w">       </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">categorie</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- A faire produire : CREATE TABLE produit (...) avec les contraintes du cahier</span>
+<span class="c1">-- des charges : grade IN (&#39;A&#39;,&#39;B&#39;,&#39;C&#39;), prix_ht &gt;= 0, stock &gt;= 0, sku UNIQUE.</span>
 </code></pre></div>
+<blockquote>
+<p>🔷 Les identifiants de connexion se lisent depuis l'environnement avec un défaut de dev, jamais une valeur de production en dur — par exemple <code>url: ${DB_URL:jdbc:postgresql://localhost:5432/referentiel_db}</code> côté Spring, ou l'équivalent <code>.env</code> de votre stack.</p>
+</blockquote>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
+<p>Pilotez l'agent pour produire les migrations (<code>V1</code> schéma, <code>V2</code> seed : au moins 2 catégories et 4 produits reconditionnés avec des grades variés), les entités/modèles et la configuration de connexion. <strong>Appliquez votre checklist</strong> au diff : périmètre (rien d'autre que le service), dépendances (le strict nécessaire : web, ORM, driver PostgreSQL, moteur de migration), secrets (identifiants lus depuis l'environnement). Puis démarrez le service et <strong>prouvez</strong> que le schéma est en base :</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>semishop<span class="w"> </span>-d<span class="w"> </span>referentiel_db<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;\dt&quot;</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>semishop<span class="w"> </span>-d<span class="w"> </span>referentiel_db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-c<span class="w"> </span><span class="s2">&quot;SELECT sku, grade, prix_ht, stock FROM produit;&quot;</span>
+</code></pre></div>
+<p><strong>Committez l'incrément</strong> (ex. <code>feat(catalogue): schema, migrations Flyway et entites</code>).</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -410,53 +425,339 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
+<td><code>password authentication failed</code></td>
+<td>Mauvais utilisateur / variable non lue</td>
+<td>Le service ne démarre pas</td>
+<td>Vérifier user <code>semishop</code>, base <code>referentiel_db</code>, variables d'env</td>
 </tr>
 <tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
+<td>L'agent choisit <code>ddl-auto: create</code> au lieu des migrations</td>
+<td>Facilité par défaut</td>
+<td>Pas de dossier <code>db/migration/</code> dans le diff</td>
+<td>Exiger les migrations ; l'appli valide, elle ne crée pas</td>
 </tr>
 <tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
+<td>Le seed passe par le code applicatif</td>
+<td>Confusion seed / logique métier</td>
+<td>Des <code>INSERT</code> dans une classe Java ou un service</td>
+<td>Déplacer le seed dans <code>V2__seed.sql</code></td>
+</tr>
+<tr>
+<td><code>relation "produit" does not exist</code></td>
+<td>Migration non exécutée</td>
+<td>Erreur au premier accès</td>
+<td>Vérifier que le moteur de migration est activé et pointé sur le bon dossier</td>
 </tr>
 </tbody>
 </table>
+<h2 id="etape-3-increment-2-crud-rest-pagine-et-recherche">Étape 3 : incrément 2 — CRUD REST paginé et recherche</h2>
+<p><strong>Objectif.</strong> Exposer le contrat d'API complet, avec pagination bornée et filtres combinables, puis valider le diff et tester à la main.</p>
+<p><strong>Explication.</strong> Le point délicat n'est pas le CRUD, c'est la <strong>liste</strong> : trois filtres facultatifs (<code>categorie</code>, <code>q</code>, <code>grade</code>) qui se combinent, une pagination dont la taille est <strong>bornée côté serveur</strong> (un client qui demande <code>taille=100000</code> doit recevoir la borne max, pas mettre la base à genoux), et une réponse qui expose le total (<code>totalElements</code>) pour que le front pagine. Les valeurs de <code>grade</code> se valident (<code>A</code>/<code>B</code>/<code>C</code>, sinon <code>400</code>) — jamais de valeur cliente injectée telle quelle dans une requête.</p>
+<p><strong>Exemple traité</strong> — vérification de la liste filtrée (la forme attendue, quel que soit le langage) :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># grade A uniquement, page de 2</span>
+curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://localhost:8081/produits?grade=A&amp;page=0&amp;taille=2&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&quot;content&quot;:[{&quot;id&quot;:1,&quot;sku&quot;:&quot;NS-LAP-0001&quot;,&quot;libelle&quot;:&quot;...&quot;,&quot;grade&quot;:&quot;A&quot;,&quot;prixHt&quot;:549.00,
+&quot;stock&quot;:5,...},{...}],&quot;page&quot;:0,&quot;taille&quot;:2,&quot;totalElements&quot;:4}
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Faites produire le CRUD complet par l'agent, <strong>un sous-incrément à la fois</strong> si le diff dépasse ce que vous pouvez relire (liste d'abord, écritures ensuite). Validez chaque diff avec la checklist, puis testez :</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://localhost:8081/produits?q=reconditionne&amp;taille=5&quot;</span><span class="w">     </span><span class="c1"># recherche texte</span>
+curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://localhost:8081/produits?grade=Z&quot;</span><span class="w">                       </span><span class="c1"># attendu : 400</span>
+curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://localhost:8081/produits/999&quot;</span><span class="w">                           </span><span class="c1"># attendu : 404</span>
+curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8081/produits<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;sku&quot;:&quot;NS-PER-0099&quot;,&quot;libelle&quot;:&quot;Webcam Logitech C920 reconditionnee&quot;,</span>
+<span class="s1">       &quot;categorieId&quot;:2,&quot;grade&quot;:&quot;B&quot;,&quot;prixHt&quot;:39.00,&quot;stock&quot;:6}&#39;</span><span class="w">          </span><span class="c1"># attendu : 201</span>
+</code></pre></div>
+<p>Rejouez le <code>POST</code> à l'identique : attendu <code>409</code> (sku déjà pris), pas une erreur 500. <strong>Committez</strong> (ex. <code>feat(catalogue): CRUD REST pagine et recherche</code>).</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>taille=100000</code> accepté</td>
+<td>Pagination non bornée</td>
+<td>La requête renvoie tout</td>
+<td>Borner côté serveur (défaut 20, max 100 par exemple)</td>
+</tr>
+<tr>
+<td><code>grade=Z</code> renvoie 200 et une liste vide</td>
+<td>Valeur non validée</td>
+<td>Pas de 400</td>
+<td>Valider A/B/C, refuser le reste</td>
+</tr>
+<tr>
+<td>Doublon de <code>sku</code> renvoie 500</td>
+<td>Contrainte base non traduite</td>
+<td>Stacktrace au lieu d'un 409</td>
+<td>Contrôler l'existence avant insertion, renvoyer 409</td>
+</tr>
+<tr>
+<td>L'entité JPA/ORM exposée brute en écriture</td>
+<td>Pas de DTO / schéma d'entrée</td>
+<td><code>id</code> ou <code>date_ajout</code> acceptés dans le POST</td>
+<td>DTO d'entrée distinct de l'entité</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-4-increment-3-conteneuriser-et-exposer-via-traefik">Étape 4 : incrément 3 — conteneuriser et exposer via Traefik</h2>
+<p><strong>Objectif.</strong> Mettre le service dans le compose et le rendre joignable sur <code>http://localhost/api/produits</code>, comme les autres services le seront.</p>
+<p><strong>Explication.</strong> Traefik route par <strong>labels</strong> déclarés sur le service Docker : une règle d'entrée (<code>PathPrefix</code>), un middleware <strong>stripprefix</strong> qui retire <code>/api</code> avant de transmettre (le service, lui, écoute sur <code>/produits</code> sans préfixe), et le port interne. C'est l'état M03 : le catalogue est exposé en direct ; à partir du module 04, un BFF prendra la place derrière <code>/api</code> et le catalogue redeviendra interne.</p>
+<p><strong>Exemple traité</strong> — le bloc à ajouter au <code>docker-compose.yml</code> (c'est de l'infrastructure, pas la solution du CRUD — vous pouvez le donner tel quel à l'agent) :</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">catalogue</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./services/catalogue</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">DB_URL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jdbc:postgresql://postgres:5432/referentiel_db&quot;</span><span class="w">   </span><span class="c1"># adapter a votre stack</span>
+<span class="w">      </span><span class="nt">DB_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${POSTGRES_USER:-semishop}&quot;</span>
+<span class="w">      </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${POSTGRES_PASSWORD:-semishop}&quot;</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.enable=true&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.catalogue.rule=PathPrefix(`/api`)&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.catalogue.entrypoints=web&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.middlewares.api-strip.stripprefix.prefixes=/api&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.catalogue.middlewares=api-strip&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.services.catalogue.loadbalancer.server.port=8081&quot;</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">semishop</span>
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Faites produire le <code>Dockerfile</code> du service par l'agent (build multi-stage : compilation puis image d'exécution légère), ajoutez le bloc compose, puis :</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build<span class="w"> </span>catalogue
+docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">                                  </span><span class="c1"># catalogue &quot;running&quot;</span>
+curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;http://localhost/api/produits?taille=3&quot;</span><span class="w">   </span><span class="c1"># via Traefik cette fois</span>
+</code></pre></div>
+<p>La réponse doit être identique à celle du port 8081 en direct. Relisez le diff du <code>Dockerfile</code> (image de base épinglée en version précise, pas de <code>latest</code> ; aucun secret copié dans l'image). <strong>Committez</strong> (ex. <code>feat(catalogue): Dockerfile et exposition Traefik</code>).</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>404</code> via Traefik, <code>200</code> en direct</td>
+<td>Stripprefix absent : le service reçoit <code>/api/produits</code></td>
+<td>Comparer les deux URLs</td>
+<td>Ajouter le middleware <code>stripprefix</code></td>
+</tr>
+<tr>
+<td><code>Connection refused</code> du service vers la base</td>
+<td>URL avec <code>localhost</code> dans le conteneur</td>
+<td>Logs du conteneur catalogue</td>
+<td>Dans le compose, l'hôte base est <code>postgres</code>, pas <code>localhost</code></td>
+</tr>
+<tr>
+<td>Image qui embarque le JDK complet / node_modules de dev</td>
+<td>Pas de multi-stage</td>
+<td>Image de plusieurs Go</td>
+<td>Build multi-stage, image d'exécution minimale</td>
+</tr>
+<tr>
+<td>Tag <code>latest</code> sur l'image de base</td>
+<td>Facilité de l'agent</td>
+<td><code>FROM xxx:latest</code> dans le diff</td>
+<td>Épingler une version précise et récente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-5-increment-4-amorce-du-front-la-page-catalogue">Étape 5 : incrément 4 — amorce du front, la page catalogue</h2>
+<p><strong>Objectif.</strong> Créer le front React et une page <code>CatalogPage</code> minimale qui liste les produits via Traefik, puis valider dans le navigateur.</p>
+<p><strong>Explication.</strong> La variante de référence du fil rouge est <strong>React 18 + Vite 5</strong> (alignée sur le lab de correction ; des majeures plus récentes existent, on épingle celles du socle commun). En dev, le serveur Vite tourne sur 5173 et <strong>proxifie</strong> <code>/api</code> vers Traefik : le front appelle <code>/api/produits</code> en chemin relatif, aucun CORS à configurer, et le même code fonctionnera tel quel une fois le front servi par Traefik. La page reste volontairement minimale — libellé, grade, prix, stock — les filtres et le panier viendront dans les modules suivants.</p>
+<p><strong>Exemple traité</strong> — le proxy Vite et l'amorce de la page :</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// frontend/vite.config.js -- proxy dev : /api -&gt; Traefik</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">defineConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vite&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@vitejs/plugin-react&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">defineConfig</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">react</span><span class="p">()],</span>
+<span class="w">  </span><span class="nx">server</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">proxy</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;/api&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:80&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// frontend/src/pages/CatalogPage.jsx -- AMORCE : a completer par l&#39;agent</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">CatalogPage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">produits</span><span class="p">,</span><span class="w"> </span><span class="nx">setProduits</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">([]);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">erreur</span><span class="p">,</span><span class="w"> </span><span class="nx">setErreur</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;/api/produits?page=0&amp;taille=12&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">r</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Erreur &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w"> </span><span class="p">})</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setProduits</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="p">))</span>
+<span class="w">      </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setErreur</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">));</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="c1">// A completer : affichage de la grille (libelle, grade, prix HT, stock)</span>
+<span class="w">  </span><span class="c1">// et d&#39;un message si erreur ou liste vide.</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;{</span><span class="cm">/* a completer */</span><span class="p">}&lt;/</span><span class="nt">main</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Créez le projet front (<code>npm create vite@5</code> — gabarit React), faites compléter <code>CatalogPage</code> par l'agent (grille des produits : libellé, grade, prix, stock ; message d'erreur si l'API est injoignable ; message « aucun produit » si la liste est vide). Validez le diff — attention aux dépendances front : <code>fetch</code> natif suffit, pas de client HTTP ni de librairie UI pour ce périmètre. Puis :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">    </span><span class="c1"># http://localhost:5173</span>
+</code></pre></div>
+<p>Les produits du seed s'affichent dans le navigateur. <strong>Committez</strong> (ex. <code>feat(front): amorce CatalogPage - liste des produits</code>).</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Failed to fetch</code> / 404 sur <code>/api/produits</code></td>
+<td>Proxy Vite absent ou Traefik arrêté</td>
+<td>Onglet réseau du navigateur</td>
+<td>Vérifier <code>vite.config.js</code> et <code>docker compose ps</code></td>
+</tr>
+<tr>
+<td>Page blanche sans message</td>
+<td><code>data.content</code> non géré (réponse paginée)</td>
+<td>Console navigateur : <code>map of undefined</code></td>
+<td>Lire <code>content</code> de la réponse paginée, pas la racine</td>
+</tr>
+<tr>
+<td>Ajout d'axios / d'une lib UI lourde</td>
+<td>Dépendance non justifiée</td>
+<td><code>package.json</code> gonflé dans le diff</td>
+<td>Refuser ; natif suffit pour ce périmètre</td>
+</tr>
+<tr>
+<td>L'agent appelle <code>http://localhost:8081</code> en dur</td>
+<td>Contexte incomplet</td>
+<td>URL absolue dans le code front</td>
+<td>Chemin relatif <code>/api/...</code> + proxy</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-6-verification-bout-en-bout-historique-doc">Étape 6 : vérification bout-en-bout, historique, doc</h2>
+<p><strong>Objectif.</strong> Prouver le flux complet front → Traefik → catalogue → PostgreSQL, vérifier l'historique Git, documenter.</p>
+<p><strong>Explication.</strong> On ne suppose pas le bout-en-bout, on le prouve : une donnée créée par l'API doit apparaître dans le navigateur <strong>et</strong> dans un <code>SELECT</code> direct en base. Puis on relit l'historique : c'est lui qui raconte le TP.</p>
+<p><strong>Exemple traité</strong> — la preuve de persistance :</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>semishop<span class="w"> </span>-d<span class="w"> </span>referentiel_db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-c<span class="w"> </span><span class="s2">&quot;SELECT sku, libelle, grade, stock FROM produit ORDER BY id;&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>     sku      |               libelle                | grade | stock
+--------------+--------------------------------------+-------+-------
+ NS-LAP-0001  | Dell Latitude 7420 reconditionne     | A     |     5
+ ...
+ NS-PER-0099  | Webcam Logitech C920 reconditionnee  | B     |     6
+</code></pre></div>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<ol>
+<li>Créez un produit via <code>POST</code> (route Traefik <code>http://localhost/api/produits</code>), rechargez la page front : il apparaît. Vérifiez-le en base avec le <code>SELECT</code> ci-dessus.</li>
+<li>Rédigez <code>docs/catalogue.md</code> : le modèle de données, le contrat d'API (tableau), la procédure de lancement.</li>
+<li>Contrôlez l'historique :</li>
+</ol>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w">    </span><span class="c1"># au moins 4 commits jalonnes : schema, CRUD, Traefik, front</span>
+</code></pre></div>
+<p>🔷 <strong>Point de contrôle livrable</strong> : flux bout-en-bout prouvé (navigateur + <code>SELECT</code>), chaque diff relu avec la checklist, aucune dépendance inventée, pagination bornée, migrations versionnées, aucun secret en dur, historique d'au moins 4 commits aux messages clairs, <code>docs/catalogue.md</code> présent.</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Historique en un seul gros commit</td>
+<td>Discipline perdue en route</td>
+<td><code>git log</code> montre 1-2 lignes</td>
+<td>La prochaine fois : commit à chaque incrément validé ; ne pas réécrire l'historique maintenant, le noter dans la doc</td>
+</tr>
+<tr>
+<td>Donnée visible au front mais absente en base</td>
+<td>Cache / état local</td>
+<td><code>SELECT</code> renvoie moins de lignes</td>
+<td>Vérifier que le POST est bien passé par l'API</td>
+</tr>
+<tr>
+<td>Doc absente ou vague</td>
+<td>Étape sautée</td>
+<td><code>docs/catalogue.md</code> manquant</td>
+<td>Documenter modèle + contrat + lancement</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Cleanup / teardown</strong> :</p>
+<p>🔷 <strong>L'environnement et le code sont RÉUTILISÉS</strong> par toute la suite (M04 architecture, M05 RAG, M08 tests...). Ne détruisez ni les volumes ni le code. En fin de journée :</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">     </span><span class="c1"># arrete les conteneurs, GARDE les volumes (donnees)</span>
+</code></pre></div>
+<p><code>docker compose down -v</code> (perte des données) uniquement pour repartir de zéro volontairement.</p>
 <hr />
 <p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
+🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-06-tp-service-catalogue-crud.md</code>). L'implémentation de référence complète est le service catalogue du lab SemiShop — le corrigé donne les chemins précis et les extraits clés.</p>
 <hr />
 <blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
+<p>🔹 <strong>En production, ce que ça change</strong> : construire un service en incréments relus et commités, avec migrations versionnées et pagination bornée, c'est exactement ce qu'on attend d'une PR de qualité — que le code vienne d'un agent ou d'un humain. L'historique jalonné n'est pas de la cosmétique : c'est lui qui permet la revue, le <code>git bisect</code> et le retour arrière ciblé quand un bug surgit trois modules plus tard.</p>
 </blockquote>
 <hr />
 <h2 id="recap">Récap</h2>
 <p>🟢 Ce que vous savez maintenant faire :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>Piloter un agent pour construire un microservice complet par petits incréments validés.</li>
+<li>Imposer des migrations versionnées et une pagination bornée dans le plan, pas après coup.</li>
+<li>Exposer un service derrière Traefik (règle, stripprefix, port) et le prouver.</li>
+<li>Prouver un flux bout-en-bout (navigateur + <code>SELECT</code>), pas le supposer.</li>
 </ul>
 <p>🟨 Pièges à retenir :</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>Un diff trop gros pour être relu = périmètre trop large : redécouper.</li>
+<li><code>ddl-auto</code>/<code>synchronize</code> n'est pas une stratégie de schéma : migrations.</li>
+<li>« Ça s'affiche » n'est pas « c'est persisté » : vérifier en base.</li>
 </ul>
 <p>🔷 Points clés à retenir :</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>Le contrat d'API est le même pour toutes les stacks — c'est lui qu'on valide, pas le langage.</li>
+<li>L'exposition directe via Traefik est l'état M03 ; le BFF la remplacera au module 04.</li>
+<li>Environnement et code <strong>conservés</strong> pour la suite.</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<p>🔹 <strong>Prochaine étape</strong> : affûter le regard critique. Le <a href="07-tp-analyse-diff.md">TP 3.2 — Analyse critique d'un diff généré</a> vous fait auditer un diff imparfait proposé sur ce même service catalogue.</p>
     </article>
 
     

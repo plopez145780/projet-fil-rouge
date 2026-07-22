@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>09 — Quiz de fin de module 04</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> Quiz de fin de module 04 <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">Quiz de fin de module 04</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,241 +222,145 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="01-microservices-autonomie-limites.md">01</a>, <a href="02-gateway-contrats-api.md">02</a>, <a href="03-polyglotte-pourquoi-quand.md">03</a>, <a href="04-microfrontends.md">04</a>, <a href="05-ia-jira-user-stories.md">05</a> et les <a href="06-td-microservice-justifie.md">TD 4.1</a> / <a href="07-tp-backlog-user-stories.md">TP 4.1</a> / <a href="08-tp-schema-architecture-decision.md">TP 4.2</a> — l'ensemble du module est récapitulé ici.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
+<p><strong>Auto-évaluation.</strong> 12 questions à choix unique. Répondez d'abord, puis ouvrez la réponse. L'objectif est de repérer ce qui reste flou avant le module 05 (RAG), pas de vous noter.</p>
+<hr />
+<p><strong>Q1.</strong> Lequel n'est <strong>pas</strong> un attribut définitoire d'un microservice ?</p>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li>A. Déploiement autonome</li>
+<li>B. Persistance dédiée</li>
+<li>C. Écriture directe dans la base d'un autre service</li>
+<li>D. Responsabilité métier unique</li>
 </ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : C.</strong> Un microservice possède sa persistance ; écrire dans la base d'un autre supprime l'autonomie des deux. Les échanges passent par les API.</p>
+</details>
+<p><strong>Q2.</strong> Quelle est la règle de décision pour extraire un microservice ?</p>
 <ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
+<li>A. Toujours découper, c'est plus maintenable</li>
+<li>B. Découper quand le bénéfice attendu dépasse le coût d'intégration</li>
+<li>C. Un microservice par table</li>
+<li>D. Un microservice par développeur, systématiquement</li>
 </ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
-
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
-<blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
-</blockquote>
-<hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> L'extraction se justifie par un signal réel (équipes, scaling, cycle, conformité, technologie) qui dépasse les coûts systématiques : réseau, cohérence, infra dupliquée, tests.</p>
+</details>
+<p><strong>Q3.</strong> Le socle SemiShop tient en 3 services et l'overlay en 7. Laquelle de ces affirmations est correcte ?</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>A. L'overlay est la version corrigée du socle</li>
+<li>B. Le socle est obsolète</li>
+<li>C. Ce sont deux réponses valides à deux contextes différents ; c'est la justification qui compte</li>
+<li>D. Il faut toujours viser 7 services</li>
 </ul>
-<p>🟨 Pièges à retenir :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : C.</strong> La même grille donne des réponses différentes selon le contexte (une équipe Java seule vs une équipe polyglotte où chacun porte un service). Une décision d'architecture se justifie pour un contexte, elle ne se recopie pas.</p>
+</details>
+<p><strong>Q4.</strong> Dans Traefik, une requête matche deux routers : <code>PathPrefix(/api)</code> en priorité 100 et <code>PathPrefix(/api/cart)</code> en priorité 200. Qui gagne ?</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>A. Le router en priorité 100</li>
+<li>B. Le router en priorité 200</li>
+<li>C. Le premier démarré</li>
+<li>D. Les deux, en alternance</li>
 </ul>
-<p>🔷 Points clés à retenir :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> La priorité la plus élevée gagne parmi les règles qui matchent. C'est ce mécanisme qui permet aux routes directes du lab de passer devant le préfixe générique du BFF.</p>
+</details>
+<p><strong>Q5.</strong> Pourquoi les routes directes de l'overlay SemiShop (priorité 200, sans BFF) sont-elles qualifiées de contre-exemple ?</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>A. Elles sont trop lentes</li>
+<li>B. Elles contournent l'authentification et l'agrégation du BFF — acceptable en démo, pas en production</li>
+<li>C. Traefik interdit plus de deux niveaux de priorité</li>
+<li>D. StripPrefix est déprécié</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Le contrôle d'accès du socle vit dans le BFF ; une route qui le contourne expose le service nu. Le lab l'assume comme montage de démonstration, votre architecture doit le requalifier.</p>
+</details>
+<p><strong>Q6.</strong> Que fait le middleware StripPrefix sur la route <code>/api/inventory</code> ?</p>
+<ul>
+<li>A. Il authentifie la requête</li>
+<li>B. Il retire <code>/api/inventory</code> du chemin avant transmission au service FastAPI</li>
+<li>C. Il ajoute un préfixe de version</li>
+<li>D. Il compresse la réponse</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Le service ne connaît que ses chemins internes ; le préfixe public appartient au gateway. Sans StripPrefix, le service reçoit un chemin qu'il ne sert pas et répond 404.</p>
+</details>
+<p><strong>Q7.</strong> Renommer un champ de réponse dans le contrat du catalogue est :</p>
+<ul>
+<li>A. Un changement compatible (version mineure)</li>
+<li>B. Un changement cassant (version majeure explicite, cohabitation le temps de migrer)</li>
+<li>C. Sans impact si le service est en Java</li>
+<li>D. Un simple détail de documentation</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Tout consommateur qui lit l'ancien nom casse. Ajouter un champ optionnel est compatible ; renommer ou changer un type est une rupture de contrat.</p>
+</details>
+<p><strong>Q8.</strong> Quel signal justifie le plus solidement un langage de plus dans la plateforme ?</p>
+<ul>
+<li>A. Un benchmark favorable de 10 %</li>
+<li>B. La curiosité de l'équipe</li>
+<li>C. Des compétences d'équipe réelles ou un écosystème nettement supérieur pour le besoin</li>
+<li>D. La symétrie avec un concurrent</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : C.</strong> Le signal équipe et le signal écosystème dominent ; un écart de benchmark est sans effet quand la base de données est le facteur limitant. Les coûts (CI, standards, revue croisée), eux, sont certains.</p>
+</details>
+<p><strong>Q9.</strong> Qu'est-ce qui maintient la cohérence entre quatre services écrits dans quatre langages ?</p>
+<ul>
+<li>A. Un développeur qui connaît les quatre stacks</li>
+<li>B. Les contrats OpenAPI committés et les conventions transverses écrites (rules)</li>
+<li>C. Un framework unique</li>
+<li>D. Des réunions hebdomadaires</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Les services ne partagent que leurs contrats ; les conventions écrites (format d'erreur, healthchecks, logs) sont ce que l'IA et les humains peuvent appliquer uniformément.</p>
+</details>
+<p><strong>Q10.</strong> Quand le microfrontend (Module Federation) se justifie-t-il le plus clairement ?</p>
+<ul>
+<li>A. Dès que le back est découpé en microservices</li>
+<li>B. Quand plusieurs équipes front doivent livrer indépendamment des domaines UX distincts</li>
+<li>C. Quand la SPA dépasse 10 000 lignes</li>
+<li>D. Pour améliorer les performances de chargement</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> C'est une réponse organisationnelle. Le lab SemiShop, avec une équipe et un domaine cohérent, a légitimement choisi la SPA unique à zones — décision documentée et réévaluable.</p>
+</details>
+<p><strong>Q11.</strong> L'IA ajoute à votre backlog SemiShop une US « programme de fidélité » absente de l'idée métier SEMIFIR. Que faites-vous ?</p>
+<ul>
+<li>A. Vous l'intégrez au MVP</li>
+<li>B. Vous la placez en « suggestions à valider », hors scope, faute de source</li>
+<li>C. Vous la supprimez sans trace</li>
+<li>D. Vous la transformez en epic</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Toute exigence doit être traçable à une source. La quarantaine la garde visible pour une décision ultérieure, sans qu'elle contamine le scope validé.</p>
+</details>
+<p><strong>Q12.</strong> Votre <code>docs/architecture.md</code> doit avant tout être cohérent avec quoi ?</p>
+<ul>
+<li>A. Le schéma le plus complet généré par l'IA</li>
+<li>B. Vos décisions (<code>docs/decisions.md</code>) et votre backlog (<code>docs/backlog.md</code>)</li>
+<li>C. L'architecture du dépôt de référence</li>
+<li>D. Les dernières tendances microservices</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> L'architecture matérialise les décisions du TD 4.1 et sert les US du TP 4.1. Le dépôt de référence illustre un contexte ; le vôtre a le sien.</p>
+</details>
+<hr />
+<p>🟢 <strong>Bien.</strong> Vous savez justifier un découpage (services, langages, front) par des signaux plutôt que des modes, lire un routage gateway réel, tenir la cohérence par les contrats, et produire un backlog tracé sans scope halluciné.</p>
+<p>🔹 <strong>Prochaine étape</strong> : le produit est cadré — backlog, décisions, architecture. On outille maintenant l'IA pour qu'elle comprenne votre codebase : <a href="../module05-rag-code/01-pipeline-rag.md">Module 05 — RAG appliqué au code, chunking et hygiène documentaire</a>.</p>
     </article>
 
     

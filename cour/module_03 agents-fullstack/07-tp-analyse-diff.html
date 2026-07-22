@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>07 — TP 3.2 : Analyse critique d'un diff généré par un agent</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">03</span> TP 3.2 - Analyse critique d&#x27;un diff genere par un agent <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -208,7 +208,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 
   <div class="smf-mid">
     <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
+    <h1 class="smf-title">TP 3.2 - Analyse critique d&#x27;un diff genere par un agent</h1>
     <p class="smf-lede">Dev Full Stack assiste par IA</p>
   </div>
 
@@ -222,127 +222,101 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="05-td-anatomie-boucle-agent.md">05 — TD 3.1 : Anatomie d'une boucle agent</a> — la checklist <code>validation-diff-agent.md</code> et la séquence des cinq contrôles.<br />
+- <a href="06-tp-service-catalogue-crud.md">06 — TP 3.1 : Service catalogue</a> — le service catalogue sur lequel porte le diff analysé.</p>
 </blockquote>
 <h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li><strong>Modules requis</strong> : chapitres <a href="05-td-anatomie-boucle-agent.md">05</a> et <a href="06-tp-service-catalogue-crud.md">06</a>.</li>
+<li><strong>Ressources à avoir sous la main</strong> : votre checklist <code>ia-toolbox/checklists/validation-diff-agent.md</code> ; un accès aux registres de dépendances (Maven Central, npm, PyPI, NuGet) pour vérifier les packages.</li>
+<li><strong>Format</strong> : individuel ou binôme. <strong>Nature</strong> : analytique (lecture de diff, pas d'exécution obligatoire). <strong>Livrable</strong> : <code>docs/revue-diff.md</code> — une revue écrite avec <strong>au moins 3 points d'amélioration corrigés</strong> et les dépendances vérifiées.</li>
 </ul>
 <h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
+<p><strong>Objectif.</strong> Auditer un diff généré par un agent sur le service catalogue, en appliquant la séquence de validation. Vous produisez une revue argumentée : ce qui va, ce qui ne va pas, la correction pour chaque point, et un verdict de merge.</p>
+<p><strong>Contexte fil rouge.</strong> L'équipe SemiShop veut une vitrine « bonnes affaires » : lister rapidement les produits d'un grade donné, avec le libellé de leur catégorie. Un agent — piloté trop vite, sans plan validé — a proposé le diff ci-dessous sur votre service catalogue. Il « a l'air de marcher ». Un diff qui compile n'est pas un diff qui va en production : votre rôle est de le passer au crible <strong>avant</strong> de l'accepter, exactement comme sur une PR d'agent en mission.</p>
+<h3 id="le-diff-a-auditer">Le diff à auditer</h3>
+<p>Diff proposé par l'agent (variante Spring Boot — les défauts qu'il contient existent dans toutes les stacks). Il est <strong>volontairement imparfait</strong> : c'est le matériau du TP.</p>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/services/catalogue/build.gradle</span>
+<span class="gi">+++ b/services/catalogue/build.gradle</span>
+<span class="gu">@@</span>
+<span class="w"> </span>    implementation &#39;org.springframework.boot:spring-boot-starter-data-jpa&#39;
+
+<span class="gi">+    implementation &#39;org.springframework.boot:spring-boot-starter-pagination:3.4.1&#39;</span>
+
+<span class="gd">--- a/services/catalogue/src/main/java/com/semishop/catalogue/web/ProduitController.java</span>
+<span class="gi">+++ b/services/catalogue/src/main/java/com/semishop/catalogue/web/ProduitController.java</span>
+<span class="gu">@@</span>
+
+<span class="gi">+    @GetMapping(&quot;/par-grade&quot;)</span>
+<span class="gi">+    public List&lt;ProduitVitrineDto&gt; parGrade(@RequestParam String grade,</span>
+<span class="gi">+                                            @RequestParam Integer taille) {</span>
+<span class="gi">+        return produitService.listerParGrade(grade, taille);</span>
+<span class="gi">+    }</span>
+
+<span class="gd">--- a/services/catalogue/src/main/java/com/semishop/catalogue/service/ProduitService.java</span>
+<span class="gi">+++ b/services/catalogue/src/main/java/com/semishop/catalogue/service/ProduitService.java</span>
+<span class="gu">@@</span>
+
+<span class="gi">+    public List&lt;ProduitVitrineDto&gt; listerParGrade(String grade, Integer taille) {</span>
+<span class="gi">+        List&lt;ProduitVitrineDto&gt; resultat = new ArrayList&lt;&gt;();</span>
+<span class="gi">+        List&lt;Produit&gt; tous = produitRepository.findAll();</span>
+<span class="gi">+        for (Produit p : tous) {</span>
+<span class="gi">+            if (p.getGrade().equals(grade)) {</span>
+<span class="gi">+                Categorie c = categorieRepository.findById(p.getCategorieId()).orElse(null);</span>
+<span class="gi">+                resultat.add(new ProduitVitrineDto(p.getId(), p.getLibelle(),</span>
+<span class="gi">+                        p.getGrade(), p.getPrixHt(), c != null ? c.getLibelle() : null));</span>
+<span class="gi">+            }</span>
+<span class="gi">+            if (resultat.size() &gt;= taille) break;</span>
+<span class="gi">+        }</span>
+<span class="gi">+        return resultat;</span>
+<span class="gi">+    }</span>
+
+<span class="gd">--- a/services/catalogue/src/main/resources/application.yaml</span>
+<span class="gi">+++ b/services/catalogue/src/main/resources/application.yaml</span>
+<span class="gu">@@</span>
+<span class="w"> </span>spring:
+<span class="w"> </span>  datasource:
+
+<span class="gd">-    password: ${DB_PASSWORD:semishop}</span>
+<span class="gi">+    password: &quot;SemiShop!Prod2026&quot;</span>
+</code></pre></div>
 <h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
+<div class="highlight"><pre><span></span><code>docs/
+└── revue-diff.md   # revue : points OK, points KO corriges (&gt;= 3), deps verifiees, verdict
 </code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
-
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
+<h2 id="etape-1-derouler-la-sequence-de-validation-sur-le-diff">Étape 1 : dérouler la séquence de validation sur le diff</h2>
+<p><strong>Objectif.</strong> Passer les cinq contrôles dans l'ordre et noter le verdict de chacun.</p>
+<p><strong>Explication.</strong> On ne lit pas un diff « au feeling ». On applique périmètre → dépendances → secrets → tests → relecture. Chaque contrôle produit un verdict et, si KO, un point de revue.</p>
+<p><strong>Exemple traité</strong> — les deux premiers contrôles (faites-en une analyse, pas un recopiage) :</p>
 <table>
 <thead>
 <tr>
 <th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
+<th>Observation sur ce diff</th>
+<th>Verdict</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
+<td>La tâche est « vitrine par grade » ; le diff touche aussi <code>application.yaml</code>, sans lien avec la fonctionnalité — et la route dédiée <code>/par-grade</code> duplique un besoin que <code>GET /produits?grade=...</code> couvre déjà</td>
+<td>À questionner</td>
 </tr>
 <tr>
 <td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
+<td><code>spring-boot-starter-pagination</code> : ce starter <strong>n'existe pas</strong> (la pagination Spring Data vit dans <code>spring-boot-starter-data-jpa</code>, déjà présent) — nom plausible, package halluciné ; et rien dans le code ne l'utilise</td>
+<td>KO</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p>Complétez l'analyse pour les <strong>trois contrôles restants</strong> :<br />
+- <strong>Secrets</strong> : que fait la ligne modifiée dans <code>application.yaml</code> ? Comparez avec ce qu'il y avait avant (indice : on remplace une lecture d'environnement par un mot de passe en clair — qui ressemble fort à celui de la production).<br />
+- <strong>Tests</strong> : le diff fournit-il un test de la nouvelle route ? Que se passe-t-il si <code>grade</code> vaut <code>"Z"</code>, ou si <code>taille</code> est absent (le paramètre est requis) ou vaut <code>1000000</code> ?<br />
+- <strong>Relecture ligne à ligne</strong> : suivez <code>listerParGrade</code> pas à pas. Combien de requêtes SQL part-il vers la base pour 500 produits dont 30 du grade demandé ? (Indice : <code>findAll()</code> charge tout, puis <code>findById</code> sur la catégorie <strong>dans la boucle</strong> — le motif « N+1 ».) Le filtre par grade s'exécute-t-il en base ou en mémoire ?</p>
+<p>Méthode : un contrôle dont l'information manque (aucun test montré) n'est pas un OK — c'est « info manquante », et l'action est d'exiger la preuve.</p>
 </blockquote>
 <hr />
 <p><strong>Erreurs fréquentes à cette étape</strong> :</p>
@@ -357,106 +331,144 @@ Build OK.
 </thead>
 <tbody>
 <tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
+<td>La dépendance hallucinée passe inaperçue</td>
+<td>Le nom ressemble à un vrai starter</td>
+<td><code>spring-boot-starter-pagination</code> introuvable sur Maven Central</td>
+<td>Vérifier chaque package sur le registre officiel</td>
 </tr>
 <tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
+<td>Le secret en clair est ignoré</td>
+<td>On regarde surtout le code métier</td>
+<td>La ligne <code>-</code> supprimée lisait l'environnement, la ligne <code>+</code> écrit un mot de passe</td>
+<td>Contrôle secrets systématique sur tout le diff, y compris la config</td>
 </tr>
 <tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
+<td>Le N+1 est manqué</td>
+<td>Le code « marche » sur 12 produits de seed</td>
+<td>Compter les appels au repository par itération</td>
+<td>Relire chaque boucle qui contient un accès base</td>
+</tr>
+<tr>
+<td>L'absence de validation paraît anodine</td>
+<td><code>grade</code> est « juste une chaîne »</td>
+<td>Aucun contrôle A/B/C, aucune borne sur <code>taille</code></td>
+<td>Comparer avec le comportement de <code>GET /produits</code> du TP 3.1</td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
+<h2 id="etape-2-formuler-les-corrections">Étape 2 : formuler les corrections</h2>
+<p><strong>Objectif.</strong> Pour chaque point KO, écrire la correction concrète — pas seulement « c'est mauvais ».</p>
+<p><strong>Explication.</strong> Une revue utile propose la solution : quoi changer, et pourquoi c'est mieux. Chaque point = un titre, le constat, l'impact, la correction.</p>
+<p><strong>Exemple traité</strong> — correction du point « dépendance hallucinée » :</p>
+<blockquote>
+<p><strong>Point 1 — Dépendance inexistante.</strong> <code>spring-boot-starter-pagination:3.4.1</code> n'existe pas sur Maven Central ; la pagination Spring Data est déjà fournie par <code>spring-boot-starter-data-jpa</code>, présent dans le projet. Aucune ligne du diff ne l'utilise. <strong>Correction</strong> : supprimer la dépendance — le besoin est déjà couvert par l'existant.</p>
+</blockquote>
+<hr />
+<p><strong>À vous !</strong></p>
+<blockquote>
+<p>Rédigez les corrections des <strong>autres points KO</strong> (au moins 3 au total, en comptant l'exemple) :<br />
+- Le <strong>secret en clair</strong> → restaurer la lecture d'environnement (<code>${DB_PASSWORD:...}</code>), et traiter le mot de passe exposé comme <strong>compromis</strong> (à faire tourner), puisqu'il a transité par un diff.<br />
+- L'<strong>absence de validation</strong> → valider <code>grade</code> (A/B/C, sinon 400) et <strong>borner</strong> <code>taille</code> côté serveur, comme le fait déjà la liste principale du TP 3.1.<br />
+- Le <strong>N+1 et le filtre en mémoire</strong> → filtrer par grade <strong>en base</strong> (requête dérivée ou critère) et résoudre les libellés de catégorie <strong>en une seule requête</strong> (jointure, ou chargement des catégories en une fois), au lieu d'un <code>findById</code> par produit.<br />
+- Le <strong>périmètre</strong> → questionner la route dédiée : <code>GET /produits?grade=A&amp;taille=8</code> rend le même service ; si la vitrine a vraiment besoin du libellé de catégorie, c'est une évolution du DTO de liste, pas une route parallèle à maintenir.</p>
+</blockquote>
+<hr />
+<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>🟨 Symptôme</th>
+<th>Cause probable</th>
+<th>Comment le détecter</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constat sans correction</td>
+<td>On critique sans proposer</td>
+<td>Le point n'a pas de « → correction »</td>
+<td>Ajouter l'action concrète</td>
+</tr>
+<tr>
+<td>Secret « corrigé » sans rotation</td>
+<td>On restaure la variable et on s'arrête</td>
+<td>Le mot de passe exposé reste valide</td>
+<td>Considérer tout secret passé dans un diff comme à changer</td>
+</tr>
+<tr>
+<td>N+1 « corrigé » par un cache</td>
+<td>Réflexe pansement</td>
+<td>Le nombre de requêtes reste proportionnel aux produits</td>
+<td>Corriger la requête, pas masquer le symptôme</td>
+</tr>
+<tr>
+<td>Correction qui casse l'existant</td>
+<td>On borne <code>taille</code> mais on le laisse requis</td>
+<td>Un appel sans <code>taille</code> renvoie 400</td>
+<td>Paramètre optionnel avec défaut serveur</td>
+</tr>
+</tbody>
+</table>
+<h2 id="etape-3-rediger-docsrevue-diffmd-et-decider">Étape 3 : rédiger <code>docs/revue-diff.md</code> et décider</h2>
+<p><strong>Objectif.</strong> Consigner la revue et rendre un verdict de merge tracé.</p>
+<p><strong>Explication.</strong> La revue se termine par une décision : <em>accepter</em>, <em>accepter avec corrections</em>, ou <em>rejeter</em>. La décision est humaine et écrite. C'est la brique qu'on industrialisera au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a> (revue de PR assistée, détection de secrets automatisée).</p>
+<p><strong>Exemple traité</strong> — la structure attendue du fichier :</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># Revue de diff - vitrine par grade (service catalogue)</span>
 
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
+<span class="gu">## Contexte</span>
+Diff propose par un agent : route /produits/par-grade avec libelle de categorie.
+
+<span class="gu">## Points examines (sequence de validation)</span>
+<span class="k">1.</span> Perimetre : application.yaml touche sans lien ; route dediee redondante avec
+   GET /produits?grade=... -&gt; a discuter
+<span class="k">2.</span> Dependances : spring-boot-starter-pagination inexistant -&gt; supprimee
+<span class="k">3.</span> Secrets : mot de passe en clair remplace la variable d&#39;environnement -&gt; restaure
+
+   + rotation du mot de passe expose
+<span class="k">4.</span> Tests : aucun test fourni ; grade et taille non valides -&gt; exiges
+<span class="k">5.</span> Relecture : findAll + findById en boucle (N+1), filtre en memoire -&gt; requete en base
+
+<span class="gu">## Dependances verifiees</span>
+<span class="k">-</span><span class="w"> </span>spring-boot-starter-pagination:3.4.1 : introuvable sur Maven Central -&gt; rejetee.
+
+<span class="gu">## Verdict</span>
+Rejet en l&#39;etat. Reproposer apres corrections, avec un test de la route filtree.
 </code></pre></div>
 <hr />
 <p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
+<p>Produisez <code>docs/revue-diff.md</code> complet : au moins <strong>3 points corrigés</strong> documentés (constat, impact, correction), la <strong>vérification explicite des dépendances</strong> (le package existe ? il sert ?), et un <strong>verdict</strong> clair (accepté / à corriger / rejeté) justifié. Committez-le dans votre dépôt SemiShop.</p>
+<p>🔷 <strong>Point de contrôle livrable</strong> : <code>docs/revue-diff.md</code> contient ≥ 3 points corrigés, la vérification des dépendances est explicite, le secret est traité (restauration <strong>et</strong> rotation), et le verdict est écrit.</p>
 </blockquote>
 <hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
 <p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
+🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-07-tp-analyse-diff.md</code>).</p>
 <hr />
 <blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
+<p>🔹 <strong>En production, ce que ça change</strong> : repérer une dépendance hallucinée, un secret en dur, un N+1 et une validation absente dans un diff de 40 lignes — c'est la compétence qui sépare l'usage sûr de l'IA de la dette générée à grande vitesse. Le module 09 en automatisera une partie (Semgrep, Gitleaks) ; la décision de merge, elle, restera humaine.</p>
 </blockquote>
 <hr />
 <h2 id="recap">Récap</h2>
 <p>🟢 Ce que vous savez maintenant faire :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>Auditer un diff d'agent avec la séquence de validation (5 contrôles ordonnés).</li>
+<li>Repérer une dépendance hallucinée, un secret en dur, un N+1, une validation absente, une route redondante.</li>
+<li>Transformer chaque anomalie en correction concrète — rotation de secret comprise.</li>
+<li>Rendre un verdict de merge tracé dans <code>docs/revue-diff.md</code>.</li>
 </ul>
 <p>🟨 Pièges à retenir :</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>Un diff qui compile (et qui « marche » sur 12 produits de seed) n'est pas un diff sûr.</li>
+<li>Un secret passé dans un diff est un secret compromis : restaurer ne suffit pas, il faut le changer.</li>
+<li>Un <code>findAll()</code> suivi d'un filtre en mémoire est invisible en dev et coûteux en production.</li>
 </ul>
 <p>🔷 Points clés à retenir :</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>La revue se conclut par une décision humaine écrite.</li>
+<li>Avant d'accepter une nouvelle route, vérifier que l'existant ne couvre pas déjà le besoin.</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<p>🔹 <strong>Prochaine étape</strong> : vérifier vos acquis avec le <a href="08-quiz-module03.md">Quiz — Module 03</a>, puis passer au <a href="../module04-microservices-us/01-microservices-autonomie-limites.md">Module 04 — Microservices, gateway, microfrontend et User Stories assistées</a>.</p>
     </article>
 
     

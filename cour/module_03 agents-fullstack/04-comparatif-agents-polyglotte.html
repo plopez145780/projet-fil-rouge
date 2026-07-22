@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>04 — Comparatif d'agents et pilotage en contexte polyglotte</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">03</span> Comparatif d&#x27;agents et pilotage en contexte polyglotte <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -208,7 +208,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 
   <div class="smf-mid">
     <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
+    <h1 class="smf-title">Comparatif d&#x27;agents et pilotage en contexte polyglotte</h1>
     <p class="smf-lede">Dev Full Stack assiste par IA</p>
   </div>
 
@@ -222,241 +222,199 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="01-modes-interaction.md">01 — Modes d'interaction</a> — les quatre modes, qu'on retrouve déclinés différemment selon les outils.<br />
+- <a href="03-garde-fous.md">03 — Garde-fous</a> — les limites à configurer, dont l'emplacement varie d'un outil à l'autre.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
+<h2 id="objectifs-pedagogiques">Objectifs pédagogiques</h2>
+<p>À la fin de ce chapitre, vous saurez :</p>
 <ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
+<li><strong>Comparer</strong> Cline, GitHub Copilot, Claude Code, Cursor, JetBrains Junie, Continue.dev et NéoGen sur des critères concrets : modes, configuration projet, souveraineté.</li>
+<li><strong>Choisir un outil</strong> selon le contexte : sensibilité du code, écosystème existant, préférence IDE ou terminal.</li>
+<li><strong>Piloter un agent dans un contexte polyglotte</strong> : donner à chaque service SemiShop sa commande de vérification, ses rules, son périmètre.</li>
 </ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<h2 id="le-paysage-2026-une-meme-boucle-des-habillages-differents">Le paysage 2026 : une même boucle, des habillages différents</h2>
+<p>Tous les agents de cette page appliquent la boucle du <a href="02-boucle-plan-act-verify.md">chapitre 02</a> : contexte, plan, édition, commandes sous approbation, diff à valider. Ils diffèrent sur l'intégration (IDE, terminal, plateforme), la configuration projet et la souveraineté des données. Un outil, c'est un habillage de la boucle — la méthode que vous avez apprise reste la même partout.</p>
+<table>
+<thead>
+<tr>
+<th>Outil</th>
+<th>Nature</th>
+<th>Modes (terminologie officielle)</th>
+<th>Configuration projet</th>
+<th>Souveraineté / modèle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMTgxODFCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q2xpbmU8L3RpdGxlPjxwYXRoIGQ9Im0yMy4zNjUgMTMuNTU2LTEuNDQyLTIuODk1VjguOTk0YzAtMi43NjQtMi4yMTgtNS4wMDItNC45NTQtNS4wMDJoLTIuNDY0Yy4xNzgtLjM2Ny4yNzYtLjc3OS4yNzYtMS4yMTNBMi43NyAyLjc3IDAgMCAwIDEyLjAxOCAwYTIuNzcgMi43NyAwIDAgMC0yLjc2MyAyLjc3OWMwIC40MzQuMDk4Ljg0Ni4yNzYgMS4yMTNINy4wNjdjLTIuNzM2IDAtNC45NTQgMi4yMzgtNC45NTQgNS4wMDJ2MS42NjdMLjY0IDEzLjU0OWMtLjE0OS4yOS0uMTQ5LjYzNiAwIC45MjdsMS40NzIgMi44NTV2MS42NjdDMi4xMTMgMjEuNzYyIDQuMzMgMjQgNy4wNjcgMjRoOS45MDJjMi43MzYgMCA0Ljk1NC0yLjIzOCA0Ljk1NC01LjAwMlYxNy4zM2wxLjQ0LTIuODY1Yy4xNDMtLjI4Ni4xNDMtLjYyMi4wMDItLjkxbS0xMi44NTQgMi4zNmEyLjI3IDIuMjcgMCAwIDEtMi4yNjEgMi4yNzMgMi4yNyAyLjI3IDAgMCAxLTIuMjYxLTIuMjczdi00LjA0MkEyLjI3IDIuMjcgMCAwIDEgOC4yNDkgOS42YTIuMjY3IDIuMjY3IDAgMCAxIDIuMjYyIDIuMjc0em03LjI4NSAwYTIuMjcgMi4yNyAwIDAgMS0yLjI2IDIuMjczIDIuMjcgMi4yNyAwIDAgMS0yLjI2Mi0yLjI3M3YtNC4wNDJBMi4yNjcgMi4yNjcgMCAwIDEgMTUuNTM1IDkuNmEyLjI2NyAyLjI2NyAwIDAgMSAyLjI2MSAyLjI3NHoiLz48L3N2Zz4=" alt="Logo Cline" width="40"/> <strong>Cline</strong></td>
+<td>Extension VS Code open source, <em>bring-your-own-key</em></td>
+<td><strong>Plan / Act</strong>, approbation action par action, client MCP</td>
+<td>Rules projet + auto-approve ciblé</td>
+<td>Au choix : cloud (Anthropic, OpenAI, Google...) <strong>ou</strong> endpoint compatible OpenAI — donc NéoGen ou modèle local</td>
+</tr>
+<tr>
+<td><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViIENvcGlsb3Q8L3RpdGxlPjxwYXRoIGQ9Ik0yMy45MjIgMTYuOTk3QzIzLjA2MSAxOC40OTIgMTguMDYzIDIyLjAyIDEyIDIyLjAyIDUuOTM3IDIyLjAyLjkzOSAxOC40OTIuMDc4IDE2Ljk5N0EuNjQxLjY0MSAwIDAgMSAwIDE2Ljc0MXYtMi44NjlhLjg4My44ODMgMCAwIDEgLjA1My0uMjJjLjM3Mi0uOTM1IDEuMzQ3LTIuMjkyIDIuNjA1LTIuNjU2LjE2Ny0uNDI5LjQxNC0xLjA1NS42NDQtMS41MTdhMTAuMDk4IDEwLjA5OCAwIDAgMS0uMDUyLTEuMDg2YzAtMS4zMzEuMjgyLTIuNDk5IDEuMTMyLTMuMzY4LjM5Ny0uNDA2Ljg5LS43MTcgMS40NzQtLjk1MkM3LjI1NSAyLjkzNyA5LjI0OCAxLjk4IDExLjk3OCAxLjk4YzIuNzMxIDAgNC43NjcuOTU3IDYuMTY2IDIuMDkzLjU4NC4yMzUgMS4wNzcuNTQ2IDEuNDc0Ljk1Mi44NS44NjkgMS4xMzIgMi4wMzcgMS4xMzIgMy4zNjggMCAuMzY4LS4wMTQuNzMzLS4wNTIgMS4wODYuMjMuNDYyLjQ3NyAxLjA4OC42NDQgMS41MTcgMS4yNTguMzY0IDIuMjMzIDEuNzIxIDIuNjA1IDIuNjU2YS44NDEuODQxIDAgMCAxIC4wNTMuMjJ2Mi44NjlhLjY0MS42NDEgMCAwIDEtLjA3OC4yNTZabS0xMS43NS01Ljk5MmgtLjM0NGE0LjM1OSA0LjM1OSAwIDAgMS0uMzU1LjUwOGMtLjc3Ljk0Ny0xLjkxOCAxLjQ5Mi0zLjUwOCAxLjQ5Mi0xLjcyNSAwLTIuOTg5LS4zNTktMy43ODItMS4yNTlhMi4xMzcgMi4xMzcgMCAwIDEtLjA4NS0uMTA0TDQgMTEuNzQ2djYuNTg1YzEuNDM1Ljc3OSA0LjUxNCAyLjE3OSA4IDIuMTc5IDMuNDg2IDAgNi41NjUtMS40IDgtMi4xNzl2LTYuNTg1bC0uMDk4LS4xMDRzLS4wMzMuMDQ1LS4wODUuMTA0Yy0uNzkzLjktMi4wNTcgMS4yNTktMy43ODIgMS4yNTktMS41OSAwLTIuNzM4LS41NDUtMy41MDgtMS40OTJhNC4zNTkgNC4zNTkgMCAwIDEtLjM1NS0uNTA4Wm0yLjMyOCAzLjI1Yy41NDkgMCAxIC40NTEgMSAxdjJjMCAuNTQ5LS40NTEgMS0xIDEtLjU0OSAwLTEtLjQ1MS0xLTF2LTJjMC0uNTQ5LjQ1MS0xIDEtMVptLTUgMGMuNTQ5IDAgMSAuNDUxIDEgMXYyYzAgLjU0OS0uNDUxIDEtMSAxLS41NDkgMC0xLS40NTEtMS0xdi0yYzAtLjU0OS40NTEtMSAxLTFabTMuMzEzLTYuMTg1Yy4xMzYgMS4wNTcuNDAzIDEuOTEzLjg3OCAyLjQ5Ny40NDIuNTQ0IDEuMTM0LjkzOCAyLjM0NC45MzggMS41NzMgMCAyLjI5Mi0uMzM3IDIuNjU3LS43NTEuMzg0LS40MzUuNTU4LTEuMTUuNTU4LTIuMzYxIDAtMS4xNC0uMjQzLTEuODQ3LS43MDUtMi4zMTktLjQ3Ny0uNDg4LTEuMzE5LS44NjItMi44MjQtMS4wMjUtMS40ODctLjE2MS0yLjE5Mi4xMzgtMi41MzMuNTI5LS4yNjkuMzA3LS40MzcuODA4LS40MzggMS41Nzh2LjAyMWMwIC4yNjUuMDIxLjU2Mi4wNjMuODkzWm0tMS42MjYgMGMuMDQyLS4zMzEuMDYzLS42MjguMDYzLS44OTR2LS4wMmMtLjAwMS0uNzctLjE2OS0xLjI3MS0uNDM4LTEuNTc4LS4zNDEtLjM5MS0xLjA0Ni0uNjktMi41MzMtLjUyOS0xLjUwNS4xNjMtMi4zNDcuNTM3LTIuODI0IDEuMDI1LS40NjIuNDcyLS43MDUgMS4xNzktLjcwNSAyLjMxOSAwIDEuMjExLjE3NSAxLjkyNi41NTggMi4zNjEuMzY1LjQxNCAxLjA4NC43NTEgMi42NTcuNzUxIDEuMjEgMCAxLjkwMi0uMzk0IDIuMzQ0LS45MzguNDc1LS41ODQuNzQyLTEuNDQuODc4LTIuNDk3WiIvPjwvc3ZnPg==" alt="Logo GitHub Copilot" width="40"/> <strong>GitHub Copilot</strong></td>
+<td>Intégré (VS Code, JetBrains, Visual Studio)</td>
+<td>Complétion inline, Chat, <strong>agent mode</strong> dans l'IDE ; en plateforme, le <strong>Copilot cloud agent</strong> prend une issue et pousse une PR</td>
+<td>Instructions de dépôt (<code>.github/</code>)</td>
+<td>Cloud (modèles hébergés GitHub)</td>
+</tr>
+<tr>
+<td><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRDk3NzU3IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q2xhdWRlPC90aXRsZT48cGF0aCBkPSJtNC43MTQ0IDE1Ljk1NTUgNC43MTc0LTIuNjQ3MS4wNzktLjIzMDctLjA3OS0uMTI3NWgtLjIzMDdsLS43ODkzLS4wNDg2LTIuNjk1Ni0uMDcyOS0yLjMzNzUtLjA5NzEtMi4yNjQ2LS4xMjE0LS41NzA3LS4xMjE1LS41MzQzLS43MDQyLjA1NDYtLjM1MjIuNDc5Ny0uMzIxOC42ODYuMDYwOCAxLjUxNzkuMTAzMiAyLjI3NjcuMTU3OCAxLjY1MTQuMDk3MiAyLjQ0NjguMjU1aC4zODg2bC4wNTQ2LS4xNTc5LS4xMzM2LS4wOTcxLS4xMDMyLS4wOTcyTDYuOTczIDkuODM1NmwtMi41NS0xLjY4NzktMS4zMzU2LS45NzE0LS43MjI1LS40OTE4LS4zNjQzLS40NjE0LS4xNTc4LTEuMDA3OC42NTU3LS43MjI1Ljg4MDMuMDYwNy4yMjQ2LjA2MDcuODkyNS42ODYgMS45MDY0IDEuNDc1NCAyLjQ4OTMgMS44MzM2LjM2NDMuMzAzNS4xNDU3LS4xMDMyLjAxODItLjA3MjgtLjE2NC0uMjczMy0xLjM1MzktMi40NDY3LTEuNDQ1LTIuNDg5My0uNjQzNS0xLjAzMi0uMTctLjYxOTRjLS4wNjA3LS4yNTUtLjEwMzItLjQ2NzQtLjEwMzItLjcyODVMNi4yODcuMTMzNSA2LjY5OTcgMGwuOTk1Ny4xMzM2LjQxOS4zNjQyLjYxOTIgMS40MTQ3IDEuMDAxOCAyLjIyODIgMS41NTQzIDMuMDI5Ni40NTUzLjg5ODUuMjQyOS44MzE4LjA5MS4yNTVoLjE1Nzl2LS4xNDU3bC4xMjc1LTEuNzA2LjIzNjgtMi4wOTQ3LjIzMDctMi42OTU3LjA3ODktLjc1ODkuMzc2NC0uOTEwNy43NDY4LS40OTE4LjU4MjguMjc5My40Nzk3LjY4Ni0uMDY2OC40NDMzLS4yODUzIDEuODUxNy0uNTU4NiAyLjkwMjEtLjM2NDMgMS45NDI5aC4yMTI1bC4yNDI5LS4yNDI5Ljk4MzUtMS4zMDUzIDEuNjUxNC0yLjA2NDMuNzI4Ni0uODE5Ni44NS0uOTA0Ni41NDY0LS40MzExaDEuMDMyMWwuNzU5IDEuMTI5My0uMzQgMS4xNjU3LTEuMDYyNSAxLjM0NzgtLjg4MDQgMS4xNDE0LTEuMjYyOCAxLjctLjc4OTMgMS4zNi4wNzI5LjEwOTMuMTg4Mi0uMDE4MyAyLjg1MzUtLjYwNyAxLjU0MjEtLjI3OTQgMS44Mzk2LS4zMTU3LjgzMTguMzg4Ni4wOTEuMzk0Ni0uMzI3OC44MDc1LTEuOTY3LjQ4NTctMi4zMDcyLjQ2MTQtMy40MzY0LjgxMzYtLjA0MjUuMDMwNC4wNDg2LjA2MDcgMS41NDgyLjE0NTcuNjYxOC4wMzY0aDEuNjIxbDMuMDE3NS4yMjQ3Ljc4OTIuNTIyLjQ3MzYuNjM3Ni0uMDc5LjQ4NTctMS4yMTQyLjYxOTMtMS42MzkzLS4zODg2LTMuODI1LS45MTA3LTEuMzExMy0uMzI3OWgtLjE4MjJ2LjEwOTNsMS4wOTI5IDEuMDY4NiAyLjAwMzUgMS44MDkyIDIuNTA3NSAyLjMzMTQuMTI3NS41NzY4LS4zMjE4LjQ1NTQtLjM0LS4wNDg2LTIuMjAzOS0xLjY1NzUtLjg1LS43NDY4LTEuOTI0Ni0xLjYyMWgtLjEyNzV2LjE3bC40NDMyLjY0OTYgMi4zNDM2IDMuNTIxNC4xMjE0IDEuMDgwNy0uMTcuMzUyMS0uNjA3MS4yMTI1LS42Njc5LS4xMjE0LTEuMzcyMS0xLjkyNDZMMTQuMzggMTcuOTU5bC0xLjE0MTQtMS45NDI4LS4xMzk3LjA3OS0uNjc0IDcuMjU1Mi0uMzE1Ni4zNzAzLS43Mjg2LjI3OTMtLjYwNzEtLjQ2MTQtLjMyMTgtLjc0NjguMzIxOC0xLjQ3NTMuMzg4Ni0xLjkyNDYuMzE1Ny0xLjUzLjI4NTMtMS45MDA0LjE3LS42MzE0LS4wMTIxLS4wNDI1LS4xMzk3LjAxODItMS40MzI4IDEuOTY3Mi0yLjE3OTYgMi45NDQ2LTEuNzI0MyAxLjg0NTYtLjQxMjguMTY0LS43MTY0LS4zNzA0LjA2NjctLjY2MTguNDAwOC0uNTg4OSAyLjM4Ni0zLjAzNTcgMS40Mzg5LTEuODgyLjkyOS0xLjA4NjgtLjAwNjItLjE1NzloLS4wNTQ2bC02LjMzODUgNC4xMTY0LTEuMTI5My4xNDU3LS40ODU3LS40NTU0LjA2MDgtLjc0NjcuMjMwNy0uMjQyOSAxLjkwNjQtMS4zMTE0WiIvPjwvc3ZnPg==" alt="Logo Claude (Claude Code)" width="40"/> <strong>Claude Code</strong></td>
+<td>CLI / terminal (Anthropic)</td>
+<td>Permissions par action, <strong>plan mode</strong> (lecture seule), auto-accept ; hooks, sous-agents, MCP</td>
+<td><code>CLAUDE.md</code> + <code>.claude/</code> (permissions, hooks, agents)</td>
+<td>Cloud Anthropic</td>
+</tr>
+<tr>
+<td><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q3Vyc29yPC90aXRsZT48cGF0aCBkPSJNMTEuNTAzLjEzMSAxLjg5MSA1LjY3OGEuODQuODQgMCAwIDAtLjQyLjcyNnYxMS4xODhjMCAuMy4xNjIuNTc1LjQyLjcyNGw5LjYwOSA1LjU1YTEgMSAwIDAgMCAuOTk4IDBsOS42MS01LjU1YS44NC44NCAwIDAgMCAuNDItLjcyNFY2LjQwNGEuODQuODQgMCAwIDAtLjQyLS43MjZMMTIuNDk3LjEzMWExLjAxIDEuMDEgMCAwIDAtLjk5NiAwTTIuNjU3IDYuMzM4aDE4LjU1Yy4yNjMgMCAuNDMuMjg3LjI5Ny41MTVMMTIuMjMgMjIuOTE4Yy0uMDYyLjEwNy0uMjI5LjA2NC0uMjI5LS4wNlYxMi4zMzVhLjU5LjU5IDAgMCAwLS4yOTUtLjUxbC05LjExLTUuMjU3Yy0uMTA5LS4wNjMtLjA2NC0uMjMuMDYxLS4yMyIvPjwvc3ZnPg==" alt="Logo Cursor" width="40"/> <strong>Cursor</strong></td>
+<td>IDE complet (fork VS Code)</td>
+<td><strong>Agent / Plan / Ask</strong> ; agents cloud en arrière-plan</td>
+<td><code>.cursor/rules/</code> (fichiers <code>.mdc</code>)</td>
+<td>Cloud (multi-modèles, dont le modèle maison Composer)</td>
+</tr>
+<tr>
+<td><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+SmV0QnJhaW5zPC90aXRsZT48cGF0aCBkPSJNMi4zNDUgMjMuOTk3QTIuMzQ3IDIuMzQ3IDAgMCAxIDAgMjEuNjUyVjEwLjk4OEMwIDkuNjY1LjUzNSA4LjM3IDEuNDczIDcuNDMzbDUuOTY1LTUuOTYxQTUuMDEgNS4wMSAwIDAgMSAxMC45ODkgMGgxMC42NjZBMi4zNDcgMi4zNDcgMCAwIDEgMjQgMi4zNDV2MTAuNjY0YTUuMDU2IDUuMDU2IDAgMCAxLTEuNDczIDMuNTU0bC01Ljk2NSA1Ljk2NUE1LjAxNyA1LjAxNyAwIDAgMSAxMy4wMDcgMjR2LS4wMDNIMi4zNDVabTguOTY5LTYuODU0SDUuNDg2djEuMzcxaDUuODI4di0xLjM3MVpNMy45NjMgNi41MTRoMTMuNTIzdjEzLjUxOWw0LjI1Ny00LjI1N2EzLjkzNiAzLjkzNiAwIDAgMCAxLjE0Ni0yLjc2N1YyLjM0NWMwLS42NzgtLjU1Mi0xLjIzNC0xLjIzNC0xLjIzNEgxMC45ODlhMy44OTcgMy44OTcgMCAwIDAtMi43NjcgMS4xNDVMMy45NjMgNi41MTRabS0uMTkyLjE5MkwyLjI1NiA4LjIyYTMuOTQ0IDMuOTQ0IDAgMCAwLTEuMTQ1IDIuNzY4djEwLjY2NGMwIC42NzguNTUyIDEuMjM0IDEuMjM0IDEuMjM0aDEwLjY2NmEzLjkgMy45IDAgMCAwIDIuNzY3LTEuMTQ2bDEuNTEyLTEuNTExSDMuNzcxVjYuNzA2WiIvPjwvc3ZnPg==" alt="Logo JetBrains (Junie)" width="40"/> <strong>JetBrains Junie</strong></td>
+<td>Agent des IDE JetBrains (distinct d'AI Assistant), GA depuis juin 2026</td>
+<td><strong>Code</strong> (planifie, édite, lance tests) / <strong>Ask</strong> (lecture seule)</td>
+<td><code>.junie/guidelines.md</code></td>
+<td>Cloud JetBrains</td>
+</tr>
+<tr>
+<td><img src="data:image/png;base64,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" alt="Logo Continue.dev" width="20"/> <strong>Continue.dev</strong></td>
+<td>Extension open source (VS Code + JetBrains)</td>
+<td>Chat, Edit, Autocomplete, <strong>Agent</strong></td>
+<td><code>.continue/config.yaml</code> + rules versionnées</td>
+<td>Au choix, dont endpoints compatibles OpenAI — donc NéoGen ou local</td>
+</tr>
+<tr>
+<td><strong>NéoGen</strong></td>
+<td>Plateforme interne Néosoft (vLLM + Open WebUI + API compatible OpenAI)</td>
+<td>Pas un agent en soi : un <strong>backend de modèles</strong> qu'on branche sur un client agent (Cline, Continue.dev)</td>
+<td>Côté client agent</td>
+<td>🟢 <strong>Souverain</strong> : le code ne quitte pas l'interne</td>
+</tr>
+</tbody>
+</table>
+<!-- TODO formateur : logo NeoGen (interne Neosoft, non public) a recuperer -->
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
+<p>🔷 Deux clarifications de vocabulaire 2026, parce que la documentation évolue vite : chez GitHub, « Copilot Edits » a existé comme mode séparé mais est aujourd'hui fusionné dans le mode agent ; chez Cursor, « Composer » désignait l'interface multi-fichiers historique et nomme désormais leur <strong>modèle</strong> maison. Si un tutoriel emploie ces termes dans l'ancien sens, il date.</p>
+<h2 id="neogen-et-la-souverainete-changer-la-destination-garder-loutillage">NéoGen et la souveraineté : changer la destination, garder l'outillage</h2>
+<p>Le point décisif pour le code métier confidentiel : Cline et Continue.dev acceptent une <strong>URL d'API personnalisée</strong>. « Compatible OpenAI » (module 01) signifie que NéoGen expose la même forme d'API que les fournisseurs cloud — on garde donc exactement le même outillage (l'extension, les rules, la boucle, la checklist) et on change la destination : le code part vers l'infrastructure interne Néosoft au lieu d'un cloud tiers.</p>
+<p>🟨 <strong>Warning</strong> : les modèles exacts servis par NéoGen et leurs capacités en mode agent sont 🟣 à vérifier dans la documentation interne Néosoft avant d'annoncer un niveau de service. À défaut de NéoGen, un modèle local (Ollama) branché sur Cline reproduit la démarche en reproductible.</p>
+<h2 id="comment-choisir">Comment choisir</h2>
+<pre class="mermaid">
+flowchart TB
+    t_start["Choisir un outil agent"] --&gt;|"code sensible ou confidentiel"| t_neogen["NeoGen via Cline ou Continue.dev"]
+    t_start --&gt;|"code non sensible"| t_ctx["Contexte d equipe"]
+    t_ctx --&gt;|"ecosysteme GitHub etabli"| t_copilot["Copilot - agent mode + cloud agent"]
+    t_ctx --&gt;|"IDE JetBrains impose"| t_junie["Junie ou Continue.dev"]
+    t_ctx --&gt;|"VS Code + choix du modele"| t_cline["Cline"]
+    t_ctx --&gt;|"terminal, refactors lourds, CI"| t_cc["Claude Code"]
+    t_ctx --&gt;|"IDE dedie tout-en-un"| t_cursor["Cursor"]
+</pre>
 
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
+<p>Le critère souveraineté passe en premier : il élimine des options avant même de comparer le confort. Ensuite viennent l'écosystème (licences déjà en place, IDE imposé) et la préférence de travail (IDE ou terminal). Il n'y a pas de « meilleur agent » dans l'absolu — il y a un meilleur agent pour un contexte, et la compétence transférable est votre méthode de pilotage, pas la maîtrise des menus d'un produit.</p>
+<h2 id="piloter-en-contexte-polyglotte-le-cas-semishop">Piloter en contexte polyglotte : le cas SemiShop</h2>
+<p>La salle travaille en quatre langages — NestJS, FastAPI, Spring Boot, .NET — et c'est voulu : SemiShop devient polyglotte à partir du module 04. Trois conséquences pratiques pour le pilotage d'agent :</p>
+<p><strong>1. La boucle de feedback est la commande de test de VOTRE stack.</strong> Un agent est aussi bon que ce qui lui permet de se vérifier. Donnez-lui, dans le prompt ou les rules, la commande de vérification de votre service — c'est elle qui ferme la boucle verify :</p>
 <table>
 <thead>
 <tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
+<th>Stack</th>
+<th>Commande de vérification</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
+<td>Spring Boot (Gradle)</td>
+<td><code>./gradlew test</code></td>
 </tr>
 <tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
+<td>NestJS</td>
+<td><code>npm test</code> (Jest)</td>
 </tr>
 <tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
+<td>FastAPI</td>
+<td><code>pytest</code></td>
+</tr>
+<tr>
+<td>.NET</td>
+<td><code>dotnet test</code></td>
+</tr>
+<tr>
+<td>Quarkus</td>
+<td><code>./mvnw test</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
+<p><strong>2. Les rules se déclinent par langage, les critères non.</strong> <code>ia-toolbox/rules/</code> gagne un fichier par stack (conventions de nommage, ORM retenu, structure de dossiers) ; mais la checklist de validation du diff, les garde-fous et les critères de livrable (bout-en-bout, pas de dépendance inventée, historique lisible) sont <strong>identiques pour tous</strong>. C'est ce qui rend les revues croisées possibles entre stagiaires de stacks différentes.</p>
+<p><strong>3. Le contrat d'API est la lingua franca.</strong> Au <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>, chacun implémente le catalogue dans sa techno, mais tous produisent le <strong>même contrat</strong> (routes, pagination, codes d'erreur). Un agent piloté sur FastAPI et un agent piloté sur Spring Boot doivent converger vers des réponses JSON indistinguables — c'est le contrat qu'on valide, pas le langage. Cette discipline prépare directement les contrats OpenAPI du module 04 et les tests contractuels du module 08.</p>
 <blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
+<p><strong>Pour les profils techniques</strong> : les agents s'appuient sur le LSP et l'outillage du langage pour naviguer et se corriger. Une stack au tooling scriptable et rapide (tests en secondes, build reproductible) donne un agent nettement plus efficace — encore un argument pour des services petits et des tests rapides, quel que soit le langage.</p>
 </blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
-<blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
-</blockquote>
-<hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
+<h2 id="ce-quil-faut-retenir">Ce qu'il faut retenir</h2>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>Tous les outils appliquent la <strong>même boucle</strong> ; ils diffèrent par l'intégration, la configuration projet et la souveraineté.</li>
+<li><strong>Souveraineté d'abord</strong> : code sensible → NéoGen (ou local) via Cline / Continue.dev, grâce à la compatibilité OpenAI.</li>
+<li>En polyglotte : <strong>rules par stack, critères communs, contrat d'API partagé</strong> — et chaque agent reçoit la commande de test de sa stack.</li>
+<li>La compétence transférable est la <strong>méthode de pilotage</strong>, pas la maîtrise d'un produit.</li>
 </ul>
-<p>🟨 Pièges à retenir :</p>
+<h2 id="pieges-courants">Pièges courants</h2>
+<p>🟨 <strong>Choisir l'outil avant le contexte</strong> : la question n'est pas « quel est le meilleur », mais « lequel est admissible ici (souveraineté), puis lequel s'intègre le mieux ».<br />
+🟨 <strong>Piloter toutes les stacks avec les mêmes rules techniques</strong> : les conventions NestJS ne sont pas celles de Spring ; l'agent générera des hybrides.<br />
+🟨 <strong>Suivre un tutoriel daté</strong> : les noms de modes bougent vite (Copilot Edits, Composer) ; se référer à la documentation officielle du moment.</p>
+<h2 id="bonnes-pratiques-production">Bonnes pratiques production</h2>
+<p>🔹 <strong>Documenter le choix d'outil dans <code>docs/decisions.md</code></strong> (module 02) : contexte, critère décisif, alternatives écartées — comme toute décision d'architecture.<br />
+🔹 <strong>Un fichier de rules par stack</strong> dans <code>ia-toolbox/rules/</code>, plus un fichier commun (garde-fous, checklist) : la boîte à outils reste utile quel que soit le service.<br />
+🔹 <strong>Tester la bascule NéoGen tôt</strong> : configurer une fois Cline ou Continue.dev sur l'API interne, pour que le jour où le code devient sensible, la bascule soit un changement d'URL, pas un changement d'outillage.</p>
+<h2 id="validation-des-acquis">Validation des acquis</h2>
+<p><strong>Q1.</strong> Vous manipulez du code métier confidentiel et voulez un mode agent. Quel choix est cohérent avec la souveraineté ?</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>A. N'importe quel agent cloud, c'est équivalent</li>
+<li>B. NéoGen (interne), branché via Cline ou Continue.dev sur son API compatible OpenAI</li>
+<li>C. Copier le code sur un service public pour aller plus vite</li>
+<li>D. Désactiver tout assistant</li>
 </ul>
-<p>🔷 Points clés à retenir :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> La compatibilité OpenAI de NéoGen permet de garder l'outillage (extension, rules, boucle) en changeant la destination : le code reste dans l'infrastructure interne.</p>
+</details>
+<p><strong>Q2.</strong> Qu'est-ce qui distingue fondamentalement NéoGen des autres lignes du comparatif ?</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>A. Il est plus rapide</li>
+<li>B. Ce n'est pas un agent mais un backend de modèles, qu'on branche sur un client agent</li>
+<li>C. Il ne fonctionne qu'avec Java</li>
+<li>D. Il n'a pas d'API</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> NéoGen fournit les modèles (vLLM, API compatible OpenAI) ; la boucle agent est apportée par le client (Cline, Continue.dev) qui pointe dessus.</p>
+</details>
+<p><strong>Q3.</strong> En contexte polyglotte, qu'est-ce qui doit rester identique entre les stacks ?</p>
+<ul>
+<li>A. Le langage de programmation</li>
+<li>B. Les conventions de nommage de chaque framework</li>
+<li>C. Les critères de validation (checklist du diff, contrat d'API, livrables) </li>
+<li>D. La commande de lancement des tests</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : C.</strong> Les rules techniques se déclinent par stack, la commande de test aussi ; mais la checklist, les garde-fous et le contrat d'API sont communs — c'est ce qui rend les services interopérables et les revues croisées possibles.</p>
+</details>
+<p><strong>Q4.</strong> Pourquoi donner à l'agent la commande de test de votre stack dès le prompt ou les rules ?</p>
+<ul>
+<li>A. Pour qu'il aille plus vite à compiler</li>
+<li>B. Parce que c'est elle qui ferme la boucle verify : sans vérification exécutable, l'agent ne peut pas se corriger</li>
+<li>C. Parce que l'agent refuse de démarrer sans</li>
+<li>D. Pour éviter d'écrire des tests soi-même</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Un agent est aussi bon que sa boucle de feedback. La commande de test est le mécanisme de vérification qui rend le verify objectif.</p>
+</details>
+<hr />
+<p>🔹 <strong>Prochaine étape</strong> : passer de la théorie à la dissection. Le <a href="05-td-anatomie-boucle-agent.md">TD 3.1 — Anatomie d'une boucle agent</a> vous fait analyser une vraie trace d'agent sur SemiShop et en tirer votre checklist de validation.</p>
     </article>
 
     

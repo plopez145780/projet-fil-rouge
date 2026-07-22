@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>04 — Microfrontends : Module Federation, shell et remotes — ou une SPA assumée</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> Microfrontends : Module Federation, shell et remotes — ou une SPA assumée <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">Microfrontends : Module Federation, shell et remotes — ou une SPA assumée</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,241 +222,164 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="01-microservices-autonomie-limites.md">01 - Microservices : autonomie, API, limites</a> — la règle bénéfice / coût d'intégration, appliquée ici au front.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
-<ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
-</ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<h2 id="1-le-microfrontend-ce-que-cest-a-quoi-ca-sert-un-exemple">1. Le microfrontend : ce que c'est, à quoi ça sert, un exemple</h2>
+<p><strong>Ce que c'est.</strong> Un microfrontend applique au front la logique du découpage : plusieurs applications front, développées et déployées séparément, composées à l'exécution dans une même page. Un <strong>shell</strong> (l'application hôte) charge des <strong>remotes</strong> (les fragments distants) et orchestre routage et navigation.</p>
+<p><strong>À quoi ça sert.</strong> Donner de l'autonomie de livraison à plusieurs équipes qui possèdent des <strong>domaines UX distincts</strong> dans une même interface : l'équipe catalogue déploie son écran sans attendre la release de l'équipe back-office.</p>
+<p><strong>Un exemple simple.</strong> Sur SemiShop, une déclinaison microfrontend découperait l'interface en un shell + deux remotes : <strong>front-office</strong> (catalogue, panier, tunnel de commande) et <strong>back-office</strong> (gestion produits, suivi des commandes). Chaque remote aurait son dépôt, son pipeline, son rythme.</p>
+<pre class="mermaid">
+flowchart TB
+    subgraph t_mf ["Option A - microfrontends"]
+        direction TB
+        spacer_1[ ]
+        style spacer_1 width:0px,height:0px,fill:none,stroke:none
+        t_shell["Shell React&lt;br/&gt;routage + auth + design system"]
+        t_fo["Remote front-office&lt;br/&gt;catalogue panier commande"]
+        t_bo["Remote back-office&lt;br/&gt;produits commandes"]
+        t_shell --&gt;|"charge a l execution"| t_fo
+        t_shell --&gt;|"charge a l execution"| t_bo
+        spacer_1 ~~~ t_shell
+    end
+    subgraph t_spa ["Option B - SPA unique (choix du lab)"]
+        direction TB
+        spacer_2[ ]
+        style spacer_2 width:0px,height:0px,fill:none,stroke:none
+        t_app["SPA React 18"]
+        t_zfo["Zone front-office&lt;br/&gt;routes /boutique"]
+        t_zbo["Zone back-office&lt;br/&gt;routes /admin"]
+        t_app --&gt; t_zfo
+        t_app --&gt; t_zbo
+        spacer_2 ~~~ t_app
+    end
+</pre>
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
-
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
+<h2 id="2-module-federation-la-mecanique">2. Module Federation : la mécanique</h2>
+<p><strong>Ce que c'est.</strong> <strong>Module Federation</strong> est la technologie de référence pour composer des remotes à l'exécution : un remote <strong>expose</strong> des modules (un composant, une page), le shell les <strong>consomme</strong> à l'exécution comme s'ils étaient locaux, et les dépendances communes (React, le design system) sont <strong>partagées</strong> pour n'être chargées qu'une fois.</p>
+<p>Née dans webpack 5, la version 2.0 a sorti le runtime du bundler : c'est aujourd'hui un SDK autonome qui fonctionne avec webpack, Rspack ou Vite, avec en plus le partage de types TypeScript entre remotes et la découverte dynamique par manifeste (référence : <code>module-federation.io</code>).</p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p><strong>Pour les profils techniques</strong> : trois notions de configuration suffisent à lire un setup — <code>exposes</code> (ce qu'un remote publie), <code>remotes</code> (ce que le shell consomme) et <code>shared</code> (les dépendances dédupliquées, avec <code>singleton: true</code> pour React sous peine de doubles instances et de hooks cassés). Le contrat implicite entre shell et remotes — versions partagées, événements, routage — est aussi engageant qu'un contrat OpenAPI, mais rarement écrit : c'est sa principale faiblesse.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
-<blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
-</blockquote>
-<hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
+<h2 id="3-ce-que-ca-coute-et-le-choix-du-lab">3. Ce que ça coûte — et le choix du lab</h2>
+<p>La liste des coûts est plus longue qu'au back, parce que le front partage un runtime unique (le navigateur) :</p>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li><strong>Design system distribué</strong> : la cohérence visuelle entre remotes exige un système partagé et versionné.</li>
+<li><strong>Authentification et état partagés</strong> : session, panier, préférences doivent traverser les frontières de remotes.</li>
+<li><strong>Versions couplées malgré tout</strong> : React en singleton signifie que les remotes montent de version ensemble.</li>
+<li><strong>Debug et outillage</strong> : source maps, tests bout en bout et CI se compliquent d'un cran.</li>
 </ul>
-<p>🟨 Pièges à retenir :</p>
+<p>Le lab SemiShop a tranché : <strong>une SPA React 18 unique</strong>, avec deux zones de routes (front-office, back-office) dans la même application. Une équipe pédagogique, un domaine e-commerce cohérent, aucun signal d'autonomie de livraison front : le microfrontend aurait coûté sans bénéfice. La décision est documentée comme telle dans le dépôt de référence — c'est une <strong>option</strong>, pas une vérité.</p>
+<p>Les deux options, honnêtement :</p>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>SPA unique (choix du lab)</th>
+<th>Microfrontends (Module Federation)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Équipes front</td>
+<td>Une (ou une par créneau)</td>
+<td>Plusieurs, domaines UX distincts</td>
+</tr>
+<tr>
+<td>Déploiement</td>
+<td>Un artefact, un rythme</td>
+<td>Un artefact par remote, rythmes indépendants</td>
+</tr>
+<tr>
+<td>Cohérence visuelle</td>
+<td>Native (un seul projet)</td>
+<td>Design system partagé à maintenir</td>
+</tr>
+<tr>
+<td>Auth / état partagé</td>
+<td>Trivial</td>
+<td>Contrat shell-remotes à concevoir</td>
+</tr>
+<tr>
+<td>Complexité build</td>
+<td>Standard</td>
+<td>Configuration fédération + manifestes</td>
+</tr>
+<tr>
+<td>Coût d'entrée</td>
+<td>Faible</td>
+<td>Élevé, à amortir sur la durée</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🟨 <strong>Warning</strong> : le microfrontend est le découpage au <strong>coût le plus élevé</strong> de ce module. La question à poser n'est pas « peut-on le faire ? » (oui, l'outillage est mûr) mais « plusieurs équipes ont-elles besoin de livrer ce front indépendamment ? ». Si la réponse est non, la SPA à zones du lab est le choix d'ingénierie, pas le choix par défaut du paresseux.</p>
+</blockquote>
+<h2 id="4-trancher-pour-votre-equipe-au-tp-42">4. Trancher pour votre équipe — au TP 4.2</h2>
+<p>Votre équipe devra écrire sa décision dans <code>docs/architecture.md</code> : SPA unique ou shell + remotes, avec les raisons <strong>rattachées à votre contexte</strong> (taille de l'équipe front, domaines UX réellement distincts, rythme de livraison) et une <strong>condition de réévaluation</strong>. Les deux réponses sont acceptables ; une décision non argumentée ne l'est pas.</p>
+<p>L'IA est utile des deux côtés de ce débat : demandez-lui le meilleur argumentaire <strong>pour</strong> puis le meilleur argumentaire <strong>contre</strong> le microfrontend dans votre contexte précis, et confrontez-les. Elle est nettement moins fiable pour générer une configuration Module Federation complète d'un coup — configuration <code>shared</code> approximative et versions inventées sont les symptômes classiques ; si vous choisissez l'option A, avancez par petites étapes validées, comme au module 03.</p>
+<blockquote>
+<p>🔹 <strong>Bonne pratique production</strong> : si vous hésitez, la SPA bien structurée (zones par domaine, imports paresseux par route) est réversible : ses frontières logiques se convertissent en remotes le jour où une deuxième équipe front existe. L'inverse — refusionner des remotes — se fait rarement.</p>
+</blockquote>
+<h2 id="ce-quil-faut-retenir">Ce qu'il faut retenir</h2>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>🔷 Microfrontend = <strong>shell + remotes</strong> composés à l'exécution ; Module Federation 2.0 en est la mécanique standard, désormais indépendante du bundler.</li>
+<li>🔷 Le microfrontend répond à un problème d'<strong>organisation</strong> (plusieurs équipes front autonomes), pas à un problème de taille de code.</li>
+<li>🔷 Le lab a choisi la <strong>SPA unique à zones</strong> : choix documenté et défendable pour une équipe. Votre équipe tranche pour elle-même au TP 4.2 — les deux options se justifient, aucune ne s'improvise.</li>
+<li>🔷 Une SPA aux frontières logiques propres reste convertible en microfrontends ; l'inverse est rare.</li>
 </ul>
-<p>🔷 Points clés à retenir :</p>
+<h2 id="pieges-courants">Pièges courants</h2>
+<blockquote>
+<p>🟨 <strong>Découper le front parce que le back l'est.</strong> La symétrie est esthétique, pas architecturale : sept services back et une équipe front font une SPA et sept contrats, pas sept remotes.</p>
+<p>🟨 <strong>Sous-estimer le contrat shell-remotes.</strong> Versions partagées, auth, événements de navigation : ce contrat implicite casse en production si personne ne l'écrit. Un remote qui monte React seul casse tous les autres.</p>
+<p>🟨 <strong>Demander à l'IA « mets-moi Module Federation »</strong>. Sans contexte de versions et de bundler, la configuration générée mélange les époques (MF 1.x / 2.0) et invente des options. Fournissez la doc officielle en contexte et validez par petites étapes.</p>
+</blockquote>
+<h2 id="validation-des-acquis">Validation des acquis</h2>
+<p><strong>Q1.</strong> Quel problème le microfrontend résout-il en premier lieu ?</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>A. La lenteur des SPA</li>
+<li>B. L'autonomie de livraison de plusieurs équipes front sur une même interface</li>
+<li>C. La taille du bundle JavaScript</li>
+<li>D. Le référencement</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> C'est une réponse organisationnelle : des équipes qui possèdent des domaines UX distincts livrent indépendamment. Sans ce besoin, il n'apporte que ses coûts.</p>
+</details>
+<p><strong>Q2.</strong> Dans Module Federation, à quoi sert la configuration <code>shared</code> avec <code>singleton: true</code> sur React ?</p>
+<ul>
+<li>A. À accélérer la compilation</li>
+<li>B. À garantir une seule instance de React partagée entre shell et remotes</li>
+<li>C. À chiffrer les échanges entre remotes</li>
+<li>D. À activer le mode sombre</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Deux instances de React dans une même page cassent hooks et contextes. Le partage en singleton évite la duplication — au prix d'un couplage de versions entre remotes.</p>
+</details>
+<p><strong>Q3.</strong> Pourquoi le choix « SPA unique » du lab SemiShop est-il défendable ?</p>
+<ul>
+<li>A. Module Federation est déprécié</li>
+<li>B. Une seule équipe, un domaine cohérent : aucun signal d'autonomie de livraison front</li>
+<li>C. React ne supporte pas les microfrontends</li>
+<li>D. Le back-office n'a pas d'interface</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> La règle bénéfice / coût s'applique au front comme au back : sans plusieurs équipes front, le microfrontend coûte (design system, auth partagée, build) sans bénéfice.</p>
+</details>
+<p><strong>Q4.</strong> Votre équipe choisit la SPA mais veut garder l'option microfrontend ouverte. Meilleure approche ?</p>
+<ul>
+<li>A. Installer Module Federation « au cas où »</li>
+<li>B. Structurer la SPA en zones par domaine avec imports paresseux, et documenter la condition de réévaluation</li>
+<li>C. Dupliquer le front en deux dépôts identiques</li>
+<li>D. Attendre le module 10</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Des frontières logiques propres rendent la conversion en remotes possible le jour venu, sans payer aujourd'hui le coût de la fédération. La décision et sa condition de réévaluation vont dans <code>docs/architecture.md</code>.</p>
+</details>
+<hr />
+<p>🔹 <strong>Prochaine étape</strong> : l'architecture décidée, reste à cadrer <strong>ce que</strong> l'on construit. Le chapitre <a href="05-ia-jira-user-stories.md">05 — IA et Jira : de l'idée aux User Stories</a> structure le besoin avant les TP de l'après-midi.</p>
     </article>
 
     

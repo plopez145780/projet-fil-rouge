@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>01 — Microservices : autonomie, API, persistance et limites</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> Microservices : autonomie, API, persistance et limites <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">Microservices : autonomie, API, persistance et limites</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,241 +222,212 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="../module03-agents-fullstack/06-tp-service-catalogue-crud.md">06 - TP 3.1 Service catalogue CRUD</a> — le service catalogue de SemiShop tourne et le front amorce l'affiche ; c'est ce socle que l'on va cadrer et découper ici.<br />
+- <a href="../module01-cadrage-lab/09-tp-cadrage-architecture.md">09 - TP 1.3 Cadrage de l'architecture</a> — l'esquisse de découpage laissée « à justifier en M04 » : on la tranche aujourd'hui.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
-<ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
-</ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<h2 id="objectifs-pedagogiques-du-module">Objectifs pédagogiques du module</h2>
+<blockquote>
+<p>À la fin de ce module, vous saurez :<br />
+- <strong>Définir</strong> un microservice (autonomie, responsabilité métier, API, persistance dédiée, observabilité) et <strong>citer trois de ses coûts</strong> systématiques.<br />
+- <strong>Décider</strong> si un découpage supplémentaire — un service ou un langage de plus — est justifié, en comparant bénéfice attendu et coût d'intégration.<br />
+- <strong>Expliquer</strong> le rôle d'un gateway et d'un BFF, et lire un routage Traefik réel (règles, priorités, middlewares).<br />
+- <strong>Argumenter</strong> un choix polyglotte tenu par des contrats OpenAPI, et <strong>trancher</strong> l'option microfrontend en connaissance de cause.<br />
+- <strong>Piloter l'IA</strong> pour transformer une idée métier en epic, User Stories, critères <code>Given/When/Then</code> et tests — sans la laisser inventer d'exigences.<br />
+- <strong>Produire</strong> <code>docs/backlog.md</code> et <code>docs/architecture.md</code>, les deux livrables de la journée.</p>
+</blockquote>
+<h2 id="de-ca-marche-a-cest-cadre">De « ça marche » à « c'est cadré »</h2>
+<p>Au module 03, vous avez fait tourner le service <strong>catalogue</strong> de SemiShop avec un agent IDE, et un front React l'affiche. La fonctionnalité existe, le diff est maîtrisé. Mais une application qui marche n'est pas une application cadrée : personne n'a écrit noir sur blanc ce que la boutique doit faire, pour qui, ni comment on saura que c'est fini. Personne n'a non plus décidé combien de services la composeront, ni dans quels langages. C'est le travail de cette journée.</p>
+<p>Le fil conducteur tient en une tension : l'IA sait produire beaucoup, vite. Demandez-lui de « découper SemiShop en microservices » et elle en proposera dix, avec un bus d'événements et un service discovery. Votre métier, dans ce module, n'est pas de produire mais de <strong>cadrer et filtrer</strong> : garder ce qui a de la valeur, refuser la complexité gratuite.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNkRCMzNGIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+U3ByaW5nPC90aXRsZT48cGF0aCBkPSJNMjEuODUzNyAxLjQxNThhMTAuNDUwNCAxMC40NTA0IDAgMCAxLTEuMjg0IDIuMjQ3MUExMS45NjY2IDExLjk2NjYgMCAxIDAgMy44NTE4IDIwLjc3NTdsLjQ0NDUuMzk1MWExMS45NTQzIDExLjk1NDMgMCAwIDAgMTkuNjMxNi04LjI5NzFjLjM0NTctMy4wMTI2LS41NjgtNi44NjQ5LTIuMDc0My0xMS40NTh6TTUuNTgwNSAyMC44NzQ1YTEuMDE3NCAxLjAxNzQgMCAxIDEtLjE0ODItMS40MzIzIDEuMDM5NiAxLjAzOTYgMCAwIDEgLjE0ODIgMS40MzIzem0xNi4xOTkxLTMuNTgwNmMtMi45Mzg1IDMuOTI2My05LjI2MDEgMi41OTI4LTEzLjI4NTIgMi43OTA0IDAgMC0uNzE2MS4wNDk0LTEuNDMyMy4xNDgxIDAgMCAuMjcxNy0uMTIzNC42MTc0LS4yNDY5IDIuODM5OC0uOTg3NyA0LjE3MzItMS4xODUzIDUuOTAxOC0yLjA3NDMgMy4yMzQ5LTEuNjU0NSA2LjQ2OTgtNS4yODQ0IDcuMTExOC05LjAzNzktMS4yMzQ3IDMuNjA1My00Ljk4ODEgNi43MTY3LTguMzk1OSA3Ljk3NjEtMi4zNDU5Ljg2NDMtNi41Njg1IDEuNzAzOS02LjU2ODUgMS43MDM5bC0uMTcyOS0uMDk4OGMtMi44NjQ1LTEuNDA3Ni0yLjk2MzItNy42MzA0IDIuMjcxOC05LjYzMDYgMi4yOTY2LS44ODkgNC40Njk2LS4zOTUgNi45NjM3LS45ODc3IDIuNjQyMi0uNjE3NCA1LjcwNDMtMi41OTI5IDYuOTM5LTUuMTg1NyAxLjM4MjggNC4xNzMyIDMuMDYyIDEwLjY0My4wNDkzIDE0LjY0MzR6Ii8+PC9zdmc+" alt="Logo Spring Boot, socle des services SemiShop" width="70"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNDE2OUUxIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UG9zdGdyZVNRTDwvdGl0bGU+PHBhdGggZD0iTTIzLjU1OTQgMTQuNzIyOGEuNTI2OS41MjY5IDAgMCAwLS4wNTYzLS4xMTkxYy0uMTM5LS4yNjMyLS40NzY4LS4zNDE4LTEuMDA3NC0uMjMyMS0xLjY1MzMuMzQxMS0yLjI5MzUuMTMxMi0yLjUyNTYtLjAxOTEgMS4zNDItMi4wNDgyIDIuNDQ1LTQuNTIyIDMuMDQxMS02LjgyOTcuMjcxNC0xLjA1MDcuNzk4Mi0zLjUyMzcuMTIyMi00LjczMTZhMS41NjQxIDEuNTY0MSAwIDAgMC0uMTUwOS0uMjM1QzIxLjY5MzEuOTA4NiAxOS44MDA3LjAyNDggMTcuNTA5OS4wMDA1Yy0xLjQ5NDctLjAxNTgtMi43NzA1LjM0NjEtMy4xMTYxLjQ3OTRhOS40NDkgOS40NDkgMCAwIDAtLjUxNTktLjA4MTYgOC4wNDQgOC4wNDQgMCAwIDAtMS4zMTE0LS4xMjc4Yy0xLjE4MjItLjAxODQtMi4yMDM4LjI2NDItMy4wNDk4Ljg0MDYtLjg1NzMtLjMyMTEtNC43ODg4LTEuNjQ1LTcuMjIxOS4wNzg4Qy45MzU5IDIuMTUyNi4zMDg2IDMuODczMy40MzAyIDYuMzA0M2MuMDQwOS44MTguNTA2OSAzLjMzNCAxLjI0MjMgNS43NDM2LjQ1OTggMS41MDY1LjkzODcgMi43MDE5IDEuNDMzNCAzLjU4Mi41NTMuOTk0MiAxLjEyNTkgMS41OTMzIDEuNzE0MyAxLjc4OTUuNDQ3NC4xNDkxIDEuMTMyNy4xNDQxIDEuODU4MS0uNzI3OS44MDEyLS45NjM1IDEuNTkwMy0xLjgyNTggMS45NDQ2LTIuMjA2OS40MzUxLjIzNTUuOTA2NC4zNjI1IDEuMzkuMzc3MmEuMDU2OS4wNTY5IDAgMCAwIC4wMDA0LjAwNDEgMTEuMDMxMiAxMS4wMzEyIDAgMCAwLS4yNDcyLjMwNTRjLS4zMzg5LjQzMDItLjQwOTQuNTE5Ny0xLjUwMDIuNzQ0My0uMzEwMi4wNjQtMS4xMzQ0LjIzMzktMS4xNDY0LjgxMTUtLjAwMjUuMTIyNC4wMzI5LjIzMDkuMDkxOS4zMjY4LjIyNjkuNDIzMS45MjE2LjYwOTcgMS4wMTUuNjMzMSAxLjMzNDUuMzMzNSAyLjUwNDQuMDkyIDMuMzcxNC0uNjc4Ny0uMDE3IDIuMjMxLjA3NzUgNC40MTc0LjM0NTQgNS4wODc0LjIyMTIuNTUyOS43NjE4IDEuOTA0NSAyLjQ2OTIgMS45MDQzLjI1MDUgMCAuNTI2My0uMDI5MS44Mjk2LS4wOTQxIDEuNzgxOS0uMzgyMSAyLjU1NTctMS4xNjk2IDIuODU1LTIuOTA1OS4xNTAzLS44NzA3LjQwMTYtMi44NzUzLjUzODgtNC4xMDEyLjAxNjktLjA3MDMuMDM1Ny0uMTIwNy4wNTctLjEzNjIuMDAwNy0uMDAwNS4wNjk3LS4wNDcxLjQyNzIuMDMwN2EuMzY3My4zNjczIDAgMCAwIC4wNDQzLjAwNjhsLjI1MzkuMDIyMy4wMTQ5LjAwMWMuODQ2OC4wMzg0IDEuOTExNC0uMTQyNiAyLjUzMTItLjQzMDguNjQzOC0uMjk4OCAxLjgwNTctMS4wMzIzIDEuNTk1MS0xLjY2OTh6TTIuMzcxIDExLjg3NjVjLS43NDM1LTIuNDM1OC0xLjE3NzktNC44ODUxLTEuMjEyMy01LjU3MTktLjEwODYtMi4xNzE0LjQxNzEtMy42ODI5IDEuNTYyMy00LjQ5MjcgMS44MzY3LTEuMjk4NiA0LjgzOTgtLjU0MDggNi4xMDgtLjEzLS4wMDMyLjAwMzItLjAwNjYuMDA2MS0uMDA5OC4wMDk0LTIuMDIzOCAyLjA0NC0xLjk3NTggNS41MzYtMS45NzA4IDUuNzQ5NS0uMDAwMi4wODIzLjAwNjYuMTk4OS4wMTYyLjM1OTMuMDM0OC41ODczLjA5OTYgMS42ODA0LS4wNzM1IDIuOTE4NC0uMTYwOSAxLjE1MDQuMTkzNyAyLjI3NjQuOTcyOCAzLjA4OTIuMDgwNi4wODQxLjE2NDguMTYzMS4yNTE4LjIzNzQtLjM0NjguMzcxNC0xLjEwMDQgMS4xOTI2LTEuOTAyNSAyLjE1NzYtLjU2NzcuNjgyNS0uOTU5Ny41NTE3LTEuMDg4Ni41MDg3LS4zOTE5LS4xMzA3LS44MTMtLjU4NzEtMS4yMzgxLTEuMzIyMy0uNDc5Ni0uODM5LS45NjM1LTIuMDMxNy0xLjQxNTUtMy41MTI2em02LjAwNzIgNS4wODcxYy0uMTcxMS0uMDQyOC0uMzI3MS0uMTEzMi0uNDMyMi0uMTc3Mi4wODg5LS4wMzk0LjIzNzQtLjA5MDIuNDgzMy0uMTQwOSAxLjI4MzMtLjI2NDEgMS40ODE1LS40NTA2IDEuOTE0My0xLjAwMDIuMDk5Mi0uMTI2LjIxMTYtLjI2ODcuMzY3My0uNDQyNmEuMzU0OS4zNTQ5IDAgMCAwIC4wNzM3LS4xMjk4Yy4xNzA4LS4xNTEzLjI3MjQtLjEwOTkuNDM2OS0uMDQxNy4xNTYuMDY0Ni4zMDc4LjI2LjM2OTUuNDc1Mi4wMjkxLjEwMTYuMDYxOS4yOTQ1LS4wNDUyLjQ0NDQtLjkwNDMgMS4yNjU4LTIuMjIxNiAxLjI0OTQtMy4xNjc2IDEuMDEyOHptMi4wOTQtMy45ODgtLjA1MjUuMTQxYy0uMTMzLjM1NjYtLjI1NjcuNjg4MS0uMzMzNCAxLjAwMy0uNjY3NC0uMDAyMS0xLjMxNjgtLjI4NzItMS44MTA1LS44MDI0LS42Mjc5LS42NTUxLS45MTMxLTEuNTY2NC0uNzgyNS0yLjUwMDQuMTgyOC0xLjMwNzkuMTE1My0yLjQ0NjguMDc5LTMuMDU4Ni0uMDA1LS4wODU3LS4wMDk1LS4xNjA3LS4wMTIyLS4yMTk5LjI5NTctLjI2MjEgMS42NjU5LS45OTYyIDIuNjQyOS0uNzcyNC40NDU5LjEwMjIuNzE3Ni40MDU3LjgzMDUuOTI4LjU4NDYgMi43MDM4LjA3NzQgMy44MzA3LS4zMzAyIDQuNzM2My0uMDg0LjE4NjYtLjE2MzMuMzYyOS0uMjMxMS41NDU0em03LjM2MzcgNC41NzI1Yy0uMDE2OS4xNzY4LS4wMzU4LjM3Ni0uMDYxOC41OTU5bC0uMTQ2LjQzODNhLjM1NDcuMzU0NyAwIDAgMC0uMDE4Mi4xMDc3Yy0uMDA1OS40NzQ3LS4wNTQuNjQ4OS0uMTE1Ljg2OTMtLjA2MzQuMjI5Mi0uMTM1My40ODkxLS4xNzk0IDEuMDU3NS0uMTEgMS40MTQzLS44NzgyIDIuMjI2Ny0yLjQxNzIgMi41NTY1LTEuNTE1NS4zMjUxLTEuNzg0My0uNDk2OC0yLjAyMTItMS4yMjE3YTYuNTgyNCA2LjU4MjQgMCAwIDAtLjA3NjktLjIyNjZjLS4yMTU0LS41ODU4LS4xOTExLTEuNDExOS0uMTU3NC0yLjU1NTEuMDE2NS0uNTYxMi0uMDI0OS0xLjkwMTMtLjMzMDItMi42NDYyLjAwNDQtLjI5MzIuMDEwNi0uNTkwOS4wMTktLjg5MThhLjM1MjkuMzUyOSAwIDAgMC0uMDE1My0uMTEyNiAxLjQ5MjcgMS40OTI3IDAgMCAwLS4wNDM5LS4yMDhjLS4xMjI2LS40MjgzLS40MjEzLS43ODY2LS43Nzk3LS45MzUxLS4xNDI0LS4wNTktLjQwMzgtLjE2NzItLjcxNzgtLjA4NjkuMDY3LS4yNzYuMTgzMS0uNTg3NS4zMDktLjkyNDlsLjA1MjktLjE0MmMuMDU5NS0uMTYuMTM0LS4zMjU3LjIxMy0uNTAxMi40MjY1LS45NDc2IDEuMDEwNi0yLjI0NTMuMzc2Ni01LjE3NzItLjIzNzQtMS4wOTgxLTEuMDMwNC0xLjYzNDMtMi4yMzI0LTEuNTA5OC0uNzIwNy4wNzQ2LTEuMzc5OS4zNjU0LTEuNzA4OC41MzIxYTUuNjcxNiA1LjY3MTYgMCAwIDAtLjE5NTguMTA0MWMuMDkxOC0xLjEwNjQuNDM4Ni0zLjE3NDEgMS43MzU3LTQuNDgyM2E0LjAzMDYgNC4wMzA2IDAgMCAxIC4zMDMzLS4yNzYuMzUzMi4zNTMyIDAgMCAwIC4xNDQ3LS4wNjQ0Yy43NTI0LS41NzA2IDEuNjk0NS0uODUwNiAyLjgwMi0uODMyNS40MDkxLjAwNjcuODAxNy4wMzM5IDEuMTc0Mi4wODEgMS45MzkuMzU0NCAzLjI0MzkgMS40NDY4IDQuMDM1OSAyLjM4MjcuODE0My45NjIzIDEuMjU1MiAxLjkzMTUgMS40MzEyIDIuNDU0My0xLjMyMzItLjEzNDYtMi4yMjM0LjEyNjgtMi42Nzk3Ljc3OS0uOTkyNiAxLjQxODkuNTQzIDQuMTcyOSAxLjI4MTEgNS40OTY0LjEzNTMuMjQyNi4yNTIyLjQ1MjIuMjg4OS41NDEzLjI0MDMuNTgyNS41NTE1Ljk3MTMuNzc4NyAxLjI1NTIuMDY5Ni4wODcuMTM3Mi4xNzE0LjE4ODUuMjQ1LS40MDA4LjExNTUtMS4xMjA4LjM4MjUtMS4wNTUyIDEuNzE3LS4wMTIzLjE1NjMtLjA0MjMuNDQ2OS0uMDgzNC44MTQ4LS4wNDYxLjIwNzctLjA3MDIuNDYwMy0uMDk5NC43NjYyem0uODkwNS0xLjYyMTFjLS4wNDA1LS44MzE2LjI2OTEtLjkxODUuNTk2Ny0xLjAxMDVhMi44NTY2IDIuODU2NiAwIDAgMCAuMTM1LS4wNDA2IDEuMjAyIDEuMjAyIDAgMCAwIC4xMzQyLjEwM2MuNTcwMy4zNzY1IDEuNTgyMy40MjEzIDMuMDA2OC4xMzQ0LS4yMDE2LjE3NjktLjUxODkuMzk5NC0uOTUzMy42MDExLS40MDk4LjE5MDMtMS4wOTU3LjMzMy0xLjc0NzMuMzYzNi0uNzE5Ny4wMzM2LTEuMDg1OS0uMDgwNy0xLjE3MjEtLjE1MXptLjU2OTUtOS4yNzEyYy0uMDA1OS4zNTA4LS4wNTQyLjY2OTItLjEwNTQgMS4wMDE3LS4wNTUuMzU3Ni0uMTEyLjcyNzQtLjEyNjQgMS4xNzYyLS4wMTQyLjQzNjguMDQwNC44OTA5LjA5MzIgMS4zMzAxLjEwNjYuODg3LjIxNiAxLjgwMDMtLjIwNzUgMi43MDE0YTMuNTI3MiAzLjUyNzIgMCAwIDEtLjE4NzYtLjM4NTZjLS4wNTI3LS4xMjc2LS4xNjY5LS4zMzI2LS4zMjUxLS42MTYyLS42MTU2LTEuMTA0MS0yLjA1NzQtMy42ODk2LTEuMzE5My00Ljc0NDYuMzc5NS0uNTQyNyAxLjM0MDgtLjU2NjEgMi4xNzgxLS40NjN6bS4yMjg0IDcuMDEzN2ExMi4zNzYyIDEyLjM3NjIgMCAwIDAtLjA4NTMtLjEwNzRsLS4wMzU1LS4wNDQ0Yy43MjYyLTEuMTk5NS41ODQyLTIuMzg2Mi40NTc4LTMuNDM4NS0uMDUxOS0uNDMxOC0uMTAwOS0uODM5Ni0uMDg4NS0xLjIyMjYuMDEyOS0uNDA2MS4wNjY2LS43NTQzLjExODUtMS4wOTExLjA2MzktLjQxNS4xMjg4LS44NDQzLjExMDktMS4zNTA1LjAxMzQtLjA1MzEuMDE4OC0uMTE1OC4wMTE4LS4xOTAyLS4wNDU3LS40ODU1LS41OTk5LTEuOTM4LTEuNzI5NC0zLjI1My0uNjA3Ni0uNzA3My0xLjQ4OTYtMS40OTcyLTIuNjg4OS0yLjAzOTUuNTI1MS0uMTA2NiAxLjIzMjgtLjIwMzUgMi4wMjQ0LS4xODU5IDIuMDUxNS4wNDU2IDMuNjc0Ni44MTM1IDQuODI0MiAyLjI4MjRhLjkwOC45MDggMCAwIDEgLjA2NjcuMTAwMmMuNzIzMSAxLjM1NTYtLjI3NjIgNi4yNzUxLTIuOTg2NyAxMC41NDA1em0tOC44MTY2LTYuMTE2MmMtLjAyNS4xNzk0LS4zMDg5LjQyMjUtLjYyMTEuNDIyNWEuNTgyMS41ODIxIDAgMCAxLS4wODA5LS4wMDU2Yy0uMTg3My0uMDI2LS4zNzY1LS4xNDQtLjUwNTktLjMxNTYtLjA0NTgtLjA2MDUtLjEyMDMtLjE3OC0uMTA1NS0uMjg0NC4wMDU1LS4wNDAxLjAyNjEtLjA5ODUuMDkyNS0uMTQ4OC4xMTgyLS4wODk0LjM1MTgtLjEyMjYuNjA5Ni0uMDg2Ny4zMTYzLjA0NDEuNjQyNi4xOTM4LjYxMTMuNDE4NnptNy45MzA1LS40MTE0Yy4wMTExLjA3OTItLjA0OS4yMDEtLjE1MzEuMzEwMi0uMDY4My4wNzE3LS4yMTIuMTk2MS0uNDA3OS4yMjMyYS41NDU2LjU0NTYgMCAwIDEtLjA3NS4wMDUyYy0uMjkzNSAwLS41NDE0LS4yMzQ0LS41NjA3LS4zNzE3LS4wMjQtLjE3NjUuMjY0MS0uMzEwNi41NjExLS4zNTIuMjk3LS4wNDE0LjYxMTEuMDA4OC42MzU2LjE4NTF6Ii8+PC9zdmc+" alt="Logo PostgreSQL, base de donnees de SemiShop" width="70"/></p>
+<h2 id="1-le-microservice-ce-que-cest-a-quoi-ca-sert-un-exemple">1. Le microservice : ce que c'est, à quoi ça sert, un exemple</h2>
+<p><strong>Ce que c'est.</strong> Un microservice est un composant applicatif <strong>autonome</strong> : il porte une <strong>responsabilité métier</strong> unique, expose une <strong>API</strong> stable, gère <strong>sa propre persistance</strong> et se déploie et s'observe indépendamment des autres. On l'oppose au <strong>monolithe</strong>, où toutes les responsabilités vivent dans un seul déployable.</p>
+<p><strong>À quoi ça sert.</strong> Découper permet à des équipes différentes de livrer à des rythmes différents, de mettre à l'échelle la partie qui sature, ou d'isoler une technologie particulière. C'est un moyen, jamais un objectif.</p>
+<p><strong>Un exemple simple : le socle SemiShop.</strong> La boutique de matériel reconditionné de SEMIFIR repose sur trois services :</p>
+<pre class="mermaid">
+flowchart LR
+    t_front["Front React SPA"] --&gt;|"HTTP /api"| t_bff["BFF exposition&lt;br/&gt;Spring Boot"]
+    t_bff --&gt;|"REST"| t_cmd["Service commandes&lt;br/&gt;Spring Boot"]
+    t_bff --&gt;|"REST"| t_cat["Service catalogue&lt;br/&gt;Spring Boot"]
+    t_cmd --&gt;|"REST consultation"| t_cat
+    t_cmd --&gt;|"SQL"| t_dbm[("metier_db")]
+    t_cat --&gt;|"SQL"| t_dbr[("referentiel_db")]
+</pre>
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
+<p>Le <strong>catalogue</strong> tient le référentiel produits (grades, prix, stock) dans <code>referentiel_db</code>. Le service <strong>commandes</strong> porte les règles métier (panier, statuts, paiement simulé) dans <code>metier_db</code>. Le <strong>BFF</strong> est la porte d'entrée du front : il agrège et authentifie. Trois responsabilités, trois services, deux bases logiques sur une même instance PostgreSQL.</p>
+<blockquote>
+<p>🔷 <strong>Note</strong> : ce découpage minimal est une <strong>décision</strong>, pas une évidence. Panier, clients et paiements vivent aujourd'hui <em>dans</em> le service commandes ; le stock vit <em>dans</em> le catalogue. Faut-il les extraire ? C'est exactement la question du <a href="06-td-microservice-justifie.md">TD 4.1</a>.</p>
+</blockquote>
+<p>Les cinq attributs qui qualifient un microservice :</p>
+<table>
+<thead>
+<tr>
+<th>Attribut</th>
+<th>Ce que ça signifie</th>
+<th>Sur SemiShop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autonomie</td>
+<td>Se déploie et évolue seul</td>
+<td>Le catalogue livre une correction de prix sans toucher aux commandes</td>
+</tr>
+<tr>
+<td>Responsabilité métier</td>
+<td>Un domaine, un seul</td>
+<td>« Tenir le référentiel produits reconditionnés »</td>
+</tr>
+<tr>
+<td>API stable</td>
+<td>Contrat explicite (REST, OpenAPI)</td>
+<td><code>GET /api/catalogue/produits</code>, versionné</td>
+</tr>
+<tr>
+<td>Persistance dédiée</td>
+<td>Sa base, jamais partagée en écriture</td>
+<td><code>referentiel_db</code> vs <code>metier_db</code></td>
+</tr>
+<tr>
+<td>Observabilité</td>
+<td>Logs, métriques, traces propres</td>
+<td>Traces corrélées BFF → métier → référentiel</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Pour les profils techniques</strong> : « persistance dédiée » ne signifie pas une instance PostgreSQL par service. Une instance unique avec <strong>une base logique par service</strong> suffit en développement — c'est le choix du lab. L'interdit porte sur l'accès croisé : un service ne lit jamais la base d'un autre, il passe par son API.</p>
+</blockquote>
+<h2 id="2-les-limites-chaque-frontiere-a-un-cout">2. Les limites : chaque frontière a un coût</h2>
+<p>C'est le message central du module. Une frontière de service introduit un <strong>appel réseau</strong> (latence, pannes partielles), une <strong>cohérence distribuée</strong> à gérer (plus de transaction unique qui embrasse tout), une <strong>duplication d'infrastructure</strong> (image Docker, healthcheck, secrets, monitoring par service) et une <strong>complexité de test</strong> (orchestrer plusieurs services pour un scénario de bout en bout).</p>
+<blockquote>
+<p><strong>Pour les profils techniques</strong> : passer d'un appel de méthode in-process (nanosecondes, transactionnel, typé au compilateur) à un appel HTTP entre conteneurs (millisecondes, faillible, sérialisé) multiplie les modes de défaillance. Un <code>NullPointerException</code> devient un timeout, un 503, une double écriture. Sur SemiShop, la validation d'une commande décrémente le stock du catalogue : dans le socle, c'est un appel REST qui peut échouer <em>après</em> la création de la commande — un cas que le monolithe n'avait pas.</p>
+</blockquote>
+<p>Prenez un exemple concret du domaine : le décrément de stock à la validation d'une commande. Tant que stock et commande vivent dans le même déployable, une transaction SQL garantit la cohérence. Séparez-les, et il faut choisir : appel synchrone avec compensation en cas d'échec, ou accepter une fenêtre d'incohérence. Aucune des deux options n'est gratuite.</p>
+<blockquote>
+<p>🟨 <strong>Warning — le microservice artificiel</strong> : découper « parce que c'est moderne » est l'anti-pattern classique de ce module. Pour une boutique tenue par une équipe, un <strong>monolithe modulaire</strong> (modules bien séparés dans un seul déployable) ou un socle de deux-trois services est presque toujours le bon point de départ. On ne trace une frontière physique que lorsqu'un besoin réel l'exige.</p>
+</blockquote>
+<h2 id="3-la-regle-de-decision-benefice-cout-dintegration">3. La règle de décision : bénéfice &gt; coût d'intégration</h2>
+<p>On découpe quand le bénéfice attendu dépasse le coût d'intégration, pas avant. Les signaux qui justifient une extraction (au moins un requis) :</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Ce qu'il veut dire</th>
+<th>Exemple SemiShop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Équipes autonomes</td>
+<td>Deux équipes veulent livrer sans se bloquer</td>
+<td>Une équipe dédiée au panier, une autre au catalogue</td>
+</tr>
+<tr>
+<td>Scaling ciblé</td>
+<td>Une partie sature indépendamment</td>
+<td>La consultation catalogue encaisse dix fois le trafic du paiement</td>
+</tr>
+<tr>
+<td>Cycle de vie divergent</td>
+<td>Un composant change beaucoup plus souvent</td>
+<td>Les règles de pricing du reconditionné bougent chaque semaine</td>
+</tr>
+<tr>
+<td>Conformité / isolation</td>
+<td>Une contrainte impose la séparation</td>
+<td>Les données de paiement cloisonnées</td>
+</tr>
+<tr>
+<td>Technologie imposée</td>
+<td>Un écosystème est nettement meilleur ailleurs</td>
+<td>Un scoring d'état du matériel en Python</td>
+</tr>
+</tbody>
+</table>
+<p>Positionnons quelques candidats SemiShop sur l'arbitrage coût / bénéfice :</p>
+<pre class="mermaid">
+quadrantChart
+    title Decouper SemiShop - cout integration vs benefice
+    x-axis Faible cout integration --&gt; Fort cout integration
+    y-axis Faible benefice --&gt; Fort benefice
+    quadrant-1 A etudier serieusement
+    quadrant-2 Decoupage justifie
+    quadrant-3 Rester module
+    quadrant-4 Microservice artificiel
+    Service panier equipe dediee: [0.55, 0.75]
+    Service grade produit seul: [0.7, 0.2]
+    Module paiement simule: [0.45, 0.35]
+    Catalogue deja isole: [0.25, 0.7]
+</pre>
 
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
+<p>Le quadrant bas-droite — fort coût, faible bénéfice — est celui du microservice artificiel : un « service grade produit » qui ne ferait que stocker A/B/C n'a aucune raison d'exister hors du catalogue. À l'inverse, le catalogue isolé est peu coûteux (frontière naturelle, données de référence) pour un bénéfice réel.</p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p>🔹 <strong>Bonne pratique production</strong> : commencez par des frontières <strong>logiques</strong> propres (packages, modules par domaine), et n'extrayez un service que le jour où un signal concret le réclame. Extraire un module bien isolé est un chantier maîtrisé ; recoller trois microservices mal découpés est une réécriture.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
-
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
-</code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
-<blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
-</blockquote>
-<hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
+<h2 id="4-et-lia-dans-tout-ca">4. Et l'IA dans tout ça ?</h2>
+<p>L'IA intervient deux fois dans cette décision, et jamais comme décideur. En amont, c'est un <strong>générateur d'arguments</strong> : demandez-lui les bénéfices et les coûts d'une extraction donnée, exigez qu'elle cite les signaux, interdisez-lui de supposer des exigences que vous n'avez pas fournies. En aval, c'est un <strong>rédacteur</strong> : une fois la décision prise, elle met en forme l'entrée du journal de décisions plus vite que vous.</p>
+<p>Entre les deux, le filtre reste humain — c'est le triptyque du module 02 : <em>proposition IA → gate déterministe → validation humaine</em>. Ici, le gate est la grille de signaux : une extraction sans signal réel cité est refusée, quelle que soit l'éloquence de la justification générée.</p>
+<h2 id="ce-quil-faut-retenir">Ce qu'il faut retenir</h2>
 <ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
+<li>🔷 Un <strong>microservice</strong> = autonomie + responsabilité métier + API + persistance dédiée + observabilité. Cinq attributs, pas un.</li>
+<li>🔷 <strong>On découpe quand le bénéfice dépasse le coût d'intégration.</strong> Chaque frontière ajoute réseau, cohérence distribuée, infra dupliquée et tests plus lourds.</li>
+<li>🔷 Le socle SemiShop (BFF + commandes + catalogue) est un <strong>découpage minimal décidé</strong>, pas un dogme : panier, stock, clients et paiement y vivent en modules.</li>
+<li>🔷 L'IA propose des découpages et rédige les décisions ; elle ne <strong>tranche</strong> jamais. Toute frontière doit citer un signal réel.</li>
 </ul>
-<p>🟨 Pièges à retenir :</p>
+<h2 id="pieges-courants">Pièges courants</h2>
+<blockquote>
+<p>🟨 <strong>Découper par réflexe.</strong> « Microservices » n'est pas un objectif. Le piège est de payer tout le coût distribué sans le bénéfice — et de s'en rendre compte au premier test de bout en bout.</p>
+<p>🟨 <strong>Confondre base logique et instance.</strong> Une instance PostgreSQL partagée en développement est saine ; deux services qui écrivent dans la <strong>même base logique</strong> ne sont plus deux services.</p>
+<p>🟨 <strong>Prendre le lab pour la production.</strong> Le dépôt de référence assume des choix de démonstration (vous en verrez un au chapitre suivant sur le routage). Reproduire un choix de lab sans le requalifier est un piège de ce module.</p>
+</blockquote>
+<h2 id="validation-des-acquis">Validation des acquis</h2>
+<p><strong>Q1.</strong> Lequel n'est <strong>pas</strong> un attribut définitoire d'un microservice ?</p>
 <ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
+<li>A. Persistance dédiée</li>
+<li>B. Responsabilité métier unique</li>
+<li>C. Partage de la base d'un autre service en écriture</li>
+<li>D. Déploiement autonome</li>
 </ul>
-<p>🔷 Points clés à retenir :</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : C.</strong> Un microservice gère sa propre persistance ; écrire dans la base d'un autre service recrée un couplage fort et supprime l'autonomie de déploiement.</p>
+</details>
+<p><strong>Q2.</strong> Dans le socle SemiShop, où vivent aujourd'hui le panier et le paiement simulé ?</p>
 <ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
+<li>A. Dans deux microservices dédiés</li>
+<li>B. Dans le service commandes, en modules</li>
+<li>C. Dans le BFF</li>
+<li>D. Dans le front React</li>
 </ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Le socle assume un découpage minimal : le service commandes regroupe panier, statuts et paiement simulé. Les extraire est une décision à instruire, pas un acquis.</p>
+</details>
+<p><strong>Q3.</strong> Quel coût est <strong>systématiquement</strong> introduit par une frontière de service ?</p>
+<ul>
+<li>A. Un appel réseau faillible (latence, pannes partielles)</li>
+<li>B. Une baisse de la qualité du code</li>
+<li>C. L'obligation d'utiliser Kubernetes</li>
+<li>D. La perte de l'historique Git</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : A.</strong> Chaque frontière remplace un appel in-process par un appel réseau : latence, sérialisation, timeouts, pannes partielles. Les autres coûts (cohérence, infra, tests) s'y ajoutent.</p>
+</details>
+<p><strong>Q4.</strong> L'IA vous propose d'extraire un « service grade produit » qui stocke A/B/C. Bonne réaction ?</p>
+<ul>
+<li>A. Accepter : c'est une responsabilité identifiable</li>
+<li>B. Refuser : aucun signal (équipe, scaling, cycle, conformité, techno) ne le justifie</li>
+<li>C. Accepter mais en Python</li>
+<li>D. Demander un deuxième avis à un autre modèle</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Un attribut de données n'est pas un domaine. Sans signal réel, c'est le quadrant fort coût / faible bénéfice : le microservice artificiel type.</p>
+</details>
+<hr />
+<p>🔹 <strong>Prochaine étape</strong> : toutes ces frontières convergent vers une porte d'entrée. Le chapitre <a href="02-gateway-contrats-api.md">02 — Gateway et contrats d'API</a> montre comment Traefik et le BFF organisent le trafic de SemiShop — et ce qui se passe quand on court-circuite le BFF.</p>
     </article>
 
     

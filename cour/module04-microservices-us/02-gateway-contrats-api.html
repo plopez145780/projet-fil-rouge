@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 — TD 3.1 : Anatomie d'une boucle agent et checklist de validation</title>
+    <title>02 — Gateway et communication inter-services : Traefik, BFF, contrats OpenAPI</title>
     
     
     
@@ -102,7 +102,7 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 639.199219 51.796875 L 637.597656 51.796875 L 637.597656 48.603516 L 640.996094 48.603516 L 640.996094 51.796875 Z M 637.597656 80.800781 L 640.703125 80.800781 L 640.703125 166.298828 L 637.597656 166.298828 Z M 637.597656 80.800781 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 <path style="fill-rule:nonzero;fill:rgb(88.627451%,37.254902%,17.647059%);fill-opacity:1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(88.627451%,37.254902%,17.254902%);stroke-opacity:1;stroke-miterlimit:10;" d="M 674.599609 105.898438 C 681.103516 89.697266 697.304688 80.800781 717.099609 80.800781 L 718.701172 80.800781 L 718.701172 83.896484 L 717.099609 83.896484 C 692.099609 83.896484 674.697266 97.5 674.599609 122.695312 L 674.599609 166.201172 L 671.503906 166.201172 L 671.503906 123.398438 C 671.503906 123.203125 671.503906 122.998047 671.503906 122.802734 L 671.503906 80.800781 L 674.599609 80.800781 Z M 674.599609 105.898438 " transform="matrix(0.4,0,0,0.4,0,0)"/>
 </g>
-</svg> <span class="smf-module">03</span> TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation <p class="smf-lede">Dev Full Stack assiste par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
+</svg> <span class="smf-module">04</span> Gateway et communication inter-services : Traefik, BFF, contrats OpenAPI <p class="smf-lede">Dev Full Stack assisté par IA</p> <div class="smf-f"><p class="smf-k">Formateur</p><p class="smf-v">Adrien Vossough</p></div><div class="smf-f"><p class="smf-k">Mise à jour</p><p class="smf-v">2026-07-19</p></div><div class="smf-f"><p class="smf-k">Version</p><p class="smf-v">2.0.0</p></div>
   Styles scopes sous .smf-cover (aucune fuite). Palette = bleu du deck.
 -->
 <style>
@@ -207,9 +207,9 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
   </div>
 
   <div class="smf-mid">
-    <span class="smf-module">03</span>
-    <h1 class="smf-title">TD 3.1 - Anatomie d&#x27;une boucle agent et checklist de validation</h1>
-    <p class="smf-lede">Dev Full Stack assiste par IA</p>
+    <span class="smf-module">04</span>
+    <h1 class="smf-title">Gateway et communication inter-services : Traefik, BFF, contrats OpenAPI</h1>
+    <p class="smf-lede">Dev Full Stack assisté par IA</p>
   </div>
 
   <div class="smf-bottom">
@@ -222,241 +222,180 @@ const PASTEL_COLORS={blue:{bg: '#dbeafe', border: '#3b82f6', text: '#1e3a8a'}, g
 </section>
 <blockquote>
 <p>🔷 <strong>Prérequis de ce chapitre</strong> (dépendances directes) :<br />
-- <a href="02-boucle-plan-act-verify.md">02 — La boucle plan-act-verify et la validation du diff</a> — les trois temps de la boucle et les cinq contrôles du diff, qu'on décortique ici sur une trace réelle.</p>
+- <a href="01-microservices-autonomie-limites.md">01 - Microservices : autonomie, API, limites</a> — le socle SemiShop (BFF + commandes + catalogue) et la règle bénéfice / coût : on organise ici le trafic entre ces frontières.</p>
 </blockquote>
-<h2 id="prerequis-de-lexercice">Prérequis de l'exercice</h2>
-<ul>
-<li><strong>Modules requis</strong> : chapitres <a href="01-modes-interaction.md">01</a> et <a href="02-boucle-plan-act-verify.md">02</a>.</li>
-<li><strong>Ressources à avoir sous la main</strong> : votre boîte à outils <code>ia-toolbox/</code> (dossier <code>checklists/</code>, rules du module 02) ; un éditeur Markdown. Aucun environnement technique à démarrer.</li>
-<li><strong>Format</strong> : semi-guidé, individuel ou binôme. <strong>Nature</strong> : analytique. Le livrable est un fichier de checklist versionné dans <code>ia-toolbox/checklists/</code>.</li>
-</ul>
-<h2 id="objectif-et-contexte">Objectif et contexte</h2>
-<p><strong>Objectif.</strong> Décortiquer un tour de boucle agent complet pour identifier ce qui relève du <strong>plan</strong>, de l'<strong>act</strong> et du <strong>verify</strong>, puis en extraire une <strong>checklist de validation</strong> réutilisable — celle que vous appliquerez à chaque diff du <a href="06-tp-service-catalogue-crud.md">TP 3.1</a>.</p>
-<p><strong>Contexte fil rouge.</strong> Chez SEMIFIR, l'équipe SemiShop a demandé à un agent d'ajouter un endpoint <code>GET /produits/{id}/disponibilite</code> au service <strong>catalogue</strong> : le futur service commandes en aura besoin pour vérifier le stock avant de valider un achat. C'est une tâche typique : petite, transverse (DTO → service → controller → test), parfaite pour observer une boucle sans se noyer. Le service catalogue est celui que vous construirez cet après-midi au TP 3.1 ; ici, on ne code pas — on <strong>lit</strong> ce que l'agent a produit et on <strong>juge</strong>.</p>
-<h3 id="ce-que-vous-allez-produire">Ce que vous allez produire</h3>
-<div class="highlight"><pre><span></span><code>ia-toolbox/checklists/
-└── validation-diff-agent.md   # checklist reutilisable : plan, act, verify + 5 garde-fous
-</code></pre></div>
-<h2 id="etape-1-segmenter-une-trace-dagent-en-plan-act-verify">Étape 1 : segmenter une trace d'agent en plan / act / verify</h2>
-<p><strong>Objectif.</strong> Reconnaître les trois temps de la boucle dans une trace brute — condition pour savoir où intervenir.</p>
-<p><strong>Contexte.</strong> Un agent verbalise plus ou moins ce qu'il fait. Savoir étiqueter chaque bloc « ceci est un plan / une action / une vérification » est la compétence de base du pilotage.</p>
-<p><strong>Explication.</strong> Une trace d'agent mélange trois natures de contenu, qu'on distingue à leurs marqueurs :</p>
-<ul>
-<li><strong>Plan</strong> : liste d'étapes, ordre des fichiers, intention (« je vais d'abord... puis... »). Aucune ligne de code encore.</li>
-<li><strong>Act</strong> : édition de fichiers (diff), commandes lancées (<code>./gradlew</code>, <code>npm</code>, <code>git</code>).</li>
-<li><strong>Verify</strong> : sortie de test, comparaison au plan, relecture.</li>
-</ul>
-<p><strong>Exemple traité</strong> — la trace d'une boucle <strong>saine</strong> sur la tâche disponibilité, segmentée pour vous (les étiquettes <code>[PLAN]</code>, <code>[ACT]</code>, <code>[VERIFY]</code> sont ajoutées par nous, pas par l'agent) :</p>
-<div class="highlight"><pre><span></span><code>[PLAN]
-Objectif : exposer GET /produits/{id}/disponibilite sur le service catalogue
-(stock, prix HT, taux TVA, actif) pour le futur service commandes.
-Etapes prevues :
-  1. Creer le DTO DisponibiliteDto (produitId, stock, prixHt, tauxTva, actif)
-  2. Ajouter la methode disponibilite(id) dans ProduitService (404 si produit inconnu)
-  3. Ajouter la route GET /produits/{id}/disponibilite dans ProduitController
-  4. Ajouter un test : produit connu -&gt; 200, produit inconnu -&gt; 404
-  5. Lancer ./gradlew test
+<h2 id="1-le-gateway-ce-que-cest-a-quoi-ca-sert-un-exemple">1. Le gateway : ce que c'est, à quoi ça sert, un exemple</h2>
+<p><strong>Ce que c'est.</strong> Un gateway (ou API gateway) est le composant unique par lequel entre tout le trafic externe d'une plateforme : il <strong>route</strong> chaque requête vers le bon service, et concentre les préoccupations transverses — TLS, CORS, limitation de débit, authentification.</p>
+<p><strong>À quoi ça sert.</strong> Sans gateway, le front devrait connaître l'adresse de chaque service, chaque service devrait gérer lui-même TLS et CORS, et changer un port casserait les clients. Avec un gateway, les services restent privés sur le réseau Docker et une seule porte est exposée.</p>
+<p><strong>Un exemple simple.</strong> Sur SemiShop, tout passe par <strong>Traefik</strong> : <code>http://semishop.localhost/</code> sert le front, <code>http://semishop.localhost/api/...</code> part vers le back. Le navigateur ne voit qu'un seul hôte.</p>
+<p><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMjRBMUMxIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VHJhZWZpayBQcm94eTwvdGl0bGU+PHBhdGggZD0iTTEyIDEuMTljMS4wODggMCAyLjA1Ni43NjggMi4wNTYgMS43MTQgMCAuOTQ3LS45MjEgMS43MTUtMi4wNTYgMS43MTUtLjEzIDAtLjMtLjAyMi0uNTA5LS4wNjRhLjY4NS42ODUgMCAwIDAtLjQ3NS4wNzZsLTcuMzcgNC4xOTVhLjM0NC4zNDQgMCAwIDAgLjAwMS41OTdsNy45OSA0LjQ5Yy4yMDguMTE2LjQ2MS4xMTYuNjY5IDBsOC4wMzQtNC40NjhhLjM0My4zNDMgMCAwIDAgLjAwMy0uNTk4bC0yLjUwNy0xLjQyNGEuNjgzLjY4MyAwIDAgMC0uNjctLjAwM2wtMi42NDcgMS40NjhhLjIzNC4yMzQgMCAwIDAtLjExOS4xOGwtLjAwMS4wMjVjMCAuOTQ2LS45MjEgMS43MTQtMi4wNTYgMS43MTRzLTIuMDU2LS43NjgtMi4wNTYtMS43MTRjMC0uOTQ3LjkyMS0xLjcxNSAyLjA1Ni0xLjcxNS4wNDIgMCAuMDkuMDAyLjE0NS4wMDdsLjA4Ny4wMDguMDk2LjAxM2EuNjg1LjY4NSAwIDAgMCAuNDI1LS4wOGwzLjkxMy0yLjE3M2MuMy0uMTY2LjY2Mi0uMTcxLjk2NS0uMDE3bC4wNC4wMjMgNS40NjUgMy4xMDRjLjY4Ni4zOS42OTMgMS4zNjguMDMgMS43NzNsLS4wMzcuMDIxLTMuNjU2IDIuMDMzYS4zNDMuMzQzIDAgMCAwIC4wMDcuNjA0bDMuNjIgMS45MDZjLjcyLjM3OC43MzYgMS40MDIuMDMgMS44MDRsLTEwLjk5NSA2LjI3MmExLjAzIDEuMDMgMCAwIDEtMS4wMTkgMEwuNTI2IDE2LjQzYTEuMDMgMS4wMyAwIDAgMSAuMDM0LTEuODA2bDMuNjYtMS45MTFhLjM0My4zNDMgMCAwIDAgLjAxLS42MDNMLjUyNCAxMC4wMjlhMS4wMyAxLjAzIDAgMCAxLS4wNDEtMS43N2wuMDM2LS4wMjFMOS42MTggMy4wNmEuNjg4LjY4OCAwIDAgMCAuMzA4LS4zNjlsLjAxMS0uMDM2Yy4zMi0uOTUyIDEuMDQ2LTEuNDY2IDIuMDYzLTEuNDY2Wm01LjA3NiAxMi42My00LjQ5MiAyLjU4Ni0uMDQxLjAyMmMtLjMwNi4xNTgtLjY3MS4xNTItLjk3My0uMDE4bC00LjQ3OC0yLjUyN2EuNjgyLjY4MiAwIDAgMC0uNjUtLjAxTDMuODYgMTUuMjI0YS4zNDMuMzQzIDAgMCAwLS4wMTIuNjAybDcuODg3IDQuNTE1Yy4yMS4xMi40NjcuMTIxLjY3NyAwbDcuOTU2LTQuNTQ3YS4zNDMuMzQzIDAgMCAwLS4wMS0uNjAybC0yLjYyMy0xLjM4NGEuNjgzLjY4MyAwIDAgMC0uNjU5LjAxMnoiLz48L3N2Zz4=" alt="Logo Traefik, gateway du fil rouge SemiShop" width="60"/><br />
+<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNjFEQUZCIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UmVhY3Q8L3RpdGxlPjxwYXRoIGQ9Ik0xNC4yMyAxMi4wMDRhMi4yMzYgMi4yMzYgMCAwIDEtMi4yMzUgMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEtMi4yMzYtMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEgMi4yMzUtMi4yMzYgMi4yMzYgMi4yMzYgMCAwIDEgMi4yMzYgMi4yMzZ6bTIuNjQ4LTEwLjY5Yy0xLjM0NiAwLTMuMTA3Ljk2LTQuODg4IDIuNjIyLTEuNzgtMS42NTMtMy41NDItMi42MDItNC44ODctMi42MDItLjQxIDAtLjc4My4wOTMtMS4xMDYuMjc4LTEuMzc1Ljc5My0xLjY4MyAzLjI2NC0uOTczIDYuMzY1QzEuOTggOC45MTcgMCAxMC40MiAwIDEyLjAwNGMwIDEuNTkgMS45OSAzLjA5NyA1LjA0MyA0LjAzLS43MDQgMy4xMTMtLjM5IDUuNTg4Ljk4OCA2LjM4LjMyLjE4Ny42OS4yNzUgMS4xMDIuMjc1IDEuMzQ1IDAgMy4xMDctLjk2IDQuODg4LTIuNjI0IDEuNzggMS42NTQgMy41NDIgMi42MDMgNC44ODcgMi42MDMuNDEgMCAuNzgzLS4wOSAxLjEwNi0uMjc1IDEuMzc0LS43OTIgMS42ODMtMy4yNjMuOTczLTYuMzY1QzIyLjAyIDE1LjA5NiAyNCAxMy41OSAyNCAxMi4wMDRjMC0xLjU5LTEuOTktMy4wOTctNS4wNDMtNC4wMzIuNzA0LTMuMTEuMzktNS41ODctLjk4OC02LjM4LS4zMTgtLjE4NC0uNjg4LS4yNzctMS4wOTItLjI3OHptLS4wMDUgMS4wOXYuMDA2Yy4yMjUgMCAuNDA2LjA0NC41NTguMTI3LjY2Ni4zODIuOTU1IDEuODM1LjczIDMuNzA0LS4wNTQuNDYtLjE0Mi45NDUtLjI1IDEuNDQtLjk2LS4yMzYtMi4wMDYtLjQxNy0zLjEwNy0uNTM0LS42Ni0uOTA1LTEuMzQ1LTEuNzI3LTIuMDM1LTIuNDQ3IDEuNTkyLTEuNDggMy4wODctMi4yOTIgNC4xMDUtMi4yOTV6bS05Ljc3LjAyYzEuMDEyIDAgMi41MTQuODA4IDQuMTEgMi4yOC0uNjg2LjcyLTEuMzcgMS41MzctMi4wMiAyLjQ0Mi0xLjEwNy4xMTctMi4xNTQuMjk4LTMuMTEzLjUzOC0uMTEyLS40OS0uMTk1LS45NjQtLjI1NC0xLjQyLS4yMy0xLjg2OC4wNTQtMy4zMi43MTQtMy43MDcuMTktLjA5LjQtLjEyNy41NjMtLjEzMnptNC44ODIgMy4wNWMuNDU1LjQ2OC45MS45OTIgMS4zNiAxLjU2NC0uNDQtLjAyLS44OS0uMDM0LTEuMzQ1LS4wMzQtLjQ2IDAtLjkxNS4wMS0xLjM2LjAzNC40NC0uNTcyLjg5NS0xLjA5NiAxLjM0NS0xLjU2NXpNMTIgOC4xYy43NCAwIDEuNDc3LjAzNCAyLjIwMi4wOTMuNDA2LjU4Mi44MDIgMS4yMDMgMS4xODMgMS44Ni4zNzIuNjQuNzEgMS4yOSAxLjAxOCAxLjk0Ni0uMzA4LjY1NS0uNjQ2IDEuMzEtMS4wMTMgMS45NS0uMzguNjYtLjc3MyAxLjI4OC0xLjE4IDEuODctLjcyOC4wNjMtMS40NjYuMDk4LTIuMjEuMDk4LS43NCAwLTEuNDc3LS4wMzUtMi4yMDItLjA5My0uNDA2LS41ODItLjgwMi0xLjIwNC0xLjE4My0xLjg2LS4zNzItLjY0LS43MS0xLjI5LTEuMDE4LTEuOTQ2LjMwMy0uNjU3LjY0Ni0xLjMxMyAxLjAxMy0xLjk1NC4zOC0uNjYuNzczLTEuMjg2IDEuMTgtMS44NjguNzI4LS4wNjQgMS40NjYtLjA5OCAyLjIxLS4wOTh6bS0zLjYzNS4yNTRjLS4yNC4zNzctLjQ4Ljc2My0uNzA0IDEuMTYtLjIyNS4zOS0uNDM1Ljc4Mi0uNjM1IDEuMTc0LS4yNjUtLjY1Ni0uNDktMS4zMS0uNjc2LTEuOTQ3LjY0LS4xNSAxLjMxNS0uMjgzIDIuMDE1LS4zODZ6bTcuMjYgMGMuNjk1LjEwMyAxLjM2NS4yMyAyLjAwNi4zODctLjE4LjYzMi0uNDA1IDEuMjgyLS42NiAxLjkzMy0uMi0uMzktLjQxLS43ODMtLjY0LTEuMTc0LS4yMjUtLjM5Mi0uNDY1LS43NzQtLjcwNS0xLjE0NnptMy4wNjMuNjc1Yy40ODQuMTUuOTQ0LjMxNyAxLjM3NS40OTggMS43MzIuNzQgMi44NTIgMS43MDggMi44NTIgMi40NzYtLjAwNS43NjgtMS4xMjUgMS43NC0yLjg1NyAyLjQ3NS0uNDIuMTgtLjg4LjM0Mi0xLjM1NS40OTMtLjI4LS45NTgtLjY0Ni0xLjk1Ni0xLjEtMi45OC40NS0xLjAxNy44MS0yLjAxIDEuMDg1LTIuOTY0em0tMTMuMzk1LjAwNGMuMjc4Ljk2LjY0NSAxLjk1NyAxLjEgMi45OC0uNDUgMS4wMTctLjgxMiAyLjAxLTEuMDg2IDIuOTY0LS40ODQtLjE1LS45NDQtLjMxOC0xLjM3LS41LTEuNzMyLS43MzctMi44NTItMS43MDYtMi44NTItMi40NzQgMC0uNzY4IDEuMTItMS43NDIgMi44NTItMi40NzYuNDItLjE4Ljg4LS4zNDIgMS4zNTYtLjQ5NHptMTEuNjc4IDQuMjhjLjI2NS42NTcuNDkgMS4zMTIuNjc2IDEuOTQ4LS42NC4xNTctMS4zMTYuMjktMi4wMTYuMzkuMjQtLjM3NS40OC0uNzYyLjcwNS0xLjE1OC4yMjUtLjM5LjQzNS0uNzg4LjYzNi0xLjE4em0tOS45NDUuMDJjLjIuMzkyLjQxLjc4My42NCAxLjE3NS4yMy4zOS40NjUuNzcyLjcwNSAxLjE0My0uNjk1LS4xMDItMS4zNjUtLjIzLTIuMDA2LS4zODYuMTgtLjYzLjQwNi0xLjI4Mi42Ni0xLjkzM3pNMTcuOTIgMTYuMzJjLjExMi40OTMuMi45NjguMjU0IDEuNDIzLjIzIDEuODY4LS4wNTQgMy4zMi0uNzE0IDMuNzA4LS4xNDcuMDktLjMzOC4xMjgtLjU2My4xMjgtMS4wMTIgMC0yLjUxNC0uODA3LTQuMTEtMi4yOC42ODYtLjcyIDEuMzctMS41MzYgMi4wMi0yLjQ0IDEuMTA3LS4xMTggMi4xNTQtLjMgMy4xMTMtLjU0em0tMTEuODMuMDFjLjk2LjIzNCAyLjAwNi40MTUgMy4xMDcuNTMyLjY2LjkwNSAxLjM0NSAxLjcyNyAyLjAzNSAyLjQ0Ni0xLjU5NSAxLjQ4My0zLjA5MiAyLjI5NS00LjExIDIuMjk1LS4yMi0uMDA1LS40MDYtLjA1LS41NTMtLjEzMi0uNjY2LS4zOC0uOTU1LTEuODM0LS43My0zLjcwMy4wNTQtLjQ2LjE0Mi0uOTQ0LjI1LTEuNDM4em00LjU2LjY0Yy40NC4wMi44OS4wMzQgMS4zNDUuMDM0LjQ2IDAgLjkxNS0uMDEgMS4zNi0uMDM0LS40NC41NzItLjg5NSAxLjA5NS0xLjM0NSAxLjU2NS0uNDU1LS40Ny0uOTEtLjk5My0xLjM2LTEuNTY1eiIvPjwvc3ZnPg==" alt="Logo React, front de SemiShop derriere le gateway" width="60"/></p>
+<blockquote>
+<p><strong>Pour les profils techniques</strong> : Traefik v3 découvre ses routes dynamiquement en lisant les <strong>labels</strong> des conteneurs Docker — pas de fichier de routes central à maintenir. Chaque service déclare sa règle (<code>Host</code>, <code>PathPrefix</code>), sa priorité et ses middlewares dans le <code>docker-compose.yml</code>. Le lab épingle l'image <code>traefik:v3.2</code> ; la branche v3 est la génération courante (v3.7 au moment de la rédaction).</p>
+</blockquote>
+<h2 id="2-le-pattern-bff-une-api-taillee-pour-le-front">2. Le pattern BFF : une API taillée pour le front</h2>
+<p><strong>Ce que c'est.</strong> Le <strong>BFF</strong> (Backend For Frontend) est un service d'exposition placé entre le front et les services métier. Il ne porte pas de règles métier : il <strong>agrège</strong> (une page = un appel au lieu de trois), <strong>authentifie</strong> (sessions, JWT) et <strong>adapte</strong> les réponses au besoin exact de l'interface.</p>
+<p><strong>À quoi ça sert.</strong> Sans BFF, le front orchestre lui-même les appels vers chaque service : la logique d'assemblage fuit dans le navigateur, l'authentification se duplique par service, et chaque évolution d'un service casse potentiellement le front.</p>
+<p><strong>Un exemple simple.</strong> L'écran « fiche produit » de SemiShop affiche le produit, sa disponibilité et son grade : le front fait un seul <code>GET /api/catalogue/produits/42</code> au BFF, qui compose la réponse.</p>
+<p>Gateway et BFF ne sont pas concurrents, ils s'empilent : Traefik gère le trafic (couche réseau), le BFF gère la composition (couche applicative).</p>
+<h2 id="3-lecture-du-routage-reel-priorites-et-middlewares">3. Lecture du routage réel : priorités et middlewares</h2>
+<p>Le lab SemiShop (<code>../../../../_labs/microservices-multi-techno-simple/labs/semishop/</code>) déclare trois familles de routes, distinguées par leur <strong>priorité</strong> — la règle la plus prioritaire qui matche gagne :</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Règle Traefik</th>
+<th>Priorité</th>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Front</td>
+<td><code>Host + PathPrefix(/)</code></td>
+<td>1</td>
+<td>SPA React</td>
+</tr>
+<tr>
+<td>API socle</td>
+<td><code>Host + PathPrefix(/api)</code></td>
+<td>100</td>
+<td>BFF (auth, agrégation)</td>
+</tr>
+<tr>
+<td>Services directs</td>
+<td><code>Host + PathPrefix(/api/cart)</code> etc.</td>
+<td>200</td>
+<td>cart, inventory, customer, payment</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid">
+flowchart TB
+    t_nav["Navigateur"] --&gt;|"HTTP"| t_traefik["Traefik v3"]
+    t_traefik --&gt;|"prio 1 : /"| t_spa["Front React SPA"]
+    t_traefik --&gt;|"prio 100 : /api"| t_bff["BFF Spring Boot&lt;br/&gt;auth + agregation"]
+    t_traefik --&gt;|"prio 200 : /api/cart"| t_cart["cart NestJS"]
+    t_traefik --&gt;|"prio 200 : /api/inventory"| t_inv["inventory FastAPI"]
+    t_bff --&gt;|"REST"| t_cmd["commandes"]
+    t_bff --&gt;|"REST"| t_cat["catalogue"]
+</pre>
 
-[ACT]
-Creation de src/main/java/.../dto/DisponibiliteDto.java (+9 lignes)
-Modification de src/main/java/.../service/ProduitService.java (+7 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+6 lignes)
-Creation de src/test/java/.../web/ProduitControllerDisponibiliteTest.java (+38 lignes)
+<p>Concrètement, dans <code>docker-compose.polyglot.yml</code>, le service <code>cart</code> déclare (extrait) :</p>
+<div class="highlight"><pre><span></span><code><span class="nt">labels</span><span class="p">:</span>
 
-[VERIFY]
-Commande : ./gradlew test   -&gt;   BUILD SUCCESSFUL, 24 tests completed, 0 failed
-Diff total : 4 fichiers, +60 -0 ; conforme au plan, aucun autre fichier touche
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.enable=true&quot;</span>
+<span class="w">  </span><span class="c1"># Router direct cart : /api/cart -&gt; service cart, priorite &gt; BFF (100).</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.cart.rule=Host(`semishop.localhost`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/api/cart`)&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.cart.priority=200&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.cart.middlewares=cart-strip,semishop-cors@file&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.middlewares.cart-strip.stripprefix.prefixes=/api/cart&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.services.cart-svc.loadbalancer.server.port=8084&quot;</span>
 </code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
+<p>Deux mécanismes à lire attentivement. La <strong>priorité 200</strong> fait passer <code>/api/cart</code> devant le préfixe générique <code>/api</code> du BFF (priorité 100) : sans elle, le BFF capterait tout. Le middleware <strong>StripPrefix</strong> retire <code>/api/cart</code> avant de transmettre : le service NestJS ne connaît que ses chemins internes, il ignore sous quel préfixe le gateway l'expose.</p>
 <blockquote>
-<p>On vous fournit une <strong>seconde trace</strong> (ci-dessous), produite sur la même tâche par un agent mal piloté. Recopiez-la dans un brouillon et <strong>étiquetez chaque bloc</strong> <code>[PLAN]</code> / <code>[ACT]</code> / <code>[VERIFY]</code>. Repérez au moins <strong>deux anomalies</strong> (un temps de la boucle manquant ou bâclé). Ne corrigez pas encore — identifiez.</p>
+<p>🟨 <strong>Warning — le contre-exemple assumé du lab.</strong> Ces routes directes <strong>contournent le BFF</strong> : aucune authentification, aucune agrégation. C'est un choix de démonstration, documenté comme tel dans le lab, qui permet de tester chaque service polyglotte isolément. En production, ce serait une faille : n'importe qui appellerait le panier ou le paiement sans session. Retenez le montage pour ce qu'il enseigne — la mécanique des priorités — pas comme un modèle à reproduire. Votre TP 4.2 devra dire explicitement quel trafic passe (ou non) par votre BFF.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>Modification de src/main/java/.../service/ProduitService.java (+11 lignes)
-Modification de src/main/java/.../web/ProduitController.java (+5 lignes)
-Ajout de la dependance &quot;spring-boot-starter-availability:3.4.1&quot; dans build.gradle
-Modification de src/main/resources/application.yaml (+3 lignes)
-Build OK.
-</code></pre></div>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>On étiquette tout en <code>[ACT]</code></td>
-<td>Confusion entre « ce que l'agent fait » et « ce qu'il prévoit / vérifie »</td>
-<td>Aucun <code>[PLAN]</code> ni <code>[VERIFY]</code> dans l'analyse</td>
-<td>Chercher explicitement l'intention (avant) et la preuve (après)</td>
-</tr>
-<tr>
-<td>L'absence de plan passe inaperçue</td>
-<td>On lit le diff sans se demander « où était le plan ? »</td>
-<td>La trace commence directement par une modif</td>
-<td>Marquer « plan manquant » comme anomalie n°1</td>
-</tr>
-<tr>
-<td>La dépendance ajoutée n'est pas questionnée</td>
-<td>On fait confiance au « Build OK »</td>
-<td><code>spring-boot-starter-availability</code> n'est vérifié nulle part</td>
-<td>Marquer « dépendance non justifiée » comme anomalie</td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-2-derouler-la-sequence-de-validation-du-diff">Étape 2 : dérouler la séquence de validation du diff</h2>
-<p><strong>Objectif.</strong> Appliquer, dans l'ordre, les cinq contrôles du chapitre <a href="02-boucle-plan-act-verify.md">02</a> (périmètre, dépendances, secrets, tests, relecture) sur la trace imparfaite.</p>
-<p><strong>Explication.</strong> La séquence de validation n'est pas une opinion : c'est une liste ordonnée de questions binaires. Chaque contrôle a une réponse OK / KO / « info manquante » et une action associée.</p>
-<p><strong>Exemple traité</strong> — les deux premiers contrôles appliqués à la trace imparfaite :</p>
-<table>
-<thead>
-<tr>
-<th>Contrôle</th>
-<th>Question</th>
-<th>Verdict sur la trace</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Périmètre</td>
-<td>L'agent a-t-il touché <strong>seulement</strong> ce qui était prévu ?</td>
-<td>KO — <code>application.yaml</code> modifié sans raison annoncée ; exposer un endpoint de lecture ne demande aucune configuration nouvelle</td>
-<td>Demander pourquoi ; probablement à annuler</td>
-</tr>
-<tr>
-<td>2. Dépendances</td>
-<td>La dépendance ajoutée existe-t-elle, est-elle utile ?</td>
-<td>KO — <code>spring-boot-starter-availability</code> : ce starter <strong>n'existe pas</strong> dans l'écosystème Spring Boot (nom plausible, package inventé) ; lire un stock ne requiert aucune librairie</td>
-<td>Rejeter ; vérifier sur Maven Central avant tout ajout</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>À vous !</strong></p>
-<blockquote>
-<p>Complétez le tableau pour les <strong>trois contrôles restants</strong> (secrets, tests, relecture ligne à ligne) appliqués à la trace imparfaite. Pour chacun : la question, le verdict (OK / KO / « info manquante »), l'action. Puis formulez en une phrase la <strong>décision finale</strong> : ce diff est-il <em>commitable en l'état</em> ? (Indice : non — dites pourquoi en citant les contrôles KO.)</p>
-<p>Méthode : un contrôle dont <strong>l'information manque</strong> (ex. : aucun test montré, contenu d'<code>application.yaml</code> non affiché) n'est <strong>pas</strong> un OK. C'est « info manquante » → action = exiger la preuve avant d'accepter.</p>
-</blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Build OK » compté comme « tests verts »</td>
-<td>Confusion build / test</td>
-<td>Aucune ligne <code>tests completed</code> ni compteur d'échecs</td>
-<td>Marquer « tests : info manquante », exiger le run</td>
-</tr>
-<tr>
-<td>Contrôle secrets zappé</td>
-<td>Le diff « a l'air propre »</td>
-<td>On ne l'a pas cherché : <code>application.yaml</code> modifié sans que son contenu soit montré</td>
-<td>Exiger le contenu ; chercher les patterns de secret</td>
-</tr>
-<tr>
-<td>Relecture ligne à ligne remplacée par « ça compile »</td>
-<td>Fatigue / confiance</td>
-<td>Le diff n'a pas été ouvert fichier par fichier</td>
-<td>Ouvrir chaque fichier modifié, lire chaque <code>+</code>/<code>-</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="etape-3-capitaliser-en-une-checklist-reutilisable">Étape 3 : capitaliser en une checklist réutilisable</h2>
-<p><strong>Objectif.</strong> Transformer l'analyse en artefact versionné dans <code>ia-toolbox/checklists/</code> — pour ne pas refaire ce raisonnement à la main à chaque diff.</p>
-<p><strong>Contexte.</strong> C'est la discipline posée au module 02 : une décision de qualité validée se <strong>capitalise</strong>. Cette checklist devient la référence que vous appliquerez à chaque incrément du TP 3.1, et que l'agent lui-même peut lire via vos rules.</p>
-<p><strong>Explication.</strong> Une bonne checklist est courte, ordonnée, actionnable : une ligne = une question fermée + le geste associé. Pas de paragraphe. Elle couvre les trois temps de la boucle <strong>et</strong> les cinq garde-fous du chapitre <a href="03-garde-fous.md">03</a>.</p>
-<p><strong>Exemple traité</strong> — l'en-tête et la première rubrique :</p>
-<div class="highlight"><pre><span></span><code><span class="gh"># Checklist - validation d&#39;un diff d&#39;agent</span>
+<h2 id="4-le-contrat-openapi-la-vraie-frontiere-entre-services">4. Le contrat OpenAPI : la vraie frontière entre services</h2>
+<p><strong>Ce que c'est.</strong> Un contrat <strong>OpenAPI</strong> est la description formelle (YAML ou JSON) d'une API HTTP : chemins, verbes, paramètres, schémas de réponse, codes d'erreur. La spécification courante est <strong>OpenAPI 3.2.0</strong> (publiée fin 2025) ; l'écosystème d'outillage reste majoritairement calé sur 3.0 / 3.1, toutes structurellement compatibles pour ce que nous en faisons ici.</p>
+<p><strong>À quoi ça sert.</strong> Dans une architecture polyglotte, le contrat est la seule chose que deux services partagent. L'équipe qui consomme le catalogue depuis un service NestJS n'a pas besoin de lire du Java : elle lit le contrat. C'est aussi lui qui nourrira les tests contractuels du module 08 et le RAG du module 05.</p>
+<p><strong>Un exemple simple</strong> — esquisse du contrat que le service panier consomme :</p>
+<div class="highlight"><pre><span></span><code><span class="nt">openapi</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.1.0&quot;</span>
+<span class="nt">info</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SemiShop</span><span class="nv"> </span><span class="s">Catalogue</span><span class="nv"> </span><span class="s">API&quot;</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span>
+<span class="nt">paths</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">/produits/{id}</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">get</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fiche</span><span class="nv"> </span><span class="s">produit</span><span class="nv"> </span><span class="s">reconditionne&quot;</span>
+<span class="w">      </span><span class="nt">parameters</span><span class="p">:</span>
 
-<span class="gu">## Avant de lancer l&#39;agent (plan)</span>
-<span class="k">- [ ]</span> Objectif etroit et ecrit (une phrase, un perimetre)
-<span class="k">- [ ]</span> Travail sur une branche dediee (pas main)
-<span class="k">- [ ]</span> Plan explicite valide AVANT toute ecriture de code
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
+<span class="w">          </span><span class="nt">in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path</span>
+<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">          </span><span class="nt">schema</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">integer</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="s">&quot;200&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Produit</span><span class="nv"> </span><span class="s">trouve&quot;</span>
+<span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">                </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">integer</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">libelle</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">grade</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="nt"> enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">A</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">B</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">C</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">                  </span><span class="nt">prix_ht</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="s">&quot;404&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Produit</span><span class="nv"> </span><span class="s">inconnu&quot;</span>
 </code></pre></div>
-<hr />
-<p><strong>À vous !</strong></p>
 <blockquote>
-<p>Complétez <code>ia-toolbox/checklists/validation-diff-agent.md</code> avec au moins <strong>trois rubriques</strong> supplémentaires :<br />
-- <strong>Pendant (act)</strong> : incréments petits, commandes lancées connues, pas d'écriture hors chemins autorisés.<br />
-- <strong>Après (verify)</strong> : les 5 contrôles ordonnés (périmètre, dépendances, secrets, tests, relecture).<br />
-- <strong>Garde-fous transverses</strong> : coûts/tokens bornés, secrets hors contexte, rollback Git possible.</p>
-<p><strong>Livrable</strong> : le fichier <code>ia-toolbox/checklists/validation-diff-agent.md</code> complet, commité dans votre dépôt SemiShop. La checklist de référence est dans le corrigé.</p>
+<p><strong>Pour les profils techniques</strong> : les quatre stacks du fil rouge génèrent ce contrat depuis le code (springdoc pour Spring Boot, <code>@nestjs/swagger</code>, FastAPI nativement, Swashbuckle pour .NET) — ou l'inverse en contract-first. Le choix code-first / contract-first importe moins que la règle : <strong>le contrat committé fait foi</strong>, et toute rupture se voit en revue de diff.</p>
 </blockquote>
-<hr />
-<p><strong>Erreurs fréquentes à cette étape</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>🟨 Symptôme</th>
-<th>Cause probable</th>
-<th>Comment le détecter</th>
-<th>Correction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Checklist en paragraphes</td>
-<td>On rédige au lieu de lister</td>
-<td>Pas de cases <code>- [ ]</code></td>
-<td>Réécrire en items fermés, un geste par ligne</td>
-</tr>
-<tr>
-<td>Ordre des contrôles perdu</td>
-<td>Copié en vrac</td>
-<td>Secrets avant périmètre, etc.</td>
-<td>Rétablir l'ordre : périmètre → deps → secrets → tests → relecture</td>
-</tr>
-<tr>
-<td>Garde-fous oubliés</td>
-<td>On ne pense qu'au diff</td>
-<td>Pas de rubrique coûts / rollback</td>
-<td>Ajouter la rubrique transverse</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>Correction / Solution</strong> :<br />
-🔷 Correction distribuée par le formateur (voir <code>corriges/corrige-05-td-anatomie-boucle-agent.md</code>).</p>
-<hr />
+<p><strong>Versionner l'API.</strong> Un contrat évolue. Deux disciplines suffisent à ce stade : les changements <strong>compatibles</strong> (ajouter un champ optionnel, un endpoint) incrémentent la version mineure du contrat sans casser les consommateurs ; les changements <strong>cassants</strong> (renommer un champ, changer un type) exigent une nouvelle version majeure explicite — préfixe d'URL <code>/v2/</code> ou négociation par en-tête — en laissant l'ancienne vivre le temps de la migration.</p>
 <blockquote>
-<p>🔹 <strong>En production, ce que ça change</strong> : une équipe qui partage <strong>la même</strong> checklist de validation de diff obtient des revues homogènes, quel que soit le relecteur. C'est ce qui permettra, au <a href="../module09-cicd-securite/04-revue-pr-assistee-gates.md">module 09</a>, d'automatiser une partie de la revue de PR sans perdre le contrôle humain sur les décisions structurantes.</p>
+<p>🔹 <strong>Bonne pratique production</strong> : faites relire les diffs de contrat par l'IA (« ce changement est-il cassant pour un consommateur existant ? ») mais gardez la décision de version. Un champ renommé « pour faire propre » par un agent est une rupture de contrat silencieuse — c'est en revue de diff qu'on l'attrape, réflexe du module 03.</p>
 </blockquote>
+<h2 id="ce-quil-faut-retenir">Ce qu'il faut retenir</h2>
+<ul>
+<li>🔷 Le <strong>gateway</strong> (Traefik) route et concentre TLS / CORS / rate limiting ; le <strong>BFF</strong> agrège, authentifie et adapte pour le front. Les deux s'empilent, ils ne se remplacent pas.</li>
+<li>🔷 Dans Traefik, la <strong>priorité</strong> départage les règles qui matchent (<code>/api/cart</code> en 200 bat <code>/api</code> en 100) et <strong>StripPrefix</strong> découple le chemin public du chemin interne.</li>
+<li>🔷 Les routes directes du lab (sans BFF, sans auth) sont un <strong>contre-exemple pédagogique assumé</strong>, pas un modèle de production.</li>
+<li>🔷 Le <strong>contrat OpenAPI committé</strong> est la frontière réelle entre services polyglottes ; compatible = version mineure, cassant = version majeure explicite.</li>
+</ul>
+<h2 id="pieges-courants">Pièges courants</h2>
+<blockquote>
+<p>🟨 <strong>Oublier la priorité.</strong> Deux <code>PathPrefix</code> qui se recouvrent sans priorité explicite produisent un routage qui dépend de l'ordre de découverte des conteneurs. Symptôme classique : <code>/api/cart</code> répond parfois du BFF, parfois du service.</p>
+<p>🟨 <strong>Oublier StripPrefix.</strong> Le service reçoit <code>/api/cart/lignes</code> au lieu de <code>/lignes</code> et répond 404 alors que « tout est bien configuré dans le compose ».</p>
+<p>🟨 <strong>Mettre du métier dans le BFF.</strong> Un BFF qui calcule des montants ou décide de transitions de statut devient un deuxième monolithe, non testable par contrat. Il compose, il ne décide pas.</p>
+</blockquote>
+<h2 id="validation-des-acquis">Validation des acquis</h2>
+<p><strong>Q1.</strong> Sur SemiShop, une requête <code>GET /api/cart</code> arrive dans Traefik où coexistent une règle <code>/api</code> (priorité 100) et une règle <code>/api/cart</code> (priorité 200). Qui répond ?</p>
+<ul>
+<li>A. Le BFF, car <code>/api</code> est plus court</li>
+<li>B. Le service cart, car sa règle a la priorité la plus haute</li>
+<li>C. Le front, par défaut</li>
+<li>D. Les deux, en répartition de charge</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Traefik évalue la règle qui matche avec la priorité la plus élevée : 200 bat 100. Sans ces priorités, le préfixe générique <code>/api</code> du BFF capterait la requête.</p>
+</details>
+<p><strong>Q2.</strong> Quel est le rôle du middleware StripPrefix sur la route <code>/api/cart</code> ?</p>
+<ul>
+<li>A. Bloquer les requêtes non authentifiées</li>
+<li>B. Retirer <code>/api/cart</code> du chemin avant transmission au service</li>
+<li>C. Ajouter les en-têtes CORS</li>
+<li>D. Limiter le débit</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Le service ne connaît que ses chemins internes (<code>/lignes</code>, <code>/health</code>). StripPrefix découple le préfixe public, choisi au niveau du gateway, de l'implémentation.</p>
+</details>
+<p><strong>Q3.</strong> Pourquoi les routes directes du lab (priorité 200, sans BFF) seraient-elles une faille en production ?</p>
+<ul>
+<li>A. Elles sont plus lentes</li>
+<li>B. Elles contournent l'authentification et l'agrégation portées par le BFF</li>
+<li>C. Traefik ne supporte pas plus de deux priorités</li>
+<li>D. Elles empêchent le front de fonctionner</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Tout le contrôle d'accès du socle vit dans le BFF. Une route qui le contourne expose le service nu — acceptable pour une démo de lab, jamais pour un chemin de production.</p>
+</details>
+<p><strong>Q4.</strong> Renommer un champ <code>prix_ht</code> en <code>prixHT</code> dans la réponse du catalogue est :</p>
+<ul>
+<li>A. Un changement compatible, version mineure</li>
+<li>B. Un changement cassant, qui exige une version majeure explicite</li>
+<li>C. Sans impact car le JSON est insensible à la casse</li>
+<li>D. Un problème de gateway</li>
+</ul>
+<details>
+<summary>Réponse</summary>
+<p><strong>Réponse : B.</strong> Tout consommateur qui lit <code>prix_ht</code> casse silencieusement. Rupture de contrat = version majeure, avec cohabitation le temps de la migration.</p>
+</details>
 <hr />
-<h2 id="recap">Récap</h2>
-<p>🟢 Ce que vous savez maintenant faire :</p>
-<ul>
-<li>Segmenter une trace d'agent en <code>plan</code> / <code>act</code> / <code>verify</code> et repérer un temps manquant.</li>
-<li>Dérouler les cinq contrôles de validation d'un diff, dans l'ordre.</li>
-<li>Distinguer « info manquante » d'un « OK » (l'absence de preuve n'est pas une preuve).</li>
-<li>Capitaliser le raisonnement dans une checklist versionnée réutilisable.</li>
-</ul>
-<p>🟨 Pièges à retenir :</p>
-<ul>
-<li>« Build OK » n'est pas « tests verts ».</li>
-<li>Une dépendance ajoutée se vérifie (existence, fraîcheur, nécessité) — l'agent peut l'halluciner, y compris avec un nom très plausible.</li>
-<li>Un plan absent est une anomalie, pas un détail.</li>
-</ul>
-<p>🔷 Points clés à retenir :</p>
-<ul>
-<li>La checklist est courte et ordonnée : une ligne = une question fermée + un geste.</li>
-<li>Elle couvre les 3 temps de la boucle <strong>et</strong> les 5 garde-fous.</li>
-</ul>
-<p>🔹 <strong>Prochaine étape</strong> : appliquer cette checklist pour de vrai. Le <a href="06-tp-service-catalogue-crud.md">TP 3.1 — Service catalogue CRUD piloté par agent</a> vous fait construire le premier service de SemiShop de bout en bout, en validant chaque diff avec la checklist que vous venez de créer.</p>
+<p>🔹 <strong>Prochaine étape</strong> : le contrat rend les technologies interchangeables — encore faut-il décider lesquelles. Le chapitre <a href="03-polyglotte-pourquoi-quand.md">03 — Polyglotte : pourquoi et quand plusieurs langages</a> arme ce choix.</p>
     </article>
 
     
