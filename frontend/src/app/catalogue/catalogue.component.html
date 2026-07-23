@@ -1,0 +1,36 @@
+<div class="catalog-page">
+  <div class="catalog-header">
+    <h2>Catalogue des produits</h2>
+    <button class="reload-btn" (click)="loadProduits()">Recharger</button>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!error && loading" class="loading">Chargement en cours...</div>
+
+  <div *ngIf="!error && !loading && produits.length === 0" class="empty">
+    Aucun produit
+  </div>
+
+  <table
+    *ngIf="!error && produits.length > 0"
+    class="product-grid"
+  >
+    <thead>
+      <tr>
+        <th>Libellé</th>
+        <th>Grade</th>
+        <th>Prix HT</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of produits">
+        <td>{{ p.libelle }}</td>
+        <td>{{ p.grade }}</td>
+        <td>{{ p.prixHt | number:'1.2-2' }} €</td>
+        <td>{{ p.stock }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
