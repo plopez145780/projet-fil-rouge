@@ -1,6 +1,7 @@
 package com.semishop.service;
 
 import com.semishop.domain.Categorie;
+import com.semishop.dto.CategorieResponse;
 import com.semishop.repository.CategorieRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,15 @@ public class CategorieService {
         this.categorieRepository = categorieRepository;
     }
 
-    public List<Categorie> listAll() {
-        return categorieRepository.findAll();
+    public List<CategorieResponse> listAll() {
+        return categorieRepository.findAll().stream()
+                .map(c -> {
+                    CategorieResponse r = new CategorieResponse();
+                    r.setId(c.getId());
+                    r.setLibelle(c.getLibelle());
+                    r.setSlug(c.getSlug());
+                    return r;
+                })
+                .toList();
     }
 }

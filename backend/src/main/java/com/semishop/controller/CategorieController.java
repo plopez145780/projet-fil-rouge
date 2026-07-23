@@ -1,6 +1,7 @@
 package com.semishop.controller;
 
 import com.semishop.domain.Categorie;
+import com.semishop.dto.CategorieResponse;
 import com.semishop.service.CategorieService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class CategorieController {
     }
 
     @GetMapping
-    public List<Categorie> list() {
+    public List<CategorieResponse> list() {
         return categorieService.listAll();
     }
 }
