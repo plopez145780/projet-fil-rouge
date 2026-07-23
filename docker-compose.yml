@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:18 # majeure epinglee (stable 18.x, juin 2026)
+    image: postgres:18 # majeure epinglée (stable 18.x, juin 2026)
     container_name: fil-rouge-db
     environment:
       POSTGRES_DB: ${POSTGRES_DB} # valeurs injectees depuis .env
@@ -15,6 +15,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - semishop
+
   qdrant: # base vectorielle du RAG, utile en M05
     image: qdrant/qdrant:v1.18.2
     ports:
@@ -22,7 +25,48 @@ services:
       - "6334:6334" # gRPC
     volumes:
       - qdrant_data:/qdrant/storage
+    networks:
+      - semishop
+
+  traefik:
+    image: traefik:v3.7
+    container_name: fil-rouge-traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - semishop
+
+  catalogue:
+    build:
+      context: ./backend
+    environment:
+      DB_URL: "jdbc:postgresql://db:5432/${POSTGRES_DB}"
+      DB_USER: "${POSTGRES_USER:-semishop}"
+      DB_PASSWORD: "${POSTGRES_PASSWORD:-semishop}"
+      SERVER_PORT: "8081"
+    depends_on:
+      db:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catalogue.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.catalogue.entrypoints=web"
+      - "traefik.http.middlewares.api-strip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.catalogue.middlewares=api-strip"
+      - "traefik.http.services.catalogue.loadbalancer.server.port=8081"
+    networks:
+      - semishop
 
 volumes:
   pg_data:
   qdrant_data:
+
+networks:
+  semishop:
